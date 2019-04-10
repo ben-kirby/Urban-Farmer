@@ -57,3 +57,4 @@ buck-out/
 
 #Firebase environment variable
 src/constants/firebaseConfig.js
+src/config.js
