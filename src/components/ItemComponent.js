@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import PropTypes from 'prop-types';
 
 export default class ItemComponent extends Component {
@@ -9,7 +9,7 @@ export default class ItemComponent extends Component {
 
   render() {
     return(
-      <View style={StyleSheet.itemsList}>
+      <ScrollView style={StyleSheet.itemsList}>
         {this.props.products.map((item, index) => {
           return (
             <View key={index}>
@@ -17,7 +17,7 @@ export default class ItemComponent extends Component {
             </View>
           );
         })}
-      </View>
+      </ScrollView>
     );
   }
 }
