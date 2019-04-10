@@ -6,11 +6,16 @@ import Home from './src/screens/Home';
 import AddItem from './src/screens/AddItem';
 import List from './src/screens/List';
 
-const AppNavigator = createStackNavigator({
-  Home: {
-    screen: Home
+const AppNavigator = createStackNavigator(
+  {
+    Home,
+    AddItem,
+    List
+  },
+  {
+    initialRouteName: 'Home'
   }
-});
+);
 
 const AppContainer = createAppContainer(AppNavigator);
 
