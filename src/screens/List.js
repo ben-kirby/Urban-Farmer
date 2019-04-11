@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import ItemComponent from '../components/ItemComponent';
+import FooterComponent from '../components/FooterComponent';
 
 import { db } from '../config';
 
@@ -28,6 +29,9 @@ export default class List extends Component {
         ) : (
           <Text>No Products :(</Text>
         )}
+        <View style={styles.footer}>
+        <FooterComponent/>
+        </View>
       </View>
     );
   }
@@ -35,8 +39,12 @@ export default class List extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 2,
     justifyContent: 'center',
     backgroundColor: '#ebebeb'
+  },
+  footer: {
+    alignSelf: 'flex-end'
+
   }
 });
