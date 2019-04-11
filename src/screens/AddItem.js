@@ -7,6 +7,7 @@ import {
   TextInput
 } from 'react-native';
 import { db } from '../config';
+import FooterComponent from '../components/FooterComponent';
 
 let addItem = item => {
   db.ref('/products').push({
@@ -35,6 +36,7 @@ export default class AddItem extends Component {
   render(){
     return(
       <View style={styles.main}>
+      <View >
         <Text style={styles.title}>Add Item</Text>
         <TextInput 
           style={styles.itemInput}
@@ -47,6 +49,10 @@ export default class AddItem extends Component {
         >
           <Text style={styles.buttonText}>Add</Text>
         </TouchableHighlight>
+      </View>
+      <View>
+        <FooterComponent/>
+      </View>
       </View>
     );
   }
