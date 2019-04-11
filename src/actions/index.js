@@ -2,4 +2,8 @@ import Firebase from 'firebase';
 
 const { firebaseConfig } = constants;
 
-firebase.initializeApp(firebaseConfig);
+Firebase.initializeApp(firebaseConfig);
+
+export function getAllRecords() {
+  return function(dispatch) {}
+}
