@@ -357,6 +357,13 @@
 			remoteGlobalIDString = ED296FEE214C9CF800B7C4FE;
 			remoteInfo = "jsiexecutor-tvOS";
 		};
+		E863CB4B2261094D00542A7B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FCFB8C079E924F76BA037DC5 /* RNFirebase.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNFirebase;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -732,6 +739,17 @@
 			);
 			name = Resources;
 			sourceTree = "<group>";
+<<<<<<< HEAD
+		};
+		E863CB232261094C00542A7B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E863CB4C2261094D00542A7B /* libRNFirebase.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+=======
+>>>>>>> 0307b9bc6cd09426453b2245992be3f3cfa60305
 		};
 /* End PBXGroup section */
 
@@ -899,7 +917,11 @@
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
 				},
 				{
+<<<<<<< HEAD
+					ProductGroup = E863CB232261094C00542A7B /* Products */;
+=======
 					ProductGroup = 33B94459226109A60087221F /* Products */;
+>>>>>>> 0307b9bc6cd09426453b2245992be3f3cfa60305
 					ProjectRef = FCFB8C079E924F76BA037DC5 /* RNFirebase.xcodeproj */;
 				},
 				{
@@ -1196,6 +1218,13 @@
 			fileType = archive.ar;
 			path = "libjsiexecutor-tvOS.a";
 			remoteRef = E8272391225D23A80002AE70 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E863CB4C2261094D00542A7B /* libRNFirebase.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNFirebase.a;
+			remoteRef = E863CB4B2261094D00542A7B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */

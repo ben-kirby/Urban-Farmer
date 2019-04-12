@@ -4,13 +4,15 @@ import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
 
 import Home from './src/screens/Home';
 import AddItem from './src/screens/AddItem';
-import Inventory from './src/screens/List';
+import InventoryList from './src/screens/InventoryList';
+import SignInScreen from './src/screens/SignInScreen';
 
 const TabNavigator = createBottomTabNavigator(
   {
     Home,
-    Inventory,
-    AddItem
+    AddItem,
+    InventoryList,
+    SignInScreen
   },
   {
     initialRouteName: 'Home'
