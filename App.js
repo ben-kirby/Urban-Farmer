@@ -5,12 +5,14 @@ import { createStackNavigator, createAppContainer } from 'react-navigation';
 import Home from './src/screens/Home';
 import AddItem from './src/screens/AddItem';
 import List from './src/screens/List';
+import SignIn from './src/screens/SignIn';
 
 const AppNavigator = createStackNavigator(
   {
     Home,
     AddItem,
-    List
+    List,
+    SignIn
   },
   {
     initialRouteName: 'Home'
