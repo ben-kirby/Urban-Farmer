@@ -14,7 +14,7 @@ export default class Home extends Component {
         <Button
           title="Item List"
           color="green"
-          onPress={() =>  this.props.navigation.navigate('List')}
+          onPress={() =>  this.props.navigation.navigate('InventoryList')}
         />
         <Button
           title="Sign In"
@@ -25,4 +25,5 @@ export default class Home extends Component {
       
     )
   }
+
 }

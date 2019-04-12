@@ -6,7 +6,7 @@ import Home from './src/screens/Home';
 import AddItem from './src/screens/AddItem';
 import List from './src/screens/List';
 import SignIn from './src/screens/SignIn';
-import Inventory from './src/screens/List';
+import InventoryList from './src/screens/InventoryListScreen';
 
 const TabNavigator = createBottomTabNavigator(
   {
@@ -14,7 +14,7 @@ const TabNavigator = createBottomTabNavigator(
     AddItem,
     List,
     SignIn,
-    Inventory
+    InventoryList
   },
   {
     initialRouteName: 'Home'

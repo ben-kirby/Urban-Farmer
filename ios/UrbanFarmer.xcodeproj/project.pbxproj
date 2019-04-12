@@ -196,6 +196,13 @@
 			remoteGlobalIDString = 3D383D621EBD27B9005632C8;
 			remoteInfo = "double-conversion-tvOS";
 		};
+		33B94481226109A70087221F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FCFB8C079E924F76BA037DC5 /* RNFirebase.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNFirebase;
+		};
 		33CCFBF7225E726700168F93 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0A84E51964D149F4BD89721A /* RNGestureHandler.xcodeproj */;
@@ -597,6 +604,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		33B94459226109A60087221F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				33B94482226109A70087221F /* libRNFirebase.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		33CCFBC8225E726600168F93 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
@@ -724,6 +739,7 @@
 			);
 			name = Resources;
 			sourceTree = "<group>";
+<<<<<<< HEAD
 		};
 		E863CB232261094C00542A7B /* Products */ = {
 			isa = PBXGroup;
@@ -732,6 +748,8 @@
 			);
 			name = Products;
 			sourceTree = "<group>";
+=======
+>>>>>>> 0307b9bc6cd09426453b2245992be3f3cfa60305
 		};
 /* End PBXGroup section */
 
@@ -899,7 +917,11 @@
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
 				},
 				{
+<<<<<<< HEAD
 					ProductGroup = E863CB232261094C00542A7B /* Products */;
+=======
+					ProductGroup = 33B94459226109A60087221F /* Products */;
+>>>>>>> 0307b9bc6cd09426453b2245992be3f3cfa60305
 					ProjectRef = FCFB8C079E924F76BA037DC5 /* RNFirebase.xcodeproj */;
 				},
 				{
@@ -1035,6 +1057,13 @@
 			fileType = archive.ar;
 			path = "libdouble-conversion.a";
 			remoteRef = 2DF0FFE82056DD460020B375 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		33B94482226109A70087221F /* libRNFirebase.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNFirebase.a;
+			remoteRef = 33B94481226109A70087221F /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		33CCFBF8225E726700168F93 /* libRNGestureHandler.a */ = {
