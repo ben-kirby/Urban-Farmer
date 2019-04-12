@@ -1,23 +1,23 @@
 import React, { Component } from "react";
 import { StyleSheet, TextInput, View, Button } from "react-native";
 
-import firebase, { db, provider, auth } from "../config";
+import firebase, { db, auth } from "../config";
 
 export default class SignInScreen extends Component {
   state = {
     email: '',
-    password: ''
+    password: '',
+    loggedIn: false
   };
+
+onSubmit = () => {
+  auth.signInWithEmailAndPassword(this.state.email, this.state.password);
+}
 
 
   render() {
     return (
       <View style={styles.container}>
-      <TextInput
-        style={styles.input}
-        onChangeText={(text) => this.setState({name: text})}
-        placeholder="Name"
-      />
       <TextInput
         style={styles.input}
         onChangeText={(text) => this.setState({email: text})}
@@ -30,6 +30,7 @@ export default class SignInScreen extends Component {
         placeholder="Password"
       />
       <Button
+        onPress={this.onSubmit}
         title="Submit"
         color="#841584"
       />
