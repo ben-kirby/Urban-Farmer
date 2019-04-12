@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import { db } from '../config';
 
+
 let addItem = item => {
   db.ref('/products').push({
     name: item
@@ -35,6 +36,7 @@ export default class AddItem extends Component {
   render(){
     return(
       <View style={styles.main}>
+    
         <Text style={styles.title}>Add Item</Text>
         <TextInput 
           style={styles.itemInput}
@@ -47,7 +49,9 @@ export default class AddItem extends Component {
         >
           <Text style={styles.buttonText}>Add</Text>
         </TouchableHighlight>
+        
       </View>
+   
     );
   }
 }
@@ -92,4 +96,5 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     justifyContent: 'center'
   }
+
 });

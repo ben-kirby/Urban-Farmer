@@ -1,23 +1,23 @@
 import React, {Component} from 'react';
 import { Platform, StyleSheet, Text, View, TextInput } from 'react-native';
-import { createStackNavigator, createAppContainer } from 'react-navigation';
+import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
 
 import Home from './src/screens/Home';
 import AddItem from './src/screens/AddItem';
-import List from './src/screens/List';
+import Inventory from './src/screens/List';
 
-const AppNavigator = createStackNavigator(
+const TabNavigator = createBottomTabNavigator(
   {
     Home,
-    AddItem,
-    List
+    Inventory,
+    AddItem
   },
   {
     initialRouteName: 'Home'
   }
 );
 
-const AppContainer = createAppContainer(AppNavigator);
+const AppContainer = createAppContainer(TabNavigator);
 
 export default class App extends Component {
   render() {
