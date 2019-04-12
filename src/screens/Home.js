@@ -18,7 +18,7 @@ export default class Home extends Component {
         />
         <Button
           title="Sign In"
-          onPress={() => this.props.navigation.navigate('SignIn')}
+          onPress={() => this.props.navigation.navigate('SignInScreen')}
         />
          
       </View>
