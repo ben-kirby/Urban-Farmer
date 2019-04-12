@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import ItemComponent from '../components/ItemComponent';
-import FooterComponent from '../components/FooterComponent';
+
 
 import { db } from '../config';
 
 let productsRef = db.ref('/products');
 
-export default class List extends Component {
+export default class Inventory extends Component {
   state = {
     products: []
   };
@@ -29,9 +29,7 @@ export default class List extends Component {
         ) : (
           <Text>No Products :(</Text>
         )}
-        <View style={styles.footer}>
-        <FooterComponent/>
-        </View>
+        
       </View>
     );
   }
