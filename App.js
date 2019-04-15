@@ -12,22 +12,22 @@ import CreateUserScreen from './src/screens/CreateUserScreen';
 
 const AuthStack = createStackNavigator(
   {
-    SignInScreen,
-    CreateUserScreen,
+    SignIn: { screen: SignInScreen },
+    CreateUser: { screen: CreateUserScreen },
   },
   {
-    initialRouteName: 'SignInScreen',
+    initialRouteName: 'SignIn',
   }
 );
 
 const AppStack = createBottomTabNavigator(
 	{
-		HomeScreen,
-		AddItemScreen,
-		InventoryListScreen,
+		Home: { screen: HomeScreen },
+		AddItem: { screen: AddItemScreen },
+		InventoryList: { screen: InventoryListScreen },
 	},
 	{
-		initialRouteName: 'HomeScreen',
+		initialRouteName: 'Home',
 	}
 );
 
