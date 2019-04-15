@@ -1,3 +1,5 @@
+//Note:  This screen is for the switch navigator for the authorization flow.
+
 import React from 'react';
 import {
   ActivityIndicator,

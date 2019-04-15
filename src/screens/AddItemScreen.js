@@ -16,7 +16,7 @@ let addItem = item => {
   });
 };
 
-export default class AddItem extends Component {
+export default class AddItemScreen extends Component {
   state = {
     name: ''
   };
