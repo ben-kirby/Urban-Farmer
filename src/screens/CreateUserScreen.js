@@ -12,11 +12,22 @@ export default class CreateUser extends Component {
 	state = {
 		email: '',
 		password: '',
-		uuid: null
+		uuid: null,
+		errorMsg: null
 	};
 
 	handleSubmit = () => {
-		auth.createUserWithEmailAndPassword(this.state.email, this.state.password)
+		auth.createUserWithEmailAndPassword(this.state.email, this.state.password).then(response => {
+			if (response.user) {
+				this.setState({
+					uuid: response.user.uid
+				});
+			} else {
+				this.setState({
+					error: 'Oops! There was a problem with that. Try again plz.'
+				})
+			}
+		})
 	}
 
 
