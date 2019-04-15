@@ -7,6 +7,7 @@ import {
 	Text
 } from 'react-native';
 import { auth } from '../config';
+import AsyncStorage from '@react-native-community/async-storage';
 
 export default class CreateUser extends Component {
 	state = {
@@ -16,18 +17,24 @@ export default class CreateUser extends Component {
 		errorMsg: null
 	};
 
+	
+
 	handleSubmit = () => {
 		auth.createUserWithEmailAndPassword(this.state.email, this.state.password).then(response => {
 			if (response.user) {
-				this.setState({
-					uuid: response.user.uid
-				});
+				let uid = response.user.uid
 			} else {
 				this.setState({
 					error: 'Oops! There was a problem with that. Try again plz.'
 				})
 			}
 		})
+	}
+
+	saveUidToLocalStorage = async (uid) => {
+		try {
+			await AsyncStorage.setItem('@user', uid)
+		}
 	}
 
 
