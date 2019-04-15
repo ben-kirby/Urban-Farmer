@@ -8,18 +8,19 @@ import Home from './src/screens/Home';
 import AddItem from './src/screens/AddItem';
 import InventoryList from './src/screens/InventoryList';
 import SignInScreen from './src/screens/SignInScreen';
+import AuthLoadingScreen from './src/screens/AuthLoadingScreen';
 
 const AuthStack = createStackNavigator(
   {
-    SignInScreen: {screen: SignInScreen},
+    SignInScreen,
   }
-)
+);
 
 const AppStack = createMaterialBottomTabNavigator(
   {
-    Home: {screen: Home},
-    AddItem: {screen: AddItem},
-    InventoryList: {screen: InventoryList},
+    Home,
+    AddItem,
+    InventoryList,
   },
   {
     initialRouteName: 'Home',
@@ -29,7 +30,16 @@ const AppStack = createMaterialBottomTabNavigator(
   }
 );
 
-const AppContainer = createAppContainer(FooterNavigator);
+const AppContainer = createAppContainer(createSwitchNavigator(
+    {
+      AppStack,
+      AuthStack,
+    },
+    {
+      initialRouteName: 'AuthStack',
+    }
+  )
+);
 
 export default class App extends Component {
   render() {

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { StyleSheet, TextInput, View, Button } from "react-native";
-
+import { navigationOptions } from 'react-navigation';
 import firebase, { db, auth } from "../config";
 
 export default class SignInScreen extends Component {
@@ -14,6 +14,10 @@ onSubmit = () => {
   auth.signInWithEmailAndPassword(this.state.email, this.state.password);
 }
 
+static navigationOptions =
+{
+  title: 'SignInScreen',
+};
 
   render() {
     return (
@@ -47,6 +51,6 @@ const styles = StyleSheet.create({
   container: {
     padding: 30,
     marginTop: 65,
-    alignItems: 'center' 
+    alignItems: 'center'
   }
 });

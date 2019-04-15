@@ -8,6 +8,8 @@ import {
   ActivityIndicator,
   Image
 } from "react-native";
+import { navigationOptions } from 'react-navigation';
+
 
 export default class SearchScreen extends Component {
     constructor(props) {
@@ -16,6 +18,12 @@ export default class SearchScreen extends Component {
           searchString: 'london'
         };
       }
+
+      static navigationOptions =
+      {
+        title: 'SearchScreen',
+      };
+
     render() {
     return (
       <View style={styles.container}>
@@ -62,6 +70,5 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     color: '#48BBEC',
   },
-  
-});
 
+});

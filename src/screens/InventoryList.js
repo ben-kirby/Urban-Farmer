@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import ItemComponent from '../components/ItemComponent';
-
+import { navigationOptions } from 'react-navigation';
 
 import { db } from '../config';
 
@@ -20,6 +20,10 @@ export default class InventoryList extends Component {
     });
   }
 
+  static navigationOptions =
+  {
+    title: 'InventoryList',
+  };
 
   render() {
     return (
@@ -29,7 +33,7 @@ export default class InventoryList extends Component {
         ) : (
           <Text>No Products :(</Text>
         )}
-        
+
       </View>
     );
   }
