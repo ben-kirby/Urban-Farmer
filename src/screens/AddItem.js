@@ -3,8 +3,7 @@ import {
   View,
   Text,
   TouchableHighlight,
-  StyleSheet,
-  TextInput
+  StyleSheet
 } from 'react-native';
 import { db } from '../config';
 import { Container, Header, Content, Item, Input } from 'native-base';
@@ -36,7 +35,9 @@ export default class AddItem extends Component {
   render(){
     return(
       <Container>
-      <Header />
+      <Header>
+        <Text style={styles.title}>Add Item </Text>
+      </Header>
       <Content>
         
         <Item rounded
@@ -62,7 +63,7 @@ export default class AddItem extends Component {
 
         <TouchableHighlight
           style={styles.button}
-          underlayColor="white"
+          underlayColor="blue"
           onPress={this.handleSubmit}
         >
         <Text style={styles.buttonText}>Add</Text>
@@ -85,7 +86,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#6565fc'
   },
   title: {
-    marginBottom: 20,
+    marginTop: 10,
     fontSize: 25,
     textAlign: 'center'
   },
@@ -102,8 +103,8 @@ const styles = StyleSheet.create({
   button: {
     height: 45,
     flexDirection: 'row',
-    backgroundColor: 'white',
-    borderColor: 'white',
+    backgroundColor: '#6e5cff',
+    borderColor: 'grey',
     borderWidth: 1,
     borderRadius: 8,
     marginBottom: 10,
@@ -113,14 +114,3 @@ const styles = StyleSheet.create({
   }
 
 });
-
-
-
-//<View style={styles.main}>
-    
-//<Text style={styles.title}>Add Item</Text>
-//<TextInput 
-  
-///>
-
-//</View>
