@@ -31,12 +31,6 @@ export default class CreateUser extends Component {
 		})
 	}
 
-	saveUidToLocalStorage = async (uid) => {
-		try {
-			await AsyncStorage.setItem('@user', uid)
-		}
-	}
-
 
 
 	render() {
