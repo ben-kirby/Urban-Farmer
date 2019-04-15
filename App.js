@@ -20,7 +20,7 @@ const AuthStack = createStackNavigator(
   }
 );
 
-const AppStack = createBottomTabNavigator(
+const AppStack = createMaterialBottomTabNavigator(
 	{
 		Home: { screen: HomeScreen },
 		AddItem: { screen: AddItemScreen },
