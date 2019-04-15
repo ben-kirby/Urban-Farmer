@@ -7,15 +7,7 @@ export default class Home extends Component {
     return(
       <View>
         <Text>Home</Text>
-        <Button
-          title="Add Item"
-          onPress={() => this.props.navigation.navigate('AddItem')}
-        />
-        <Button
-          title="Item List"
-          color="green"
-          onPress={() => this.props.navigation.navigate('List')}
-        />
+     
          
       </View>
     )
