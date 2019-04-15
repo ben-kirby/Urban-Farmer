@@ -16,7 +16,7 @@ export default class CreateUser extends Component {
 	};
 
 	handleSubmit = () => {
-		auth.createUserWithEmailAndPassword(this.state.email, this.state.password).then()
+		auth.createUserWithEmailAndPassword(this.state.email, this.state.password)
 	}
 
 
