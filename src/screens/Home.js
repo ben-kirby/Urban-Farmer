@@ -6,7 +6,7 @@ export default class Home extends Component {
   render () {
     return(
       <View>
-        <Text>Home</Text>
+        <Text>Home Screen Text</Text>
         <Button
           title="Add Item"
           onPress={() => this.props.navigation.navigate('AddItem')}
@@ -20,9 +20,9 @@ export default class Home extends Component {
           title="Sign In"
           onPress={() => this.props.navigation.navigate('SignInScreen')}
         />
-         
+
       </View>
-      
+
     )
   }
 

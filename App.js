@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { Platform, StyleSheet, Text, View, TextInput } from 'react-native';
-import { createSwitchNavigator, createMaterialTopTabNavigator, createAppContainer } from 'react-navigation';
+import { createSwitchNavigator, createStackNavigator, createMaterialTopTabNavigator, createAppContainer } from 'react-navigation';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs'
 
 
@@ -9,21 +9,17 @@ import AddItem from './src/screens/AddItem';
 import InventoryList from './src/screens/InventoryList';
 import SignInScreen from './src/screens/SignInScreen';
 
-const HeaderNavigator = createMaterialTopTabNavigator(
+const AuthStack = createStackNavigator(
   {
-    Home: {screen: Home},
-  },
-  {
-    initialRouteName: 'Home',
+    SignInScreen: {screen: SignInScreen},
   }
 )
-// const FooterNavigator = createMaterialBottomTabNavigator(
-const FooterNavigator = createStackNavigator(
+
+const AppStack = createMaterialBottomTabNavigator(
   {
     Home: {screen: Home},
     AddItem: {screen: AddItem},
     InventoryList: {screen: InventoryList},
-    SignInScreen: {screen: SignInScreen},
   },
   {
     initialRouteName: 'Home',
