@@ -7,7 +7,7 @@ import {
   TextInput
 } from 'react-native';
 import { db } from '../config';
-
+import { Container, Header, Content, Item, Input } from 'native-base';
 
 let addItem = item => {
   db.ref('/products').push({
@@ -35,22 +35,42 @@ export default class AddItem extends Component {
 
   render(){
     return(
-      <View style={styles.main}>
-    
-        <Text style={styles.title}>Add Item</Text>
-        <TextInput 
-          style={styles.itemInput}
-          onChange={this.handleChange}
-        />
+      <Container>
+      <Header />
+      <Content>
+        
+        <Item rounded
+        style={styles.itemInput}
+        onChange={this.handleChange}
+        >
+          <Input placeholder='Item Name'/>
+        </Item>
+
+        <Item rounded 
+        style={styles.itemInput}
+        onChange={this.handleChange}
+        >
+          <Input placeholder='Item QTY'/>
+        </Item>
+
+        <Item rounded
+        style={styles.itemInput}
+        onChange={this.handleChange} 
+        >
+          <Input placeholder='Item price'/>
+        </Item>
+
         <TouchableHighlight
           style={styles.button}
           underlayColor="white"
           onPress={this.handleSubmit}
         >
-          <Text style={styles.buttonText}>Add</Text>
+        <Text style={styles.buttonText}>Add</Text>
         </TouchableHighlight>
-        
-      </View>
+
+
+      </Content>
+    </Container>
    
     );
   }
@@ -72,12 +92,7 @@ const styles = StyleSheet.create({
   itemInput: {
     height: 50,
     padding: 4,
-    marginRight: 5,
-    fontSize: 23,
-    borderWidth: 1,
-    borderColor: 'white',
-    borderRadius: 8,
-    color: 'white'
+    margin: 5
   },
   buttonText: {
     fontSize: 18,
@@ -98,3 +113,14 @@ const styles = StyleSheet.create({
   }
 
 });
+
+
+
+//<View style={styles.main}>
+    
+//<Text style={styles.title}>Add Item</Text>
+//<TextInput 
+  
+///>
+
+//</View>
