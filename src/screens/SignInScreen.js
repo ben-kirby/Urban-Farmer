@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, TextInput, View, Button } from "react-native";
+import { StyleSheet, Text, TextInput, View, Button } from "react-native";
 import { navigationOptions } from 'react-navigation';
 import firebase, { db, auth } from "../config";
 
@@ -36,6 +36,12 @@ static navigationOptions =
       <Button
         onPress={this.onSubmit}
         title="Submit"
+        color="#841584"
+      />
+    <Text>Not an existing user?</Text>
+      <Button
+        onPress={() => this.props.navigation.navigate('CreateUser')}
+        title="Sign Up"
         color="#841584"
       />
     </View>
