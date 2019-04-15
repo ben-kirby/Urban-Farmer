@@ -22,7 +22,7 @@ export default class InventoryListScreen extends Component {
 
   static navigationOptions =
   {
-    title: 'InventoryList',
+    title: 'InventoryListScreen',
   };
 
   render() {

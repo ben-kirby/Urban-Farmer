@@ -34,7 +34,12 @@ export default class AddItemScreen extends Component {
 
   static navigationOptions =
   {
-    title: 'AddItem',
+    title: 'AddItemScreen',
+  };
+
+  static navigationOptions =
+  {
+    title: 'AddItemScreen',
   };
 
   render(){
