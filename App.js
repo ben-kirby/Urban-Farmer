@@ -18,7 +18,7 @@ const AuthStack = createStackNavigator(
   {
     initialRouteName: 'SignInScreen',
   }
-)
+);
 
 const AppStack = createBottomTabNavigator(
 	{
@@ -27,7 +27,7 @@ const AppStack = createBottomTabNavigator(
 		InventoryListScreen,
 	},
 	{
-		initialRouteName: 'HomeScreen'
+		initialRouteName: 'HomeScreen',
 	}
 );
 

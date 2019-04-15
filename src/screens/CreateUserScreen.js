@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import { auth } from '../config';
 
-export default class CreateUser extends Component {
+export default class CreateUserScreen extends Component {
 	state = {
 		email: '',
 		password: '',
