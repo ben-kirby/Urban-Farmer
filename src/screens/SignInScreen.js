@@ -4,6 +4,7 @@ import { navigationOptions } from 'react-navigation';
 import firebase, { db, auth } from "../config";
 
 export default class SignInScreen extends Component {
+
   state = {
     email: '',
     password: '',

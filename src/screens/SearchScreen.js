@@ -10,8 +10,8 @@ import {
 } from "react-native";
 import { navigationOptions } from 'react-navigation';
 
-
 export default class SearchScreen extends Component {
+
     constructor(props) {
         super(props);
         this.state = {

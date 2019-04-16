@@ -8,6 +8,7 @@ import { db } from '../config';
 let productsRef = db.ref('/products');
 
 export default class InventoryListScreen extends Component {
+
   state = {
     products: []
   };

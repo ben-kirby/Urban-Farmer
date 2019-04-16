@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { prop}
 import { Container, Header, Left, Body, Right, Title } from 'native-base';
 export default class HeaderTitleExample extends Component {
   render() {
@@ -7,7 +8,7 @@ export default class HeaderTitleExample extends Component {
         <Header>
           <Left/>
           <Body>
-            <Title>Header</Title>
+            <Title>Header {this.props.navigation.getParam('header')}</Title>
           </Body>
           <Right />
         </Header>
