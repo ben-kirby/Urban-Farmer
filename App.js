@@ -22,7 +22,7 @@ const AuthStack = createSwitchNavigator(
 );
 
  //consider splitting this into another file
-const AppStack = createMaterialBottomTabNavigator(
+export const MainFooterMenu = createMaterialBottomTabNavigator(
 	{
 		Home: { screen: HomeScreen },
 		AddItem: { screen: AddItemScreen },
@@ -31,6 +31,15 @@ const AppStack = createMaterialBottomTabNavigator(
 	},
 	{
     initialRouteName: 'Home',
+	}
+);
+
+const AppStack = createStackNavigator(
+	{
+		Main: { screen: MainFooterMenu, navigationOptions: { title: 'Urban Farmer' } },
+	},
+	{
+    initialRouteName: 'Main',
 	}
 );
 
