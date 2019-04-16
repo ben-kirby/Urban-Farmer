@@ -80,7 +80,6 @@ export default class App extends Component {
 			this.setState({
 				loadingLocalData: false
 			});
-			Alert.alert(e.message);
 		}
 	}
 
