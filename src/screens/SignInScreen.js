@@ -21,7 +21,7 @@ handleSubmit = () => {
   });
 }
 
-storeData = async (key: String, value: String) => {
+storeData = async (key, value) => {
   try {
     await AsyncStorage.setItem(key, value)
   } catch (e) {
