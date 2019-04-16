@@ -1,14 +1,43 @@
 import React, { Component } from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text, Button, Alert } from 'react-native';
 import { navigationOptions } from 'react-navigation';
+import AsyncStorage from '@react-native-community/async-storage';
 
+export default class Home extends Component {
+	state = {
+		testKey: null
+	}
 
-export default class HomeScreen extends Component {
+	static navigationOptions = {
+		title: 'HomeScreen',
+	};
 
-	static navigationOptions =
-  {
-    title: 'HomeScreen',
-  };
+	componentDidMount() {
+		this.getData();
+	}
+
+	storeData = async () => {
+		try {
+			await AsyncStorage.setItem('@test_Key', 'Bens Local Test')
+		} catch (e) {
+		}
+	}
+
+	getData = async () => {
+		await AsyncStorage.getItem('@test_Key').then(response => {
+			this.setState({
+				testKey: response
+			});
+		});
+	}
+
+	removeFromLocal = async () => {
+		try {
+			await AsyncStorage.removeItem('@test_Key')
+		} catch (e) {
+
+		}
+	}
 
 	render () {
 		return(
@@ -31,7 +60,20 @@ export default class HomeScreen extends Component {
 					title="*Create User"
 					onPress={() => this.props.navigation.navigate('CreateUser')}
 				/>
-
+				<Button
+					title='Add to local storage'
+					onPress={this.storeData}
+				/>
+				<Button
+					title='Reset Storage'
+					onPress={this.removeFromLocal}
+				/>
+				<Button
+					title='update state'
+					onPress={this.getData}
+				/>
+				<Text>{this.state.testKey}</Text>
+         
 			</View>
 
 		);

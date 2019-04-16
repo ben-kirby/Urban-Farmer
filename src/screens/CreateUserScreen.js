@@ -4,9 +4,11 @@ import {
 	TextInput,
 	Button,
 	StyleSheet,
-	Text
+	Text,
+	Alert
 } from 'react-native';
 import { auth } from '../config';
+import AsyncStorage from '@react-native-community/async-storage';
 
 export default class CreateUserScreen extends Component {
 	state = {
@@ -24,18 +26,20 @@ export default class CreateUserScreen extends Component {
 	handleSubmit = () => {
 		auth.createUserWithEmailAndPassword(this.state.email, this.state.password).then(response => {
 			if (response.user) {
-				//Add logic below on what to do if sign-in is successful (go to main app stack)
-				this.setState({
-					uuid: response.user.uid
-
-				});
+				this.storeData('uid', response.user.uid)
 			} else {
-				//Add logic below on what to do if sign-in is a failure (stay on screen?))
-				this.setState({
-					error: 'Oops! There was a problem with that. Try again plz.'
-				})
+					Alert.alert('Oops! There was a problem with that. Try again plz.');
+				}
 			}
-		})
+		)
+	}
+
+	storeData = async (key:String, value:String) => {
+		try {
+			await AsyncStorage.setItem(key, value)
+		} catch (e) {
+			Alert.alert(e)
+		}
 	}
 
 
