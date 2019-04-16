@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Platform, StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import { Platform, StyleSheet, Text, View, TextInput, Button, Alert } from 'react-native';
 import { createSwitchNavigator, createStackNavigator, createMaterialTopTabNavigator, createAppContainer } from 'react-navigation';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs'
 
@@ -9,6 +9,7 @@ import AddItemScreen from './src/screens/AddItemScreen';
 import InventoryListScreen from './src/screens/InventoryListScreen';
 import SignInScreen from './src/screens/SignInScreen';
 import CreateUserScreen from './src/screens/CreateUserScreen';
+import AsyncStorage from '@react-native-community/async-storage';
 
  //consider splitting this into another file
 const AuthStack = createSwitchNavigator(
@@ -54,7 +55,6 @@ const AppContainerSkipAuth = createAppContainer(createSwitchNavigator(
 	})
 );
 
-
 export default class App extends Component {
 	state = {
 		renderApp: false,
@@ -64,15 +64,24 @@ export default class App extends Component {
 
 	componentDidMount() {
 		if (this.state.loadingLocalData === true) {
-			
+			this.readUserData();
 		}
-
 	}
 
-	showApp = () => {
-		this.setState({
-			renderApp: true
-		})
+	readUserData = async () => {
+		try {
+			await AsyncStorage.getItem(uid).then(respose => {
+				this.setState({
+					loadingLocalData: false,
+					localDataFound: true
+				});
+			});
+		} catch (e) {
+			this.setState({
+				loadingLocalData: false
+			});
+			Alert.alert(e.message);
+		}
 	}
 
 	render() {
@@ -84,18 +93,10 @@ export default class App extends Component {
 				);	
 		} else {
 			if (this.state.localDataFound === true) {
-				< AppContainerSkipAuth/>
+				return <AppContainerSkipAuth/>
 			} else {
-				< AppContainerAuth/>
+				return <AppContainerAuth/>
 			}
-			return (
-				<View style={styles.page}>
-					<Button
-						title="Render App"
-						onPress={this.showApp}
-					/>
-				</View>
-			)
 		}
 	}
 }
