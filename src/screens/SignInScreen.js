@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, TextInput, View, Button, Alert } from "react-native";
+import { StyleSheet, TextInput, View, Button, Alert, Text } from "react-native";
 import { auth } from "../config";
 import AsyncStorage from '@react-native-community/async-storage';
 import { navigationOptions } from 'react-navigation';
