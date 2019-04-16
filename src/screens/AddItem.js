@@ -3,30 +3,29 @@ import {
   View,
   Text,
   TouchableHighlight,
-  StyleSheet
+  StyleSheet,
+  TextInput
 } from 'react-native';
 import { db } from '../config';
-import { Container, Header, Content, Item, Input } from 'native-base';
 
-let addItem = item => {
+let addItem = (a, b, c) => {
   db.ref('/products').push({
-    name: item
+    name: a,
+    quantity: b,
+    price: c
   });
 };
 
 export default class AddItem extends Component {
   state = {
-    name: ''
+    name: '',
+    quantity: '',
+    price:''
   };
-
-  handleChange = e => {
-    this.setState({
-      name: e.nativeEvent.text
-    });
-  };
-
+  
+  
   handleSubmit = () => {
-    addItem(this.state.name);
+    addItem(this.state.name, this.state.quantity, this.state.price)
     alert('item saved!');
   };
 
@@ -34,46 +33,37 @@ export default class AddItem extends Component {
 
   render(){
     return(
-      <Container>
-      <Header>
-        <Text style={styles.title}>Add Item </Text>
-      </Header>
-      <Content>
+     
+      <View style={styles.main}>
+
+      <Text style={styles.title}>Add Item</Text>
+      <TextInput
+        style={styles.itemInput}
+        onChangeText={(text) => this.setState({name:text})}
+        placeholder='Item name'
+      />
+      <TextInput
+        style={styles.itemInput}
+        onChangeText={(text) => this.setState({price:text})}
+        placeholder='Item price'
+      />
+      <TextInput
+        style={styles.itemInput}
+        onChangeText={(text) => this.setState({quantity:text})}
+        placeholder='Item quantity'
+      />
+      <TouchableHighlight
+        style={styles.button}
         
-        <Item rounded
-        style={styles.itemInput}
-        onChange={this.handleChange}
-        >
-          <Input placeholder='Item Name'/>
-        </Item>
+        onPress={this.handleSubmit}
 
-        <Item rounded 
-        style={styles.itemInput}
-        onChange={this.handleChange}
-        >
-          <Input placeholder='Item QTY'/>
-        </Item>
-
-        <Item rounded
-        style={styles.itemInput}
-        onChange={this.handleChange} 
-        >
-          <Input placeholder='Item price'/>
-        </Item>
-
-        <TouchableHighlight
-          style={styles.button}
-          underlayColor="blue"
-          onPress={this.handleSubmit}
-        >
+      >
         <Text style={styles.buttonText}>Add</Text>
-        </TouchableHighlight>
+      </TouchableHighlight>
 
+    </View>
 
-      </Content>
-    </Container>
-   
-    );
+   );
   }
 }
 
@@ -83,7 +73,7 @@ const styles = StyleSheet.create({
     padding: 30,
     flexDirection: 'column',
     justifyContent: 'center',
-    backgroundColor: '#6565fc'
+    backgroundColor: 'white'
   },
   title: {
     marginTop: 10,
@@ -93,7 +83,10 @@ const styles = StyleSheet.create({
   itemInput: {
     height: 50,
     padding: 4,
-    margin: 5
+    margin: 5,
+    borderRadius: 4,
+    borderWidth:1,
+    borderColor: 'black'
   },
   buttonText: {
     fontSize: 18,
