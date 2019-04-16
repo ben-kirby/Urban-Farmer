@@ -7,9 +7,14 @@ export default class SalesMainScreen extends Component {
 
 	static navigationOptions =
   {
-    title: 'SalesMainScreen',
+    title: 'SalesMain',
   };
 
 	render () {
-		return()
+		return(
+			<View>
+				<Text>Sales Main Screen</Text>
+			</View>
+		)
   }
+}
