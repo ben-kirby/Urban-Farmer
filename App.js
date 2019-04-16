@@ -19,7 +19,6 @@ const AuthStack = createSwitchNavigator(
   {
     initialRouteName: 'SignIn',
     backBehavior: 'order',
-
   }
 );
 
@@ -41,7 +40,7 @@ const AppStack = createStackNavigator(
 		Main: {
       screen: MainFooterMenu,
       navigationOptions: {
-        title: 'Urban Farmer',
+        title: 'Urban Farmer', //put props in here to make this change dynamically
         headerRight: (
           <Button title='LogOut' onPress={() => alert('Put LogOut Here!')}/>
         ),
