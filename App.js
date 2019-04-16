@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { Platform, StyleSheet, Text, View, TextInput, Button } from 'react-native';
 import { createSwitchNavigator, createStackNavigator, createMaterialTopTabNavigator, createAppContainer, navigationOptions } from 'react-navigation';
-import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs'
+import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 
 import HomeScreen from './src/screens/HomeScreen';
 import AddItemScreen from './src/screens/AddItemScreen';
@@ -18,6 +18,8 @@ const AuthStack = createSwitchNavigator(
   },
   {
     initialRouteName: 'SignIn',
+    backBehavior: 'order',
+
   }
 );
 
