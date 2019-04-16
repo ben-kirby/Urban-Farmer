@@ -4,11 +4,13 @@ import {
 	TextInput,
 	Button,
 	StyleSheet,
-	Text
+	Text,
+	Alert
 } from 'react-native';
 import { auth } from '../config';
+import AsyncStorage from '@react-native-community/async-storage';
 
-export default class CreateUser extends Component {
+export default class CreateUserScreen extends Component {
 	state = {
 		email: '',
 		password: '',
@@ -16,18 +18,28 @@ export default class CreateUser extends Component {
 		errorMsg: null
 	};
 
+	static navigationOptions =
+	{
+		title: 'CreateUserScreen',
+	};
+
 	handleSubmit = () => {
 		auth.createUserWithEmailAndPassword(this.state.email, this.state.password).then(response => {
 			if (response.user) {
-				this.setState({
-					uuid: response.user.uid
-				});
+				this.storeData('uid', response.user.uid)
 			} else {
-				this.setState({
-					error: 'Oops! There was a problem with that. Try again plz.'
-				})
+					Alert.alert('Oops! There was a problem with that. Try again plz.');
+				}
 			}
-		})
+		)
+	}
+
+	storeData = async (key:String, value:String) => {
+		try {
+			await AsyncStorage.setItem(key, value)
+		} catch (e) {
+			Alert.alert(e)
+		}
 	}
 
 
@@ -35,6 +47,8 @@ export default class CreateUser extends Component {
 	render() {
 		return(
 			<View style={styles.container}>
+				<Text>URBAN FARMER</Text>
+				<Text>Sign Up</Text>
 				<TextInput
 					style={styles.input}
 					onChangeText={(text) => this.setState({email: text})}
@@ -52,6 +66,12 @@ export default class CreateUser extends Component {
 					color="#841584"
 				/>
 				<Text>{this.state.uuid}</Text>
+				<Text>Oops!  I'm already an existing user:</Text>
+					<Button
+						onPress={() => this.props.navigation.navigate('SignIn')}
+						title="Return to Login"
+						color="#841584"
+					/>
 			</View>
 		);
 	}

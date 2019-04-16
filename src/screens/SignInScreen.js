@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import { StyleSheet, TextInput, View, Button } from "react-native";
-
-import firebase, { db, auth } from "../config";
+import { StyleSheet, TextInput, View, Button, Alert, Text } from "react-native";
+import { auth } from "../config";
+import AsyncStorage from '@react-native-community/async-storage';
+import { navigationOptions } from 'react-navigation';
 
 export default class SignInScreen extends Component {
   state = {
@@ -10,14 +11,34 @@ export default class SignInScreen extends Component {
     loggedIn: false
   };
 
-onSubmit = () => {
-  auth.signInWithEmailAndPassword(this.state.email, this.state.password);
+handleSubmit = () => {
+  auth.signInWithEmailAndPassword(this.state.email, this.state.password).then(response => {
+    if (response.user) {
+      this.storeData('uid', response.user.uid)
+    } else {
+      Alert.alert('Oops! There was a problem with that. Try again plz.');
+    }
+  });
 }
 
+storeData = async (key: String, value: String) => {
+  try {
+    await AsyncStorage.setItem(key, value)
+  } catch (e) {
+    Alert.alert(e)
+  }
+}
+
+static navigationOptions =
+{
+  title: 'SignInScreen',
+};
 
   render() {
     return (
       <View style={styles.container}>
+      <Text>URBAN FARMER</Text>
+      <Text>Login</Text>
       <TextInput
         style={styles.input}
         onChangeText={(text) => this.setState({email: text})}
@@ -30,8 +51,19 @@ onSubmit = () => {
         placeholder="Password"
       />
       <Button
-        onPress={this.onSubmit}
+        onPress={this.handleSubmit}
         title="Submit"
+        color="#841584"
+      />
+    <Text>Not an existing user?</Text>
+      <Button
+        onPress={() => this.props.navigation.navigate('CreateUser')}
+        title="Sign Up"
+        color="#841584"
+      />
+      <Button
+        onPress={() => this.props.navigation.navigate('AppStack')}
+        title="*Shortcut to Main App"
         color="#841584"
       />
     </View>
@@ -42,11 +74,11 @@ onSubmit = () => {
 const styles = StyleSheet.create({
   input: {
     width: 250,
-    margin: 5
+    margin: 5,
   },
   container: {
     padding: 30,
     marginTop: 65,
-    alignItems: 'center' 
+    alignItems: 'center',
   }
 });
