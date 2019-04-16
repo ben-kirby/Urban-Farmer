@@ -9,26 +9,24 @@ import {
 import firebase, { db } from '../config';
 import { navigationOptions } from 'react-navigation';
 
-
-let addItem = item => {
+let addItem = (a, b, c) => {
   db.ref('/products').push({
-    name: item
+    name: a,
+    quantity: b,
+    price: c
   });
 };
 
 export default class AddItemScreen extends Component {
   state = {
-    name: ''
+    name: '',
+    quantity: '',
+    price:''
   };
-
-  handleChange = e => {
-    this.setState({
-      name: e.nativeEvent.text
-    });
-  };
-
+  
+  
   handleSubmit = () => {
-    addItem(this.state.name);
+    addItem(this.state.name, this.state.quantity, this.state.price)
     alert('item saved!');
   };
 
@@ -44,21 +42,37 @@ export default class AddItemScreen extends Component {
 
   render(){
     return(
+     
       <View style={styles.main}>
-        <Text style={styles.title}>Add Item</Text>
-        <TextInput
-          style={styles.itemInput}
-          onChange={this.handleChange}
-        />
-        <TouchableHighlight
-          style={styles.button}
-          underlayColor="white"
-          onPress={this.handleSubmit}
-        >
-          <Text style={styles.buttonText}>Add</Text>
-        </TouchableHighlight>
-      </View>
-    );
+
+      <Text style={styles.title}>Add Item</Text>
+      <TextInput
+        style={styles.itemInput}
+        onChangeText={(text) => this.setState({name:text})}
+        placeholder='Item name'
+      />
+      <TextInput
+        style={styles.itemInput}
+        onChangeText={(text) => this.setState({price:text})}
+        placeholder='Item price'
+      />
+      <TextInput
+        style={styles.itemInput}
+        onChangeText={(text) => this.setState({quantity:text})}
+        placeholder='Item quantity'
+      />
+      <TouchableHighlight
+        style={styles.button}
+        
+        onPress={this.handleSubmit}
+
+      >
+        <Text style={styles.buttonText}>Add</Text>
+      </TouchableHighlight>
+
+    </View>
+
+   );
   }
 }
 
@@ -68,22 +82,20 @@ const styles = StyleSheet.create({
     padding: 30,
     flexDirection: 'column',
     justifyContent: 'center',
-    backgroundColor: '#6565fc'
+    backgroundColor: 'white'
   },
   title: {
-    marginBottom: 20,
+    marginTop: 10,
     fontSize: 25,
     textAlign: 'center'
   },
   itemInput: {
     height: 50,
     padding: 4,
-    marginRight: 5,
-    fontSize: 23,
-    borderWidth: 1,
-    borderColor: 'white',
-    borderRadius: 8,
-    color: 'white'
+    margin: 5,
+    borderRadius: 4,
+    borderWidth:1,
+    borderColor: 'black'
   },
   buttonText: {
     fontSize: 18,
@@ -93,8 +105,8 @@ const styles = StyleSheet.create({
   button: {
     height: 45,
     flexDirection: 'row',
-    backgroundColor: 'white',
-    borderColor: 'white',
+    backgroundColor: '#6e5cff',
+    borderColor: 'grey',
     borderWidth: 1,
     borderRadius: 8,
     marginBottom: 10,
