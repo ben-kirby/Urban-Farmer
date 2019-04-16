@@ -6,7 +6,8 @@ import {
   StyleSheet,
   TextInput
 } from 'react-native';
-import { db } from '../config';
+import firebase, { db } from '../config';
+import { navigationOptions } from 'react-navigation';
 
 let addItem = (a, b, c) => {
   db.ref('/products').push({
@@ -16,7 +17,7 @@ let addItem = (a, b, c) => {
   });
 };
 
-export default class AddItem extends Component {
+export default class AddItemScreen extends Component {
   state = {
     name: '',
     quantity: '',
@@ -29,7 +30,15 @@ export default class AddItem extends Component {
     alert('item saved!');
   };
 
+  static navigationOptions =
+  {
+    title: 'AddItemScreen',
+  };
 
+  static navigationOptions =
+  {
+    title: 'AddItemScreen',
+  };
 
   render(){
     return(
@@ -105,5 +114,4 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     justifyContent: 'center'
   }
-
 });

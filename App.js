@@ -1,37 +1,63 @@
 import React, {Component} from 'react';
 import { Platform, StyleSheet, Text, View, TextInput } from 'react-native';
-import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
+import { createSwitchNavigator, createStackNavigator, createMaterialTopTabNavigator, createAppContainer } from 'react-navigation';
+import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs'
 
-import Home from './src/screens/Home';
-import AddItem from './src/screens/AddItem';
-import Inventory from './src/screens/List';
 
-const TabNavigator = createBottomTabNavigator(
+import HomeScreen from './src/screens/HomeScreen';
+import AddItemScreen from './src/screens/AddItemScreen';
+import InventoryListScreen from './src/screens/InventoryListScreen';
+import SignInScreen from './src/screens/SignInScreen';
+import CreateUserScreen from './src/screens/CreateUserScreen';
+
+ //consider splitting this into another file
+const AuthStack = createSwitchNavigator(
   {
-    Home,
-    Inventory,
-    AddItem
+    SignIn: { screen: SignInScreen },
+    CreateUser: { screen: CreateUserScreen },
   },
   {
-    initialRouteName: 'Home'
+    initialRouteName: 'SignIn',
   }
 );
 
-const AppContainer = createAppContainer(TabNavigator);
+ //consider splitting this into another file
+const AppStack = createMaterialBottomTabNavigator(
+	{
+		Home: { screen: HomeScreen },
+		AddItem: { screen: AddItemScreen },
+		InventoryList: { screen: InventoryListScreen },
+	},
+	{
+		initialRouteName: 'Home',
+	}
+);
+
+ //This should stay here
+const AppContainer = createAppContainer(createSwitchNavigator(
+    {
+      AppStack,
+      AuthStack,
+    },
+    {
+      initialRouteName: 'AuthStack',
+    }
+  )
+);
 
 export default class App extends Component {
-  render() {
-    return <AppContainer/>;
-  }
+	render() {
+		return <AppContainer/>;
+	}
 }
 
 const styles = StyleSheet.create({
-  page: {
-    padding: 25,
-    paddingTop: 75,
-    backgroundColor: 'bisque'
-  },
-  formField: {
+	page: {
+		padding: 25,
+		paddingTop: 75,
+		backgroundColor: 'bisque'
+	},
+	formField: {
 
-  }
+	}
 });

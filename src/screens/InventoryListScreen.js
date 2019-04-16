@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import ItemComponent from '../components/ItemComponent';
-
+import { navigationOptions } from 'react-navigation';
 
 import { db } from '../config';
 
 let productsRef = db.ref('/products');
 
-export default class Inventory extends Component {
+export default class InventoryListScreen extends Component {
   state = {
     products: []
   };
@@ -20,6 +20,10 @@ export default class Inventory extends Component {
     });
   }
 
+  static navigationOptions =
+  {
+    title: 'InventoryListScreen',
+  };
 
   render() {
     return (
@@ -29,7 +33,7 @@ export default class Inventory extends Component {
         ) : (
           <Text>No Products :(</Text>
         )}
-        
+
       </View>
     );
   }
