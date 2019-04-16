@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import { View, Text, Button, Alert } from 'react-native';
+import { navigationOptions } from 'react-navigation';
 import AsyncStorage from '@react-native-community/async-storage';
 
 export default class Home extends Component {
 	state = {
 		testKey: null
 	}
+
+	static navigationOptions = {
+		title: 'HomeScreen',
+	};
 
 	componentDidMount() {
 		this.getData();
@@ -33,7 +38,7 @@ export default class Home extends Component {
 	render () {
 		return(
 			<View>
-				<Text>Home</Text>
+				<Text>Home Screen</Text>
 				<Button
 					title="Add Item"
 					onPress={() => this.props.navigation.navigate('AddItem')}
@@ -44,12 +49,12 @@ export default class Home extends Component {
 					onPress={() =>  this.props.navigation.navigate('InventoryList')}
 				/>
 				<Button
-					title="Sign In"
-					onPress={() => this.props.navigation.navigate('SignInScreen')}
+					title="*Sign In"
+					onPress={() => this.props.navigation.navigate('SignIn')}
 				/>
 				<Button
-					title="Create User"
-					onPress={() => this.props.navigation.navigate('CreateUserScreen')}
+					title="*Create User"
+					onPress={() => this.props.navigation.navigate('CreateUser')}
 				/>
 				<Button
 					title='Add to local storage'
@@ -62,7 +67,7 @@ export default class Home extends Component {
 				<Text>{this.state.testKey}</Text>
          
 			</View>
-      
+
 		);
 	}
 

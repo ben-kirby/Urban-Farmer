@@ -10,12 +10,17 @@ import {
 import { auth } from '../config';
 import AsyncStorage from '@react-native-community/async-storage';
 
-export default class CreateUser extends Component {
+export default class CreateUserScreen extends Component {
 	state = {
 		email: '',
 		password: '',
 		uuid: null,
 		errorMsg: null
+	};
+
+	static navigationOptions =
+	{
+		title: 'CreateUserScreen',
 	};
 
 	handleSubmit = () => {
@@ -42,6 +47,8 @@ export default class CreateUser extends Component {
 	render() {
 		return(
 			<View style={styles.container}>
+				<Text>URBAN FARMER</Text>
+				<Text>Sign Up</Text>
 				<TextInput
 					style={styles.input}
 					onChangeText={(text) => this.setState({email: text})}
@@ -59,6 +66,12 @@ export default class CreateUser extends Component {
 					color="#841584"
 				/>
 				<Text>{this.state.uuid}</Text>
+				<Text>Oops!  I'm already an existing user:</Text>
+					<Button
+						onPress={() => this.props.navigation.navigate('SignIn')}
+						title="Return to Login"
+						color="#841584"
+					/>
 			</View>
 		);
 	}

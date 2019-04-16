@@ -7,6 +7,8 @@ import {
   TextInput
 } from 'react-native';
 import firebase, { db } from '../config';
+import { navigationOptions } from 'react-navigation';
+
 
 let addItem = item => {
   db.ref('/products').push({
@@ -14,7 +16,7 @@ let addItem = item => {
   });
 };
 
-export default class AddItem extends Component {
+export default class AddItemScreen extends Component {
   state = {
     name: ''
   };
@@ -30,13 +32,21 @@ export default class AddItem extends Component {
     alert('item saved!');
   };
 
+  static navigationOptions =
+  {
+    title: 'AddItemScreen',
+  };
 
+  static navigationOptions =
+  {
+    title: 'AddItemScreen',
+  };
 
   render(){
     return(
       <View style={styles.main}>
         <Text style={styles.title}>Add Item</Text>
-        <TextInput 
+        <TextInput
           style={styles.itemInput}
           onChange={this.handleChange}
         />
