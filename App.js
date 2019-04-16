@@ -6,34 +6,36 @@ import Home from './src/screens/Home';
 import AddItem from './src/screens/AddItem';
 import InventoryList from './src/screens/InventoryList';
 import SignInScreen from './src/screens/SignInScreen';
+import CreateUserScreen from './src/screens/CreateUserScreen';
 
 const TabNavigator = createBottomTabNavigator(
-  {
-    Home,
-    AddItem,
-    InventoryList,
-    SignInScreen
-  },
-  {
-    initialRouteName: 'Home'
-  }
+	{
+		Home,
+		AddItem,
+		InventoryList,
+		SignInScreen,
+		CreateUserScreen
+	},
+	{
+		initialRouteName: 'Home'
+	}
 );
 
 const AppContainer = createAppContainer(TabNavigator);
 
 export default class App extends Component {
-  render() {
-    return <AppContainer/>;
-  }
+	render() {
+		return <AppContainer/>;
+	}
 }
 
 const styles = StyleSheet.create({
-  page: {
-    padding: 25,
-    paddingTop: 75,
-    backgroundColor: 'bisque'
-  },
-  formField: {
+	page: {
+		padding: 25,
+		paddingTop: 75,
+		backgroundColor: 'bisque'
+	},
+	formField: {
 
-  }
+	}
 });

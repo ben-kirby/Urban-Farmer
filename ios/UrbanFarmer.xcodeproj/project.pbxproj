@@ -739,7 +739,6 @@
 			);
 			name = Resources;
 			sourceTree = "<group>";
-<<<<<<< HEAD
 		};
 		E863CB232261094C00542A7B /* Products */ = {
 			isa = PBXGroup;
@@ -748,8 +747,6 @@
 			);
 			name = Products;
 			sourceTree = "<group>";
-=======
->>>>>>> 0307b9bc6cd09426453b2245992be3f3cfa60305
 		};
 /* End PBXGroup section */
 
@@ -917,11 +914,8 @@
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
 				},
 				{
-<<<<<<< HEAD
 					ProductGroup = E863CB232261094C00542A7B /* Products */;
-=======
 					ProductGroup = 33B94459226109A60087221F /* Products */;
->>>>>>> 0307b9bc6cd09426453b2245992be3f3cfa60305
 					ProjectRef = FCFB8C079E924F76BA037DC5 /* RNFirebase.xcodeproj */;
 				},
 				{
