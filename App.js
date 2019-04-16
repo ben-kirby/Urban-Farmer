@@ -76,7 +76,7 @@ export default class App extends Component {
 					localDataFound: true
 				});
 			});
-		} catch (e) {
+		} catch {
 			this.setState({
 				loadingLocalData: false
 			});
