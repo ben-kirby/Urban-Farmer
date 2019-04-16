@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import { Platform, StyleSheet, Text, View, TextInput } from 'react-native';
 import { createSwitchNavigator, createStackNavigator, createMaterialTopTabNavigator, createAppContainer, navigationOptions } from 'react-navigation';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs'
-import Icon from 'react-native-vector-icons/Ionicons';
 
 import HomeScreen from './src/screens/HomeScreen';
 import AddItemScreen from './src/screens/AddItemScreen';
@@ -25,20 +24,13 @@ const AuthStack = createSwitchNavigator(
  //consider splitting this into another file
 const AppStack = createMaterialBottomTabNavigator(
 	{
-		Home: { screen: HomeScreen, navigationOptions: { icon: Icon.home } },
+		Home: { screen: HomeScreen },
 		AddItem: { screen: AddItemScreen },
 		InventoryList: { screen: InventoryListScreen },
     SalesMain: { screen: SalesMainScreen },
 	},
 	{
-    shifting: 'false',
-    labeled: 'true',
-    activeColor: '#FFFFFF',
-    inactiveColor: '#000000',
-    barStyle: { backgroundColor: 'green'},
-		initialRouteName: 'Home',
-    //order: ['Home','InventoryList','AddItem','SalesMain'],
-    backBehavior: 'initialRoute',
+    initialRouteName: 'Home',
 	}
 );
 
