@@ -31,8 +31,12 @@ export default class Home extends Component {
 		});
 	}
 
-	removeFromLocal = () => {
-		Alert.alert('Remove pressed')
+	removeFromLocal = async () => {
+		try {
+			await AsyncStorage.removeItem('@test_Key')
+		} catch (e) {
+
+		}
 	}
 
 	render () {
@@ -59,6 +63,10 @@ export default class Home extends Component {
 				<Button
 					title='Add to local storage'
 					onPress={this.storeData}
+				/>
+				<Button
+					title='Reset Storage'
+					onPress={this.removeFromLocal}
 				/>
 				<Button
 					title='update state'
