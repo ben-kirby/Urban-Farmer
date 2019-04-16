@@ -10,7 +10,7 @@ export const writeData = function = async (key, value) => {
 	}
 }
 
-export const readData = function = async (key) => {
+export const readData = async (key) => {
 	await AsyncStorage.getItem(key).then(response => {
 		return response;
 	})
