@@ -9,7 +9,6 @@ import {
 import { auth } from '../config';
 
 export default class CreateUserScreen extends Component {
-
 	state = {
 		email: '',
 		password: '',
