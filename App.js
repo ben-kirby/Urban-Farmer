@@ -1,27 +1,49 @@
 import React, {Component} from 'react';
 import { Platform, StyleSheet, Text, View, TextInput } from 'react-native';
-import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
+import { createSwitchNavigator, createStackNavigator, createMaterialTopTabNavigator, createAppContainer } from 'react-navigation';
+import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs'
 
-import Home from './src/screens/Home';
-import AddItem from './src/screens/AddItem';
-import InventoryList from './src/screens/InventoryList';
+
+import HomeScreen from './src/screens/HomeScreen';
+import AddItemScreen from './src/screens/AddItemScreen';
+import InventoryListScreen from './src/screens/InventoryListScreen';
 import SignInScreen from './src/screens/SignInScreen';
 import CreateUserScreen from './src/screens/CreateUserScreen';
 
-const TabNavigator = createBottomTabNavigator(
+ //consider splitting this into another file
+const AuthStack = createSwitchNavigator(
+  {
+    SignIn: { screen: SignInScreen },
+    CreateUser: { screen: CreateUserScreen },
+  },
+  {
+    initialRouteName: 'SignIn',
+  }
+);
+
+ //consider splitting this into another file
+const AppStack = createMaterialBottomTabNavigator(
 	{
-		Home,
-		AddItem,
-		InventoryList,
-		SignInScreen,
-		CreateUserScreen
+		Home: { screen: HomeScreen },
+		AddItem: { screen: AddItemScreen },
+		InventoryList: { screen: InventoryListScreen },
 	},
 	{
-		initialRouteName: 'Home'
+		initialRouteName: 'Home',
 	}
 );
 
-const AppContainer = createAppContainer(TabNavigator);
+ //This should stay here
+const AppContainer = createAppContainer(createSwitchNavigator(
+    {
+      AppStack,
+      AuthStack,
+    },
+    {
+      initialRouteName: 'AuthStack',
+    }
+  )
+);
 
 export default class App extends Component {
 	render() {
