@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { StyleSheet, TextInput, View, Button } from "react-native";
-
-import firebase, { db, auth } from "../config";
+import { StyleSheet, TextInput, View, Button, Alert } from "react-native";
+import { auth } from "../config";
+import AsyncStorage from '@react-native-community/async-storage';
 
 export default class SignInScreen extends Component {
   state = {
@@ -10,8 +10,22 @@ export default class SignInScreen extends Component {
     loggedIn: false
   };
 
-onSubmit = () => {
-  auth.signInWithEmailAndPassword(this.state.email, this.state.password);
+handleSubmit = () => {
+  auth.signInWithEmailAndPassword(this.state.email, this.state.password).then(response => {
+    if (response.user) {
+      this.storeData('uid', response.user.uid)
+    } else {
+      Alert.alert('Oops! There was a problem with that. Try again plz.');
+    }
+  });
+}
+
+storeData = async (key: String, value: String) => {
+  try {
+    await AsyncStorage.setItem(key, value)
+  } catch (e) {
+    Alert.alert(e)
+  }
 }
 
 
@@ -30,7 +44,7 @@ onSubmit = () => {
         placeholder="Password"
       />
       <Button
-        onPress={this.onSubmit}
+        onPress={this.handleSubmit}
         title="Submit"
         color="#841584"
       />
