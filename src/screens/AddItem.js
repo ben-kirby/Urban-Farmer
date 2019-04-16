@@ -8,25 +8,25 @@ import {
 } from 'react-native';
 import firebase, { db } from '../config';
 
-let addItem = item => {
+let addItem = (a, b, c) => {
   db.ref('/products').push({
-    name: item
+    name: a,
+    price: b,
+    quantity: c
   });
 };
 
 export default class AddItem extends Component {
   state = {
-    name: ''
+    name: '',
+    price: '',
+    quantity: ''
+
   };
 
-  handleChange = e => {
-    this.setState({
-      name: e.nativeEvent.text
-    });
-  };
 
   handleSubmit = () => {
-    addItem(this.state.name);
+    addItem(this.state.name, this.state.price, this.state.quantity);
     alert('item saved!');
   };
 
@@ -38,12 +38,23 @@ export default class AddItem extends Component {
         <Text style={styles.title}>Add Item</Text>
         <TextInput 
           style={styles.itemInput}
-          onChange={this.handleChange}
+          onChangeText={(text) => this.setState({name:text})}
+          placeholder="name"
+        />
+        <TextInput 
+          style={styles.itemInput}
+          onChangeText={(text) => this.setState({price:text})}
+          placeholder="price"
+        />
+        <TextInput 
+          style={styles.itemInput}
+          onChangeText={(text) => this.setState({quantity:text})}
+          placeholder="qunatity"
         />
         <TouchableHighlight
           style={styles.button}
           underlayColor="white"
-          onPress={this.handleSubmit}
+          onPress={this.handleSubmit}   
         >
           <Text style={styles.buttonText}>Add</Text>
         </TouchableHighlight>
