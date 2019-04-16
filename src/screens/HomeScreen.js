@@ -24,12 +24,12 @@ export default class HomeScreen extends Component {
 					onPress={() =>  this.props.navigation.navigate('InventoryList')}
 				/>
 				<Button
-					title="Sign In"
-					onPress={() => this.props.navigation.navigate('SignInScreen')}
+					title="*Sign In"
+					onPress={() => this.props.navigation.navigate('SignIn')}
 				/>
 				<Button
-					title="Create User"
-					onPress={() => this.props.navigation.navigate('CreateUserScreen')}
+					title="*Create User"
+					onPress={() => this.props.navigation.navigate('CreateUser')}
 				/>
 
 			</View>

@@ -10,7 +10,8 @@ import InventoryListScreen from './src/screens/InventoryListScreen';
 import SignInScreen from './src/screens/SignInScreen';
 import CreateUserScreen from './src/screens/CreateUserScreen';
 
-const AuthStack = createStackNavigator(
+ //consider splitting this into another file
+const AuthStack = createSwitchNavigator(
   {
     SignIn: { screen: SignInScreen },
     CreateUser: { screen: CreateUserScreen },
@@ -20,6 +21,7 @@ const AuthStack = createStackNavigator(
   }
 );
 
+ //consider splitting this into another file
 const AppStack = createMaterialBottomTabNavigator(
 	{
 		Home: { screen: HomeScreen },
@@ -31,6 +33,7 @@ const AppStack = createMaterialBottomTabNavigator(
 	}
 );
 
+ //This should stay here
 const AppContainer = createAppContainer(createSwitchNavigator(
     {
       AppStack,

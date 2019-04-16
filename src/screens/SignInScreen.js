@@ -12,6 +12,9 @@ export default class SignInScreen extends Component {
 
 onSubmit = () => {
   auth.signInWithEmailAndPassword(this.state.email, this.state.password);
+  //Add logic below on what to do if login is successful (go to main app stack) or if fail (stay on this page)
+  //type logic here
+  //if (response.user) {navigate('Profile', {name: 'userNameWhoLoggedOnHere'})}
 }
 
 static navigationOptions =
@@ -22,6 +25,8 @@ static navigationOptions =
   render() {
     return (
       <View style={styles.container}>
+      <Text>URBAN FARMER</Text>
+      <Text>Login</Text>
       <TextInput
         style={styles.input}
         onChangeText={(text) => this.setState({email: text})}
@@ -44,6 +49,11 @@ static navigationOptions =
         title="Sign Up"
         color="#841584"
       />
+      <Button
+        onPress={() => this.props.navigation.navigate('AppStack')}
+        title="*Shortcut to Main App"
+        color="#841584"
+      />
     </View>
     );
   }
@@ -52,11 +62,11 @@ static navigationOptions =
 const styles = StyleSheet.create({
   input: {
     width: 250,
-    margin: 5
+    margin: 5,
   },
   container: {
     padding: 30,
     marginTop: 65,
-    alignItems: 'center'
+    alignItems: 'center',
   }
 });
