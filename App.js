@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Platform, StyleSheet, Text, View, TextInput } from 'react-native';
+import { Platform, StyleSheet, Text, View, TextInput, Button } from 'react-native';
 import { createSwitchNavigator, createStackNavigator, createMaterialTopTabNavigator, createAppContainer, navigationOptions } from 'react-navigation';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs'
 
@@ -36,9 +36,18 @@ export const MainFooterMenu = createMaterialBottomTabNavigator(
 
 const AppStack = createStackNavigator(
 	{
-		Main: { screen: MainFooterMenu, navigationOptions: { title: 'Urban Farmer' } },
+		Main: {
+      screen: MainFooterMenu,
+      navigationOptions: {
+        title: 'Urban Farmer',
+        headerRight: (
+          <Button title='LogOut' onPress={() => alert('Put LogOut Here!')}/>
+        ),
+      },
+    },
 	},
 	{
+
     initialRouteName: 'Main',
 	}
 );
