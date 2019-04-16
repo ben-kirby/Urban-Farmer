@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, Button, Alert } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
-import { writeData, readData } from '../DataStorage';
 
 export default class Home extends Component {
 	state = {
@@ -26,10 +25,6 @@ export default class Home extends Component {
 			});
 		});
 	}
-
-	
-
-	
 
 	removeFromLocal = () => {
 		Alert.alert('Remove pressed')
