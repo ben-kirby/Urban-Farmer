@@ -8,13 +8,16 @@ import {
 } from 'react-native';
 import firebase, { db } from '../config';
 import { navigationOptions } from 'react-navigation';
+import { readData } from '../DataStorage';
 
 
-let addItem = (a, b, c) => {
+
+let addItem = (a, b, c, uid) => {
   db.ref('/products').push({
     name: a,
     price: b,
-    quantity: c
+    quantity: c,
+    uid: uid
   });
 };
 
@@ -22,13 +25,19 @@ export default class AddItemScreen extends Component {
   state = {
     name: '',
     price: '',
-    quantity: ''
-
+    quantity: '',
+    uid: null
   };
 
+  componentDidMount(){
+    if( this.state.uid == null){
+      this.setState({ uid: readData('uid') });
+    }
+  }
 
   handleSubmit = () => {
-    addItem(this.state.name, this.state.price, this.state.quantity);
+    console.log(readData)
+    addItem(this.state.name, this.state.price, this.state.quantity, this.state.uid);
     alert('item saved!');
   };
 
