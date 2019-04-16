@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Platform, StyleSheet, Text, View, TextInput } from 'react-native';
+import { Platform, StyleSheet, Text, View, TextInput, Button } from 'react-native';
 import { createSwitchNavigator, createStackNavigator, createMaterialTopTabNavigator, createAppContainer } from 'react-navigation';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs'
 
@@ -34,20 +34,69 @@ const AppStack = createMaterialBottomTabNavigator(
 );
 
  //This should stay here
-const AppContainer = createAppContainer(createSwitchNavigator(
-    {
-      AppStack,
-      AuthStack,
-    },
-    {
-      initialRouteName: 'AuthStack',
-    }
-  )
+const AppContainerAuth = createAppContainer(createSwitchNavigator(
+	{
+		AppStack,
+		AuthStack,
+	},
+	{
+		initialRouteName: 'AuthStack',
+	})
 );
 
+const AppContainerSkipAuth = createAppContainer(createSwitchNavigator(
+	{
+		AppStack,
+		AuthStack,	
+	},
+	{
+		initialRouteName: 'AppStack',
+	})
+);
+
+
 export default class App extends Component {
+	state = {
+		renderApp: false,
+		loadingLocalData: true,
+		localDataFound: false
+	}
+
+	componentDidMount() {
+		if (this.state.loadingLocalData === true) {
+			
+		}
+
+	}
+
+	showApp = () => {
+		this.setState({
+			renderApp: true
+		})
+	}
+
 	render() {
-		return <AppContainer/>;
+		if (this.state.loadingLocalData === true) {
+				return (
+					<View style={styles.page}>
+						<Text>Loading...</Text>
+					</View>
+				);	
+		} else {
+			if (this.state.localDataFound === true) {
+				< AppContainerSkipAuth/>
+			} else {
+				< AppContainerAuth/>
+			}
+			return (
+				<View style={styles.page}>
+					<Button
+						title="Render App"
+						onPress={this.showApp}
+					/>
+				</View>
+			)
+		}
 	}
 }
 
@@ -56,8 +105,5 @@ const styles = StyleSheet.create({
 		padding: 25,
 		paddingTop: 75,
 		backgroundColor: 'bisque'
-	},
-	formField: {
-
 	}
 });
