@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, Button, Alert } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
+import { writeData, readData } from '../DataStorage';
 
 export default class Home extends Component {
 	state = {
@@ -14,9 +15,7 @@ export default class Home extends Component {
 	storeData = async () => {
 		try {
 			await AsyncStorage.setItem('@test_Key', 'Bens Local Test')
-			Alert.alert('stored')
-		} catch (e) {		
-			Alert.alert(e);
+		} catch (e) {
 		}
 	}
 
@@ -27,6 +26,8 @@ export default class Home extends Component {
 			});
 		});
 	}
+
+	
 
 	
 
