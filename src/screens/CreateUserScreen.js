@@ -4,7 +4,8 @@ import {
 	TextInput,
 	Button,
 	StyleSheet,
-	Text
+	Text,
+	Alert
 } from 'react-native';
 import { auth } from '../config';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -17,18 +18,23 @@ export default class CreateUser extends Component {
 		errorMsg: null
 	};
 
-	
-
 	handleSubmit = () => {
 		auth.createUserWithEmailAndPassword(this.state.email, this.state.password).then(response => {
 			if (response.user) {
-				let uid = response.user.uid
+				this.storeData('uid', response.user.uid)
 			} else {
-				this.setState({
-					error: 'Oops! There was a problem with that. Try again plz.'
-				})
+					Alert.alert('Oops! There was a problem with that. Try again plz.');
+				}
 			}
-		})
+		)
+	}
+
+	storeData = async (key:String, value:String) => {
+		try {
+			await AsyncStorage.setItem(key, value)
+		} catch (e) {
+			Alert.alert(e)
+		}
 	}
 
 
