@@ -4,9 +4,9 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 export const writeData = async (key, value) => {
 	try {
-		await AsyncStorage.setItem(key, value)
+		await AsyncStorage.setItem(key, value);
 	} catch (e) {
-		Alert.alert(e)
+		Alert.alert(e.message);
 	}
 }
 
