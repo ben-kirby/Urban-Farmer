@@ -31,11 +31,11 @@ export default class Home extends Component {
 		});
 	}
 
-	removeFromLocal = async () => {
+	signUserOut = async () => {
 		try {
-			await AsyncStorage.removeItem('@test_Key')
-		} catch (e) {
-
+			await AsyncStorage.removeItem('uid');
+		} catch (error) {
+			Alert.alert(error.message)
 		}
 	}
 
@@ -65,15 +65,9 @@ export default class Home extends Component {
 					onPress={this.storeData}
 				/>
 				<Button
-					title='Reset Storage'
-					onPress={this.removeFromLocal}
-				/>
-				<Button
-					title='update state'
-					onPress={this.getData}
-				/>
-				<Text>{this.state.testKey}</Text>
-         
+					title='Sign Out'
+					onPress={this.signUserOut}
+				/>         
 			</View>
 
 		);
