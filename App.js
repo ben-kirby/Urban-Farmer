@@ -84,6 +84,7 @@ const styles = StyleSheet.create({
   page: {
     padding: 25,
     paddingTop: 75,
-    backgroundColor: 'bisque'
+    backgroundColor: 'bisque',
+    flex: 1,
   }
 });

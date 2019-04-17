@@ -43,7 +43,10 @@ const RouterConfig =
 const NavOptionsConfig =
 	{
 		initialRouteName: 'Home',
-		//navigationOptions: {},
+		navigationOptions:
+			{
+				
+			},
 	}
 
 export default MainFooterMenuComponent = createMaterialBottomTabNavigator(RouterConfig, NavOptionsConfig);
