@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { Container, Content, Footer, FooterTab, Button, Icon, Text } from 'native-base';
 
-
 export default class FooterComponent extends Component {
 	render() {
 		return (
 			<Container>
-       
+
 				<Content />
 				<Footer>
 					<FooterTab>
@@ -22,7 +21,7 @@ export default class FooterComponent extends Component {
 
 						<Button vertical active >
 							<Icon name="add" />
-              
+
 							<Text>Add</Text>
 						</Button>
 						<Button vertical active>
@@ -34,7 +33,4 @@ export default class FooterComponent extends Component {
 			</Container>
 		);
 	}
-
- 
 }
-

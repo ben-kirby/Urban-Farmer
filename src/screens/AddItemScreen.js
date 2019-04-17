@@ -51,16 +51,6 @@ export default class AddItemScreen extends Component {
     alert('item saved!');
   };
 
-  static navigationOptions =
-  {
-    title: 'AddItemScreen',
-  };
-
-  static navigationOptions =
-  {
-    title: 'AddItemScreen',
-  };
-
   render(){
     return(
      
