@@ -44,33 +44,6 @@ export default class AddItemScreen extends Component {
     return(
      
       <View style={styles.main}>
-<<<<<<< HEAD
-        <Text style={styles.title}>Add Item</Text>
-        <TextInput
-          style={styles.itemInput}
-          onChangeText={(text) => this.setState({name:text})}
-          placeholder="name"
-        />
-        <TextInput 
-          style={styles.itemInput}
-          onChangeText={(text) => this.setState({price:text})}
-          placeholder="price"
-        />
-        <TextInput 
-          style={styles.itemInput}
-          onChangeText={(text) => this.setState({quantity:text})}
-          placeholder="qunatity"
-        />
-        <TouchableHighlight
-          style={styles.button}
-          underlayColor="white"
-          onPress={this.handleSubmit}   
-        >
-          <Text style={styles.buttonText}>Add</Text>
-        </TouchableHighlight>
-      </View>
-    );
-=======
 
       <Text style={styles.title}>Add Item</Text>
       <TextInput
@@ -100,7 +73,6 @@ export default class AddItemScreen extends Component {
     </View>
 
    );
->>>>>>> c95cd4193e42677977f712565d11cc63e097f9a6
   }
 }
 
