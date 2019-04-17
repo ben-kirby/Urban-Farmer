@@ -1,13 +1,35 @@
 import React, { Component } from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Button, Alert } from 'react-native';
 import { navigationOptions } from 'react-navigation';
+import AsyncStorage from '@react-native-community/async-storage';
 
 export default class HomeScreen extends Component {
+
+	componentDidMount() {
+		this.getData();
+	}
+
+	getData = async () => {
+		await AsyncStorage.getItem('@test_Key').then(response => {
+			this.setState({
+				testKey: response
+			});
+		});
+	}
+
+	signUserOut = async () => {
+		try {
+			await AsyncStorage.removeItem('uid').then(() => {
+				this.props.navigation.navigate('AuthStack');
+			});
+		} catch (error) {
+			Alert.alert(error.message)
+		}
+	}
 
 	render () {
 		return(
 			<View>
-				<Text>Home Screen</Text>
 				<Button
 					title="Add Item"
 					onPress={() => this.props.navigation.navigate('AddItem')}
@@ -26,9 +48,11 @@ export default class HomeScreen extends Component {
 					onPress={() => this.props.navigation.navigate('CreateUser')}
 				/>
 
+				<Button
+					title='Sign Out'
+					onPress={this.signUserOut}
+				/>
 			</View>
-
 		);
 	}
-
 }

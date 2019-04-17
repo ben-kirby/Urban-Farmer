@@ -1,20 +1,33 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, TextInput, View, Button } from "react-native";
+import { StyleSheet, TextInput, View, Button, Alert, Text } from "react-native";
+import { auth } from "../config";
+import AsyncStorage from '@react-native-community/async-storage';
 import { navigationOptions } from 'react-navigation';
-import firebase, { db, auth } from "../config";
 
 export default class SignInScreen extends Component {
   state = {
     email: '',
-    password: '',
-    loggedIn: false
+    password: ''
   };
 
-onSubmit = () => {
-  auth.signInWithEmailAndPassword(this.state.email, this.state.password);
-  //Add logic below on what to do if login is successful (go to main app stack) or if fail (stay on this page)
-  //type logic here
-  //if (response.user) {navigate('Profile', {name: 'userNameWhoLoggedOnHere'})}
+handleSubmit = () => {
+  auth.signInWithEmailAndPassword(this.state.email, this.state.password).then(response => {
+    if (response.user) {
+      this.storeData('uid', response.user.uid).then(() => {
+        this.props.navigation.navigate('AppStack');
+      })
+    } else {
+      Alert.alert('Oops! There was a problem with that. Try again plz.');
+    }
+  });
+}
+
+storeData = async (key, value) => {
+  try {
+    await AsyncStorage.setItem(key, value)
+  } catch (e) {
+    Alert.alert(e.message)
+  }
 }
 
   render() {
@@ -34,7 +47,7 @@ onSubmit = () => {
         placeholder="Password"
       />
       <Button
-        onPress={this.onSubmit}
+        onPress={this.handleSubmit}
         title="Submit"
         color="#841584"
       />
