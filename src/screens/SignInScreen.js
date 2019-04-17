@@ -7,8 +7,7 @@ import { navigationOptions } from 'react-navigation';
 export default class SignInScreen extends Component {
   state = {
     email: '',
-    password: '',
-    loggedIn: false
+    password: ''
   };
 
 handleSubmit = () => {
