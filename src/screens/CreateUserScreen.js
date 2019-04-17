@@ -16,11 +16,6 @@ export default class CreateUserScreen extends Component {
 		password: ''
 	};
 
-	static navigationOptions =
-	{
-		title: 'CreateUserScreen',
-	};
-
 	handleSubmit = () => {
 		auth.createUserWithEmailAndPassword(this.state.email, this.state.password).then(response => {
 			if (response.user) {

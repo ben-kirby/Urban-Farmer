@@ -3,10 +3,7 @@ import { View, Button, Alert } from 'react-native';
 import { navigationOptions } from 'react-navigation';
 import AsyncStorage from '@react-native-community/async-storage';
 
-export default class Home extends Component {
-	static navigationOptions = {
-		title: 'HomeScreen',
-	};
+export default class HomeScreen extends Component {
 
 	componentDidMount() {
 		this.getData();
@@ -50,11 +47,11 @@ export default class Home extends Component {
 					title="*Create User"
 					onPress={() => this.props.navigation.navigate('CreateUser')}
 				/>
-				
+
 				<Button
 					title='Sign Out'
 					onPress={this.signUserOut}
-				/>         
+				/>
 			</View>
 		);
 	}

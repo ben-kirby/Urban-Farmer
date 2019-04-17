@@ -30,11 +30,6 @@ storeData = async (key, value) => {
   }
 }
 
-static navigationOptions =
-{
-  title: 'SignInScreen',
-};
-
   render() {
     return (
       <View style={styles.container}>
