@@ -13,9 +13,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 export default class CreateUserScreen extends Component {
 	state = {
 		email: '',
-		password: '',
-		uuid: null,
-		errorMsg: null
+		password: ''
 	};
 
 	static navigationOptions =
@@ -26,19 +24,20 @@ export default class CreateUserScreen extends Component {
 	handleSubmit = () => {
 		auth.createUserWithEmailAndPassword(this.state.email, this.state.password).then(response => {
 			if (response.user) {
-				this.storeData('uid', response.user.uid)
+				this.storeData('uid', response.user.uid).then(() => {
+					this.props.navigation.navigate('AppStack');
+				})
 			} else {
-					Alert.alert('Oops! There was a problem with that. Try again plz.');
-				}
+				Alert.alert('Oops! There was a problem with that. Try again plz.');
 			}
-		)
+		});
 	}
 
-	storeData = async (key:String, value:String) => {
+	storeData = async (key, value) => {
 		try {
 			await AsyncStorage.setItem(key, value)
 		} catch (e) {
-			Alert.alert(e)
+			Alert.alert(e.message)
 		}
 	}
 
@@ -65,13 +64,11 @@ export default class CreateUserScreen extends Component {
 					title="Submit"
 					color="#841584"
 				/>
-				<Text>{this.state.uuid}</Text>
-				<Text>Oops!  I'm already an existing user:</Text>
-					<Button
-						onPress={() => this.props.navigation.navigate('SignIn')}
-						title="Return to Login"
-						color="#841584"
-					/>
+				<Button
+					onPress={() => this.props.navigation.navigate('SignIn')}
+					title="Return to Login"
+					color="#841584"
+				/>
 			</View>
 		);
 	}
