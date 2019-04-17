@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import PropTypes from 'prop-types';
 import { Button } from 'react-native';
+import EditModal from './EditModal';
 
 
 export default class ItemComponent extends Component {
@@ -18,10 +19,7 @@ export default class ItemComponent extends Component {
               <Text style={styles.itemtext}>Product Name: {item.name}</Text>
               <Text style={styles.itemtext}>Price: {item.price}</Text>
               <Text style={styles.itemtext}>Quantity: {item.quantity}</Text>
-              <Button
-              title='edit'
-              color="#841584"
-              />
+              <EditModal/>
               <Button
               title="sold"
               color="#841584"
