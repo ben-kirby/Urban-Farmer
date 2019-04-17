@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Platform, StyleSheet, Text, View, TextInput } from 'react-native';
+import { Platform, StyleSheet, Text, View, Alert } from 'react-native';
 import { createSwitchNavigator, createStackNavigator, createMaterialTopTabNavigator, createAppContainer } from 'react-navigation';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs'
 
@@ -9,6 +9,7 @@ import AddItemScreen from './src/screens/AddItemScreen';
 import InventoryListScreen from './src/screens/InventoryListScreen';
 import SignInScreen from './src/screens/SignInScreen';
 import CreateUserScreen from './src/screens/CreateUserScreen';
+import AsyncStorage from '@react-native-community/async-storage';
 
  //consider splitting this into another file
 const AuthStack = createSwitchNavigator(
@@ -34,20 +35,75 @@ const AppStack = createMaterialBottomTabNavigator(
 );
 
  //This should stay here
-const AppContainer = createAppContainer(createSwitchNavigator(
-    {
-      AppStack,
-      AuthStack,
-    },
-    {
-      initialRouteName: 'AuthStack',
-    }
-  )
+const AppContainerAuth = createAppContainer(createSwitchNavigator(
+	{
+		AppStack,
+		AuthStack,
+	},
+	{
+		initialRouteName: 'AuthStack',
+	})
+);
+
+const AppContainerSkipAuth = createAppContainer(createSwitchNavigator(
+	{
+		AppStack,
+		AuthStack,	
+	},
+	{
+		initialRouteName: 'AppStack',
+	})
 );
 
 export default class App extends Component {
+	state = {
+		uid: null,
+		loadingLocalData: true,
+		localDataFound: false
+	}
+
+	componentDidMount() {
+		if (this.state.loadingLocalData === true) {
+			this.readUserData();
+		}
+	}
+
+	readUserData = async () => {
+		try {
+			await AsyncStorage.getItem('uid').then(response => {
+				if (response !== null) {
+					Alert.alert('UID', JSON.stringify(response));
+					this.setState({
+						loadingLocalData: false,
+						localDataFound: true
+					});
+				} else {
+					this.setState({
+						loadingLocalData: false,
+						localDataFound: false
+					});
+				}
+
+			});
+		} catch (e) {
+			Alert.alert('Catch', e.message)
+		}
+	}
+
 	render() {
-		return <AppContainer/>;
+		if (this.state.loadingLocalData === true) {
+				return (
+					<View style={styles.page}>
+						<Text>Loading...</Text>
+					</View>
+				);	
+		} else {
+			if (this.state.localDataFound === true) {
+				return <AppContainerSkipAuth/>
+			} else {
+				return <AppContainerAuth/>
+			}
+		}
 	}
 }
 
@@ -56,8 +112,5 @@ const styles = StyleSheet.create({
 		padding: 25,
 		paddingTop: 75,
 		backgroundColor: 'bisque'
-	},
-	formField: {
-
 	}
 });
