@@ -17,11 +17,6 @@ onSubmit = () => {
   //if (response.user) {navigate('Profile', {name: 'userNameWhoLoggedOnHere'})}
 }
 
-static navigationOptions =
-{
-  title: 'SignInScreen',
-};
-
   render() {
     return (
       <View style={styles.container}>

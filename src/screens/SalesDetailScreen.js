@@ -3,17 +3,12 @@ import { View, Text, Button } from 'react-native';
 import { navigationOptions } from 'react-navigation';
 
 
-export default class SalesMainScreen extends Component {
-
-	static navigationOptions =
-  {
-    title: 'SalesMain',
-  };
+export default class SalesDetailScreen extends Component {
 
 	render () {
 		return(
 			<View>
-				<Text>Sales Main Screen</Text>
+				<Text>Sales Details Screen</Text>
 			</View>
 		)
   }

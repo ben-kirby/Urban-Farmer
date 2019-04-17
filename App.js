@@ -6,11 +6,11 @@ import { createMaterialBottomTabNavigator } from 'react-navigation-material-bott
 import HomeScreen from './src/screens/HomeScreen';
 import AddItemScreen from './src/screens/AddItemScreen';
 import InventoryListScreen from './src/screens/InventoryListScreen';
-import SalesMainScreen from './src/screens/SalesMainScreen';
+import SalesDetailScreen from './src/screens/SalesDetailScreen';
 import SignInScreen from './src/screens/SignInScreen';
 import CreateUserScreen from './src/screens/CreateUserScreen';
 
- //consider splitting this into another file
+//consider splitting this into another file
 const AuthStack = createSwitchNavigator(
   {
     SignIn: { screen: SignInScreen },
@@ -22,62 +22,80 @@ const AuthStack = createSwitchNavigator(
   }
 );
 
- //consider splitting this into another file
+//consider splitting this into another file
 export const MainFooterMenu = createMaterialBottomTabNavigator(
-	{
-		Home: { screen: HomeScreen },
-		AddItem: { screen: AddItemScreen },
-		InventoryList: { screen: InventoryListScreen },
-    SalesMain: { screen: SalesMainScreen },
-	},
-	{
+  {
+    Home: {
+      screen: HomeScreen,
+      navigationOptions: {
+        title: 'Home',
+      }
+    },
+    InventoryList: {
+      screen: InventoryListScreen,
+      navigationOptions: {
+        title: 'View Inventory',
+      }
+    },
+    AddItem: {
+      screen: AddItemScreen,
+      navigationOptions: {
+        title: 'Add Inventory',
+      }
+    },
+    SalesDetail: {
+      screen: SalesDetailScreen,
+      navigationOptions: {
+        title: 'Sales Details',
+      }
+    },
+  },
+  {
     initialRouteName: 'Home',
-	}
+  }
 );
 
 const AppStack = createStackNavigator(
-	{
-		Main: {
+  {
+    Main: {
       screen: MainFooterMenu,
       navigationOptions: {
-        title: 'Urban Farmer', //put props in here to make this change dynamically
-        headerRight: (
-          <Button title='LogOut' onPress={() => alert('Put LogOut Here!')}/>
-        ),
+        title: 'Urban Farmer',
+        headerLeft: (<Button title='Icon'/>),
+        headerRight: (<Button title='LogOut' onPress={() => alert('Put LogOut Here!')}/>),
       },
     },
-	},
-	{
-
+  },
+  {
     initialRouteName: 'Main',
-	}
+  }
 );
 
- //This should stay here
+//This should stay here
 const AppContainer = createAppContainer(createSwitchNavigator(
-    {
-      AppStack,
-      AuthStack,
-    },
-    {
-      initialRouteName: 'AuthStack',
-    }
-  )
+  {
+    AppStack,
+    AuthStack,
+  },
+  {
+    initialRouteName: 'AuthStack',
+  }
+)
 );
 
 export default class App extends Component {
-	render() {
-		return <AppContainer/>;
-	}
+  render() {
+    return <AppContainer/>;
+  }
 }
 
 const styles = StyleSheet.create({
-	page: {
-		padding: 25,
-		paddingTop: 75,
-		backgroundColor: 'bisque'
-	},
-	formField: {
+  page: {
+    padding: 25,
+    paddingTop: 75,
+    backgroundColor: 'bisque'
+  },
+  formField: {
 
-	}
+  }
 });

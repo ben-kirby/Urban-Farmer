@@ -4,11 +4,6 @@ import { navigationOptions } from 'react-navigation';
 
 export default class HomeScreen extends Component {
 
-	static navigationOptions =
-  {
-    title: 'HomeScreen',
-  };
-
 	render () {
 		return(
 			<View>

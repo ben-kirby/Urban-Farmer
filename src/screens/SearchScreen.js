@@ -18,11 +18,6 @@ export default class SearchScreen extends Component {
         };
       }
 
-      static navigationOptions =
-      {
-        title: 'SearchScreen',
-      };
-
     render() {
     return (
       <View style={styles.container}>
