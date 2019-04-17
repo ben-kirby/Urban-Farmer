@@ -34,7 +34,7 @@ export default class AddItemScreen extends Component {
    try {
      const response = await AsyncStorage.getItem('uid');
        alert(response);
-       return response;
+       this.setState({uid: response});
      }
   catch (error) {
     console.log("Error while storing the token");
@@ -42,9 +42,7 @@ export default class AddItemScreen extends Component {
   }
 
   componentDidMount() {
-    let uid = this.getUserId();
-    alert(uid);
-    this.setState({uid: uid});
+    this.getUserId();
   }
 
   handleSubmit = () => {
