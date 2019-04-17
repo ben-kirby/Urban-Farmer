@@ -5,7 +5,7 @@ import { navigationOptions } from 'react-navigation';
 
 import { db } from '../config';
 
-let productsRef = db.ref('/products');
+const productsRef = db.ref('/products');
 
 export default class InventoryListScreen extends Component {
   state = {
@@ -16,6 +16,7 @@ export default class InventoryListScreen extends Component {
     productsRef.on('value', snapshot => {
       let data = snapshot.val();
       let products = Object.values(data);
+      console.log(products);
       this.setState({ products });
     });
   }
