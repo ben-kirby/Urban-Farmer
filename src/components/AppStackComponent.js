@@ -17,13 +17,14 @@ const RouterConfig =
             //headerLeft: (<TouchableOpacity onPress={() => alert('Put LogOut Here!')}/><Text>Insert Image here!</Text></TouchableOpacity>);
             //headerRight: (<TouchableOpacity onPress={() => alert('Put LogOut Here!')}/><Text>Icon here!</Text></TouchableOpacity>);
           },
+        //defaultNavigationOptions: { //Note: This option configures the children screens }
       },
   }
 
+//Note:  For style options see:  https://reactnavigation.org/docs/en/stack-navigator.html
 const NavOptionsConfig =
 	{
 		initialRouteName: 'Main',
-		//navigationOptions: {},
 	}
 
 export default AppStack = createStackNavigator(RouterConfig, NavOptionsConfig);

@@ -40,6 +40,7 @@ const RouterConfig =
 			},
 	}
 
+//Note:  For style options, see: https://reactnavigation.org/docs/en/material-bottom-tab-navigator.html#materialbottomtabnavigatorconfig
 const NavOptionsConfig =
 	{
 		shifting: false,
