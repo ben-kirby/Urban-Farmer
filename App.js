@@ -1,42 +1,11 @@
 import React, {Component} from 'react';
 import { Platform, StyleSheet, Text, View, TextInput, Button } from 'react-native';
-import { createSwitchNavigator, createStackNavigator, createMaterialTopTabNavigator, createAppContainer, navigationOptions } from 'react-navigation';
+import { createSwitchNavigator, createAppContainer, navigationOptions } from 'react-navigation';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 import AsyncStorage from '@react-native-community/async-storage';
 
-
-import SignInScreen from './src/screens/SignInScreen';
-import CreateUserScreen from './src/screens/CreateUserScreen';
-
-import MainFooterMenu from './src/components/MainFooterMenuComponent';
-
-//consider splitting this into another file
-const AuthStack = createSwitchNavigator(
-  {
-    SignIn: { screen: SignInScreen },
-    CreateUser: { screen: CreateUserScreen },
-  },
-  {
-    initialRouteName: 'SignIn',
-    backBehavior: 'order',
-  }
-);
-
-const AppStack = createStackNavigator(
-  {
-    Main: {
-      screen: MainFooterMenu,
-      navigationOptions: {
-        title: 'Urban Farmer',
-        headerLeft: (<Button title='Icon'/>),
-        headerRight: (<Button title='LogOut' onPress={() => alert('Put LogOut Here!')}/>),
-      },
-    },
-  },
-  {
-    initialRouteName: 'Main',
-  }
-);
+import AppStack from './src/components/AppStackComponent';
+import AuthStack from './src/components/AuthStackComponent';
 
 //This should stay here
 const AppContainerAuth = createAppContainer(createSwitchNavigator(

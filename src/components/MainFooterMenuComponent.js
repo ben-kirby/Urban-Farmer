@@ -46,4 +46,4 @@ const NavOptionsConfig =
 		//navigationOptions: {},
 	}
 
-export default MainFooterMenu = createMaterialBottomTabNavigator(RouterConfig, NavOptionsConfig);
+export default MainFooterMenuComponent = createMaterialBottomTabNavigator(RouterConfig, NavOptionsConfig);
