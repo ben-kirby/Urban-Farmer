@@ -1,3 +1,5 @@
+//Note:  Not being used as of APR-16-2019
+
 import React, { Component } from 'react';
 import { Container, Content, Footer, FooterTab, Button, Icon, Text } from 'native-base';
 

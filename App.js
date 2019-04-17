@@ -53,6 +53,9 @@ export const MainFooterMenu = createMaterialBottomTabNavigator(
   },
   {
     initialRouteName: 'Home',
+    navigationOptions: {
+
+    }
   }
 );
 
