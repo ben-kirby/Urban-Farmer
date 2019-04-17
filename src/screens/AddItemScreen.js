@@ -8,25 +8,46 @@ import {
 } from 'react-native';
 import firebase, { db } from '../config';
 import { navigationOptions } from 'react-navigation';
+import { readData } from '../DataStorage';
+import AsyncStorage from '@react-native-community/async-storage';
 
-let addItem = (a, b, c) => {
+
+
+let addItem = (a, b, c, uid) => {
   db.ref('/products').push({
     name: a,
-    quantity: b,
-    price: c
+    price: b,
+    quantity: c,
+    uid: uid
   });
 };
 
 export default class AddItemScreen extends Component {
   state = {
     name: '',
+    price: '',
     quantity: '',
-    price:''
+    uid: ''
   };
-  
-  
+
+ async getUserId(){
+   try {
+     const response = await AsyncStorage.getItem('uid');
+       alert(response);
+       this.setState({uid: response});
+     }
+  catch (error) {
+    console.log("Error while storing the token");
+  }
+  }
+
+  componentDidMount() {
+    this.getUserId();
+  }
+
   handleSubmit = () => {
-    addItem(this.state.name, this.state.quantity, this.state.price)
+    console.log(readData)
+    addItem(this.state.name, this.state.price, this.state.quantity, this.state.uid);
     alert('item saved!');
   };
 
