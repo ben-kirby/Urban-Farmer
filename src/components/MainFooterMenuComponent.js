@@ -48,6 +48,12 @@ const NavOptionsConfig =
 		activeColor: '#ff0000',
 		inactiveColor: '#999999',
 		backBehavior: 'order',
+		barStyle:
+			{
+				borderColor: '#0099FF',
+				borderWidth: 2,
+				borderStyle: 'solid',
+			}
 	}
 
 export default MainFooterMenuComponent = createMaterialBottomTabNavigator(RouterConfig, NavOptionsConfig);
