@@ -21,11 +21,6 @@ export default class InventoryListScreen extends Component {
     });
   }
 
-  static navigationOptions =
-  {
-    title: 'InventoryListScreen',
-  };
-
   render() {
     return (
       <View style={styles.container}>
