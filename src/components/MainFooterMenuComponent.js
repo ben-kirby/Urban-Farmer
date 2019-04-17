@@ -42,11 +42,12 @@ const RouterConfig =
 
 const NavOptionsConfig =
 	{
+		shifting: false,
+		labeled: true,
 		initialRouteName: 'Home',
-		navigationOptions:
-			{
-				
-			},
+		activeColor: '#ff0000',
+		inactiveColor: '#999999',
+		backBehavior: 'order',
 	}
 
 export default MainFooterMenuComponent = createMaterialBottomTabNavigator(RouterConfig, NavOptionsConfig);

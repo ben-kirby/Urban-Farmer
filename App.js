@@ -85,6 +85,5 @@ const styles = StyleSheet.create({
     padding: 25,
     paddingTop: 75,
     backgroundColor: 'bisque',
-    flex: 1,
   }
 });
