@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Platform, StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import { Platform, StyleSheet, Text, View, TextInput, Button, Alert } from 'react-native';
 import { createSwitchNavigator, createStackNavigator, createMaterialTopTabNavigator, createAppContainer, navigationOptions } from 'react-navigation';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -110,7 +110,6 @@ export default class App extends Component {
     try {
       await AsyncStorage.getItem('uid').then(response => {
         if (response !== null) {
-          Alert.alert('UID', JSON.stringify(response));
           this.setState({
             loadingLocalData: false,
             localDataFound: true
