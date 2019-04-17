@@ -34,6 +34,7 @@ export default class AddItemScreen extends Component {
    try {
      const response = await AsyncStorage.getItem('uid');
        alert(response);
+       console.log(response);
        this.setState({uid: response});
      }
   catch (error) {
