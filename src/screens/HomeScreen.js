@@ -1,26 +1,15 @@
 import React, { Component } from 'react';
-import { View, Text, Button, Alert } from 'react-native';
+import { View, Button, Alert } from 'react-native';
 import { navigationOptions } from 'react-navigation';
 import AsyncStorage from '@react-native-community/async-storage';
 
 export default class Home extends Component {
-	state = {
-		testKey: null
-	}
-
 	static navigationOptions = {
 		title: 'HomeScreen',
 	};
 
 	componentDidMount() {
 		this.getData();
-	}
-
-	storeData = async () => {
-		try {
-			await AsyncStorage.setItem('@test_Key', 'Bens Local Test')
-		} catch (e) {
-		}
 	}
 
 	getData = async () => {
@@ -33,7 +22,9 @@ export default class Home extends Component {
 
 	signUserOut = async () => {
 		try {
-			await AsyncStorage.removeItem('uid');
+			await AsyncStorage.removeItem('uid').then(() => {
+				this.props.navigation.navigate('AuthStack');
+			});
 		} catch (error) {
 			Alert.alert(error.message)
 		}
@@ -42,7 +33,6 @@ export default class Home extends Component {
 	render () {
 		return(
 			<View>
-				<Text>Home Screen</Text>
 				<Button
 					title="Add Item"
 					onPress={() => this.props.navigation.navigate('AddItem')}
@@ -60,17 +50,12 @@ export default class Home extends Component {
 					title="*Create User"
 					onPress={() => this.props.navigation.navigate('CreateUser')}
 				/>
-				<Button
-					title='Add to local storage'
-					onPress={this.storeData}
-				/>
+				
 				<Button
 					title='Sign Out'
 					onPress={this.signUserOut}
 				/>         
 			</View>
-
 		);
 	}
-
 }
