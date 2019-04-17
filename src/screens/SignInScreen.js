@@ -14,18 +14,20 @@ export default class SignInScreen extends Component {
 handleSubmit = () => {
   auth.signInWithEmailAndPassword(this.state.email, this.state.password).then(response => {
     if (response.user) {
-      this.storeData('uid', response.user.uid)
+      this.storeData('uid', response.user.uid).then(() => {
+        this.props.navigation.navigate('AppStack');
+      })
     } else {
       Alert.alert('Oops! There was a problem with that. Try again plz.');
     }
   });
 }
 
-storeData = async (key: String, value: String) => {
+storeData = async (key, value) => {
   try {
     await AsyncStorage.setItem(key, value)
   } catch (e) {
-    Alert.alert(e)
+    Alert.alert(e.message)
   }
 }
 
