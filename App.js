@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Platform, StyleSheet, Text, View, TextInput, Button, Alert } from 'react-native';
+import { Platform, StyleSheet, Text, View, Alert } from 'react-native';
 import { createSwitchNavigator, createStackNavigator, createMaterialTopTabNavigator, createAppContainer } from 'react-navigation';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs'
 
@@ -57,7 +57,7 @@ const AppContainerSkipAuth = createAppContainer(createSwitchNavigator(
 
 export default class App extends Component {
 	state = {
-		renderApp: false,
+		uid: null,
 		loadingLocalData: true,
 		localDataFound: false
 	}
@@ -70,16 +70,23 @@ export default class App extends Component {
 
 	readUserData = async () => {
 		try {
-			await AsyncStorage.getItem(uid).then(respose => {
-				this.setState({
-					loadingLocalData: false,
-					localDataFound: true
-				});
+			await AsyncStorage.getItem('uid').then(response => {
+				if (response !== null) {
+					Alert.alert('UID', JSON.stringify(response));
+					this.setState({
+						loadingLocalData: false,
+						localDataFound: true
+					});
+				} else {
+					this.setState({
+						loadingLocalData: false,
+						localDataFound: false
+					});
+				}
+
 			});
-		} catch {
-			this.setState({
-				loadingLocalData: false
-			});
+		} catch (e) {
+			Alert.alert('Catch', e.message)
 		}
 	}
 
