@@ -9,6 +9,7 @@ import {
 import firebase, { db } from '../config';
 import { navigationOptions } from 'react-navigation';
 import { readData } from '../DataStorage';
+import AsyncStorage from '@react-native-community/async-storage';
 
 
 
@@ -26,13 +27,24 @@ export default class AddItemScreen extends Component {
     name: '',
     price: '',
     quantity: '',
-    uid: null
+    uid: ''
   };
 
-  componentDidMount(){
-    if( this.state.uid == null){
-      this.setState({ uid: readData('uid') });
-    }
+ async getUserId(){
+   try {
+     const response = await AsyncStorage.getItem('uid');
+       alert(response);
+       return response;
+     }
+  catch (error) {
+    console.log("Error while storing the token");
+  }
+  }
+
+  componentDidMount() {
+    let uid = this.getUserId();
+    alert(uid);
+    this.setState({uid: uid});
   }
 
   handleSubmit = () => {
