@@ -31,11 +31,11 @@ export default class HomeScreen extends Component {
 		return(
 			<View>
 				<Button
-					title="Add Item"
+					title="*Add Item"
 					onPress={() => this.props.navigation.navigate('AddItem')}
 				/>
 				<Button
-					title="Item List"
+					title="*Item List"
 					color="green"
 					onPress={() =>  this.props.navigation.navigate('InventoryList')}
 				/>
@@ -49,7 +49,7 @@ export default class HomeScreen extends Component {
 				/>
 
 				<Button
-					title='Sign Out'
+					title='*Sign Out'
 					onPress={this.signUserOut}
 				/>
 			</View>
