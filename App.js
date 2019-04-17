@@ -4,12 +4,11 @@ import { createSwitchNavigator, createStackNavigator, createMaterialTopTabNaviga
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 import AsyncStorage from '@react-native-community/async-storage';
 
-import HomeScreen from './src/screens/HomeScreen';
-import AddItemScreen from './src/screens/AddItemScreen';
-import InventoryListScreen from './src/screens/InventoryListScreen';
-import SalesDetailScreen from './src/screens/SalesDetailScreen';
+
 import SignInScreen from './src/screens/SignInScreen';
 import CreateUserScreen from './src/screens/CreateUserScreen';
+
+import MainFooterMenu from './src/components/MainFooterMenuComponent';
 
 //consider splitting this into another file
 const AuthStack = createSwitchNavigator(
@@ -20,42 +19,6 @@ const AuthStack = createSwitchNavigator(
   {
     initialRouteName: 'SignIn',
     backBehavior: 'order',
-  }
-);
-
-//consider splitting this into another file
-export const MainFooterMenu = createMaterialBottomTabNavigator(
-  {
-    Home: {
-      screen: HomeScreen,
-      navigationOptions: {
-        title: 'Home',
-      }
-    },
-    InventoryList: {
-      screen: InventoryListScreen,
-      navigationOptions: {
-        title: 'View Inventory',
-      }
-    },
-    AddItem: {
-      screen: AddItemScreen,
-      navigationOptions: {
-        title: 'Add Inventory',
-      }
-    },
-    SalesDetail: {
-      screen: SalesDetailScreen,
-      navigationOptions: {
-        title: 'Sales Details',
-      }
-    },
-  },
-  {
-    initialRouteName: 'Home',
-    navigationOptions: {
-
-    }
   }
 );
 
