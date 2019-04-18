@@ -7,7 +7,7 @@ import {
   TextInput
 } from 'react-native';
 import firebase, { db } from '../config';
-import { navigationOptions } from 'react-navigation';
+
 import { readData } from '../DataStorage';
 import AsyncStorage from '@react-native-community/async-storage';
 
