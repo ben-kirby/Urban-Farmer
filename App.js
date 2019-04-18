@@ -44,7 +44,6 @@ export default class App extends Component {
     try {
       await AsyncStorage.getItem('uid').then(response => {
         if (response !== null) {
-          Alert.alert('UID', JSON.stringify(response));
           this.setState({
             loadingLocalData: false,
             localDataFound: true
