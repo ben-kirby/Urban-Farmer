@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { ScrollView, Button, Image } from 'react-native';
-import { Container, Header, Content, Card, CardItem, Text, Body } from "native-base";
+import { Card, CardItem, Text, Body } from "native-base";
 import { navigationOptions } from 'react-navigation';
 import AsyncStorage from '@react-native-community/async-storage';
 
