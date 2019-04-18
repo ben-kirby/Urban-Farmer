@@ -19,7 +19,7 @@ export default class ItemComponent extends Component {
               <Text style={styles.itemtext}>Product Name: {item.name}</Text>
              
               <EditModal/>
-              console.log("peope")
+             
               <Button
               title="sold"
               color="#841584"
