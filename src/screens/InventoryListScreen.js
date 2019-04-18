@@ -41,7 +41,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 2,
     justifyContent: 'center',
-    backgroundColor: '#ebebeb'
+    backgroundColor: '#ebebeb',
+    flex: 1,
   },
   footer: {
     alignSelf: 'flex-end'

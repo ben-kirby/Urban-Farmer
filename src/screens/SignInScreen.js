@@ -80,5 +80,6 @@ const styles = StyleSheet.create({
     marginTop: 65,
     alignItems: 'center',
     backgroundColor: '#91b43d',
+    flex: 1,
   }
 });
