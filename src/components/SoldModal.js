@@ -4,11 +4,14 @@ import {Modal, Text, TouchableHighlight, View, Alert} from 'react-native';
 import PropTypes from 'prop-types';
 
 export default class SoldModal extends Component {
-  state = {
-    modalVisible: false,
-  };
+    state = {
+      modalVisible: false,
+      item: this.props.item
+    };
 
-  setModalVisible(visible) {
+
+  setModalVisible (visible) {
+    console.log(this.props.item);
     this.setState({
         modalVisible: visible
     });
@@ -33,11 +36,8 @@ export default class SoldModal extends Component {
             <Text>{this.props.item.name}</Text>
 				    <Text>{this.props.item.quantity}</Text>
 				    <Text>{this.props.item.price}</Text>
-
-
-
             <Button
-            title="sold"
+            title="Done"
               onPress={() => {
               this.setModalVisible(!this.state.modalVisible);
             }}
