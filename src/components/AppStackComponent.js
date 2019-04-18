@@ -4,13 +4,25 @@ import { createStackNavigator, navigationOptions } from 'react-navigation';
 
 import MainFooterMenuComponent from './MainFooterMenuComponent';
 
-// export const UpperLeftCornerIcon extends Component {
-//   render (
-//     return(
-//
-//     )
-//   )
-// }
+class UpperLeftCornerIcon extends Component {
+  render() {
+    return(
+      <TouchableOpacity onPress={''}>
+        <Text style={{ fontSize: 35 }}>🌿</Text>
+      </TouchableOpacity>
+    );
+  }
+};
+
+class UpperRightCornerIcon extends Component {
+  render() {
+    return(
+      <View>
+        <Button title='LogOut' onPress={() => alert('Put LogOut Here!')}/>
+      </View>
+    );
+  }
+};
 
 const RouterConfig =
   {
@@ -33,8 +45,8 @@ const RouterConfig =
                 fontFamily: 'italic',
                 fontWeight: 'bold',
               },
-            headerLeft: (<Button title='Icon'/>),
-            headerRight: (<Button title='LogOut' onPress={() => alert('Put LogOut Here!')}/>),
+            headerLeft: (<UpperLeftCornerIcon/>),
+            headerRight: (<UpperRightCornerIcon/>),
           },
         //defaultNavigationOptions: { //Note: This option configures the children screens }
       },
