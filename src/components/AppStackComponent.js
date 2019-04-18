@@ -14,8 +14,8 @@ const RouterConfig =
             title: 'Urban Farmer',
             headerLeft: (<Button title='Icon'/>),
             headerRight: (<Button title='LogOut' onPress={() => alert('Put LogOut Here!')}/>),
-            //headerLeft: (<TouchableOpacity onPress={() => alert('Put LogOut Here!')}/><Text>Insert Image here!</Text></TouchableOpacity>);
-            //headerRight: (<TouchableOpacity onPress={() => alert('Put LogOut Here!')}/><Text>Icon here!</Text></TouchableOpacity>);
+            // headerLeft: (return(<TouchableOpacity onPress={() => alert('Put LogOut Here!')}/><Text>'Insert Image here!'</Text></TouchableOpacity>));
+            // headerRight: (return(<TouchableOpacity onPress={() => alert('Put LogOut Here!')}/><Text>'Icon here!'</Text></TouchableOpacity>));
           },
         //defaultNavigationOptions: { //Note: This option configures the children screens }
       },

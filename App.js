@@ -14,6 +14,7 @@ const AppContainerAuth = createAppContainer(createSwitchNavigator(
   },
   {
     initialRouteName: 'AuthStack',
+    headerMode: 'none',
   })
 );
 
@@ -24,6 +25,7 @@ const AppContainerSkipAuth = createAppContainer(createSwitchNavigator(
   },
   {
     initialRouteName: 'AppStack',
+    headerMode: 'none',
   })
 );
 
@@ -83,5 +85,6 @@ const styles = StyleSheet.create({
     padding: 25,
     paddingTop: 75,
     backgroundColor: 'bisque',
+    flex: 1,
   }
 });

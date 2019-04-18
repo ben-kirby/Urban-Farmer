@@ -46,12 +46,13 @@ const NavOptionsConfig =
 		shifting: false,
 		labeled: true,
 		initialRouteName: 'Home',
-		activeColor: '#ff0000',
+		activeColor: '#FFFFFF',
 		inactiveColor: '#999999',
 		backBehavior: 'order',
 		barStyle:
 			{
-				borderColor: '#0099FF',
+				backgroundColor: '#009900',
+				borderColor: '#00FF55',
 				borderWidth: 2,
 				borderStyle: 'solid',
 			}
