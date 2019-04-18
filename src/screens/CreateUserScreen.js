@@ -41,7 +41,7 @@ export default class CreateUserScreen extends Component {
 	render() {
 		return(
 			<View style={styles.container}>
-				<Text>URBAN FARMER</Text>
+				<Text style={{fontWeight: 'bold', fontSize: 24}}>URBAN FARMER</Text>
 				<Text>Sign Up</Text>
 				<TextInput
 					style={styles.input}
@@ -57,12 +57,13 @@ export default class CreateUserScreen extends Component {
 				<Button
 					onPress={this.handleSubmit}
 					title="Submit"
-					color="#841584"
+					color="#4a822f"
 				/>
+			<Text>{'\nOops, I\'m already an returning user...\n'}</Text>
 				<Button
 					onPress={() => this.props.navigation.navigate('SignIn')}
 					title="Return to Login"
-					color="#841584"
+					color="#4a822f"
 				/>
 			</View>
 		);
@@ -72,12 +73,16 @@ export default class CreateUserScreen extends Component {
 const styles = StyleSheet.create({
 	input: {
 		width: 250,
-		margin: 5
+    margin: 5,
+    backgroundColor: '#FFFFFF',
+    borderColor: '#d7ff8c',
+    borderWidth: 2,
 	},
 	container: {
 		padding: 30,
-		marginTop: 65,
-		alignItems: 'center',
-		flex: 1,
+    paddingTop: 65,
+    alignItems: 'center',
+    backgroundColor: '#91b43d',
+    flex: 1,
 	}
 });
