@@ -33,7 +33,7 @@ storeData = async (key, value) => {
   render() {
     return (
       <View style={styles.container}>
-      <Text>URBAN FARMER</Text>
+      <Text style={{fontWeight: 'bold', fontSize: 24}}>URBAN FARMER</Text>
       <Text>Login</Text>
       <TextInput
         style={styles.input}
@@ -71,10 +71,14 @@ const styles = StyleSheet.create({
   input: {
     width: 250,
     margin: 5,
+    backgroundColor: '#FFFFFF',
+    borderColor: '#d7ff8c',
+    borderWidth: 2,
   },
   container: {
     padding: 30,
     marginTop: 65,
     alignItems: 'center',
+    backgroundColor: '#91b43d',
   }
 });
