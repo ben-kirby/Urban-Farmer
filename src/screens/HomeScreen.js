@@ -47,6 +47,10 @@ export default class HomeScreen extends Component {
 					title="*Create User"
 					onPress={() => this.props.navigation.navigate('CreateUser')}
 				/>
+				<Button
+					title='Item Detail Page'
+					onPress={() => this.props.navigation.navigate('SalesDetail')}
+				/>
 
 				<Button
 					title='Sign Out'

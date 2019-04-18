@@ -15,6 +15,7 @@ export default class InventoryListScreen extends Component {
     db.ref('/products/' + uid).on('value', snapshot => {
       let data = snapshot.val();
       let products = Object.values(data);
+      console.log(products);
       this.setState({ products });
     });
   }
@@ -27,6 +28,7 @@ export default class InventoryListScreen extends Component {
         ) : (
           <Text>No Products :(</Text>
         )}
+
 
       </View>
     );
