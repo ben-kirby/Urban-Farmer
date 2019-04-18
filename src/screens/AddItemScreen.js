@@ -14,11 +14,10 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 
 let addItem = (a, b, c, uid) => {
-  db.ref('/products').push({
+  db.ref('/products/' + uid).push({
     name: a,
     price: b,
-    quantity: c,
-    uid: uid
+    quantity: c
   });
 };
 
