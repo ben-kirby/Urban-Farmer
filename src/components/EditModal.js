@@ -2,9 +2,12 @@ import React, {Component} from 'react';
 import { Button } from 'react-native';
 import {Modal, Text, TouchableHighlight, View, Alert} from 'react-native';
 
+
 export default class EditModal extends Component {
+    
   state = {
     modalVisible: false,
+    product:[]
   };
 
   setModalVisible(visible) {
@@ -26,7 +29,7 @@ export default class EditModal extends Component {
           <View style={{marginTop: 22}}>
             <View>
               <Text>Hello World!</Text>
-
+                
               <TouchableHighlight
                 onPress={() => {
                   this.setModalVisible(!this.state.modalVisible);

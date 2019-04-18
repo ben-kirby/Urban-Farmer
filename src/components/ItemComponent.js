@@ -17,9 +17,9 @@ export default class ItemComponent extends Component {
           return (
             <View style={styles.itemCard} key={index}>
               <Text style={styles.itemtext}>Product Name: {item.name}</Text>
-              <Text style={styles.itemtext}>Price: {item.price}</Text>
-              <Text style={styles.itemtext}>Quantity: {item.quantity}</Text>
+             
               <EditModal/>
+              console.log("peope")
               <Button
               title="sold"
               color="#841584"
