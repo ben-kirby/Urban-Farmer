@@ -29,35 +29,35 @@ class UpperRightCornerIcon extends Component {
 const RouterConfig =
   {
     Main:
+    {
+      screen: MainFooterMenuComponent,
+      navigationOptions:
       {
-        screen: MainFooterMenuComponent,
-        navigationOptions:
-          {
-            title: 'Urban Farmer',
-            headerStyle:
-              {
-                backgroundColor: '#009900', //header background color
-                borderColor: '#00FF55', //header border color
-                borderWidth: 2,
-                borderStyle: 'solid',
-              },
-            headerTitleStyle:
-              {
-                color: '#FFFFFF', //header text color
-                fontFamily: 'italic',
-                fontWeight: 'bold',
-              },
-            headerLeft: (<UpperLeftCornerIcon/>),
-            headerRight: (<UpperRightCornerIcon/>),
-          },
-        //defaultNavigationOptions: { //Note: This option configures the children screens }
+        title: 'Urban Farmer',
+        headerStyle:
+        {
+          backgroundColor: '#009900', //header background color
+          borderColor: '#00FF55', //header border color
+          borderWidth: 2,
+          borderStyle: 'solid',
+        },
+        headerTitleStyle:
+        {
+          color: '#FFFFFF', //header text color
+          fontFamily: 'italic',
+          fontWeight: 'bold',
+        },
+        headerLeft: (<UpperLeftCornerIcon/>),
+        headerRight: (<UpperRightCornerIcon/>),
       },
+      //defaultNavigationOptions: { //Note: This option configures the children screens }
+    },
   }
 
 //Note:  For style options see:  https://reactnavigation.org/docs/en/stack-navigator.html
 const NavOptionsConfig =
-	{
-		initialRouteName: 'Main',
-	}
+  {
+    initialRouteName: 'Main',
+  }
 
 export default AppStack = createStackNavigator(RouterConfig, NavOptionsConfig);
