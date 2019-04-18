@@ -48,19 +48,20 @@ storeData = async (key, value) => {
       />
       <Button
         onPress={this.handleSubmit}
-        title="Submit"
-        color="#841584"
+        title="Sign In"
+        color="#4a822f"
       />
-    <Text>Not an existing user?</Text>
+    <Text>{'\nNot an existing user?\n'}</Text>
       <Button
         onPress={() => this.props.navigation.navigate('CreateUser')}
         title="Sign Up"
-        color="#841584"
+        color="#4a822f"
       />
+    <Text>{'\n'}</Text>
       <Button
         onPress={() => this.props.navigation.navigate('AppStack')}
         title="*Shortcut to Main App"
-        color="#841584"
+        color="#4a822f"
       />
     </View>
     );
