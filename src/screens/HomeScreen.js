@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { View, Button, Alert, Card, Text, Image, ListItem, ListView } from 'react-native';
+import { ScrollView, Button, Image } from 'react-native';
+import { Container, Header, Content, Card, CardItem, Text, Body } from "native-base";
 import { navigationOptions } from 'react-navigation';
 import AsyncStorage from '@react-native-community/async-storage';
 
@@ -29,7 +30,7 @@ export default class HomeScreen extends Component {
 
 	render () {
 		return(
-			<View>
+			<ScrollView>
 				<Button
 					title="*Add Item"
 					onPress={() => this.props.navigation.navigate('AddItem')}
@@ -51,13 +52,54 @@ export default class HomeScreen extends Component {
 					title='*Sales Detail Page'
 					onPress={() => this.props.navigation.navigate('SalesDetail')}
 				/>
-
 				<Button
 					title='*Sign Out'
 					onPress={this.signUserOut}
 				/>
-			
-			</View>
+
+          <Card>
+            <CardItem header bordered>
+              <Text>Sales vs. Time, for {'April 2019'}</Text>
+            </CardItem>
+            <CardItem bordered>
+              <Body>
+                <Text>
+                  {'Put react-native-dynamic-graph here.'}
+                </Text>
+              </Body>
+            </CardItem>
+          </Card>
+
+					<Card>
+						<CardItem header bordered>
+							<Text>Transaction Counts for {'April 2019'}</Text>
+						</CardItem>
+						<CardItem bordered>
+							<Body>
+								<Text>
+									{'40'} transactions in the past month.
+								</Text>
+							</Body>
+						</CardItem>
+					</Card>
+
+					<Card>
+						<CardItem header bordered>
+							<Text>KPI info for {'April 2019'}</Text>
+						</CardItem>
+						<CardItem bordered>
+							<Body>
+								<Text>
+									Averaged {'$7.77'} per transaction.
+								</Text>
+								<Text>
+									Average sale was {'12'} items.
+								</Text>
+							</Body>
+						</CardItem>
+					</Card>
+
+			</ScrollView>
 		);
 	}
 }
