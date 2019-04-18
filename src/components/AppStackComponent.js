@@ -1,8 +1,16 @@
 import React, {Component} from 'react';
-import { Platform, StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import { Platform, StyleSheet, Text, View, TextInput, Button, TouchableOpacity } from 'react-native';
 import { createStackNavigator, navigationOptions } from 'react-navigation';
 
 import MainFooterMenuComponent from './MainFooterMenuComponent';
+
+// export const UpperLeftCornerIcon extends Component {
+//   render (
+//     return(
+//
+//     )
+//   )
+// }
 
 const RouterConfig =
   {
@@ -12,10 +20,21 @@ const RouterConfig =
         navigationOptions:
           {
             title: 'Urban Farmer',
+            headerStyle:
+              {
+                backgroundColor: '#009900', //header background color
+                borderColor: '#00FF55', //header border color
+                borderWidth: 2,
+                borderStyle: 'solid',
+              },
+            headerTitleStyle:
+              {
+                color: '#FFFFFF', //header text color
+                fontFamily: 'italic',
+                fontWeight: 'bold',
+              },
             headerLeft: (<Button title='Icon'/>),
             headerRight: (<Button title='LogOut' onPress={() => alert('Put LogOut Here!')}/>),
-            // headerLeft: (return(<TouchableOpacity onPress={() => alert('Put LogOut Here!')}/><Text>'Insert Image here!'</Text></TouchableOpacity>));
-            // headerRight: (return(<TouchableOpacity onPress={() => alert('Put LogOut Here!')}/><Text>'Icon here!'</Text></TouchableOpacity>));
           },
         //defaultNavigationOptions: { //Note: This option configures the children screens }
       },
