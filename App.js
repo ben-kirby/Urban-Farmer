@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import { Platform, StyleSheet, Text, View, TextInput, Button } from 'react-native';
-import { createSwitchNavigator, createAppContainer, navigationOptions } from 'react-navigation';
-import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
+import { createSwitchNavigator, createAppContainer } from 'react-navigation';
 import AsyncStorage from '@react-native-community/async-storage';
 
 import AppStack from './src/components/AppStackComponent';
