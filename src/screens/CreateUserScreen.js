@@ -59,7 +59,7 @@ export default class CreateUserScreen extends Component {
 					title="Submit"
 					color="#4a822f"
 				/>
-				<Text>{'\n'}</Text>
+			<Text>{'\nOops, I\'m already an returning user...\n'}</Text>
 				<Button
 					onPress={() => this.props.navigation.navigate('SignIn')}
 					title="Return to Login"
