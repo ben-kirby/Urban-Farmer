@@ -1,76 +1,11 @@
 import React, {Component} from 'react';
-import { Platform, StyleSheet, Text, View, TextInput, Button, Alert } from 'react-native';
-import { createSwitchNavigator, createStackNavigator, createMaterialTopTabNavigator, createAppContainer, navigationOptions } from 'react-navigation';
+import { Platform, StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import { createSwitchNavigator, createAppContainer, navigationOptions } from 'react-navigation';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 import AsyncStorage from '@react-native-community/async-storage';
 
-import HomeScreen from './src/screens/HomeScreen';
-import AddItemScreen from './src/screens/AddItemScreen';
-import InventoryListScreen from './src/screens/InventoryListScreen';
-import SalesDetailScreen from './src/screens/SalesDetailScreen';
-import SignInScreen from './src/screens/SignInScreen';
-import CreateUserScreen from './src/screens/CreateUserScreen';
-
-//consider splitting this into another file
-const AuthStack = createSwitchNavigator(
-  {
-    SignIn: { screen: SignInScreen },
-    CreateUser: { screen: CreateUserScreen },
-  },
-  {
-    initialRouteName: 'SignIn',
-    backBehavior: 'order',
-  }
-);
-
-//consider splitting this into another file
-export const MainFooterMenu = createMaterialBottomTabNavigator(
-  {
-    Home: {
-      screen: HomeScreen,
-      navigationOptions: {
-        title: 'Home',
-      }
-    },
-    InventoryList: {
-      screen: InventoryListScreen,
-      navigationOptions: {
-        title: 'View Inventory',
-      }
-    },
-    AddItem: {
-      screen: AddItemScreen,
-      navigationOptions: {
-        title: 'Add Inventory',
-      }
-    },
-    SalesDetail: {
-      screen: SalesDetailScreen,
-      navigationOptions: {
-        title: 'Sales Details',
-      }
-    },
-  },
-  {
-    initialRouteName: 'Home',
-  }
-);
-
-const AppStack = createStackNavigator(
-  {
-    Main: {
-      screen: MainFooterMenu,
-      navigationOptions: {
-        title: 'Urban Farmer',
-        headerLeft: (<Button title='Icon'/>),
-        headerRight: (<Button title='LogOut' onPress={() => alert('Put LogOut Here!')}/>),
-      },
-    },
-  },
-  {
-    initialRouteName: 'Main',
-  }
-);
+import AppStack from './src/components/AppStackComponent';
+import AuthStack from './src/components/AuthStackComponent';
 
 //This should stay here
 const AppContainerAuth = createAppContainer(createSwitchNavigator(

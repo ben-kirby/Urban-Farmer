@@ -52,7 +52,7 @@ export default class ItemDetailScreen extends Component {
 	render() {
 		let sellUi;
 		if (this.state.quantity == 0) {
-			sellUi = 
+			sellUi =
 			<View>
 				<Text>{this.state.productName}</Text>
 				<Text>{this.state.quantity} in stock</Text>
@@ -76,7 +76,7 @@ export default class ItemDetailScreen extends Component {
 			</View>
 		}
 		else {
-			sellUi = 
+			sellUi =
 			<View>
 				<Text>{this.state.productName}</Text>
 				<Text>{this.state.quantity} in stock</Text>

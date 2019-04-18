@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import ItemComponent from '../components/ItemComponent';
-import { navigationOptions } from 'react-navigation';
+
 
 import { db } from '../config';
 
-const productsRef = db.ref('/products');
+
+let productsRef = db.ref('/products');
 
 export default class InventoryListScreen extends Component {
   state = {
@@ -29,6 +30,7 @@ export default class InventoryListScreen extends Component {
         ) : (
           <Text>No Products :(</Text>
         )}
+
 
       </View>
     );
