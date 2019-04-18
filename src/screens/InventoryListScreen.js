@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import ItemComponent from '../components/ItemComponent';
+import { navigationOptions } from 'react-navigation';
+import firebase, { db, auth } from '../config';
 
-
-import { db } from '../config';
-
-
-let productsRef = db.ref('/products');
 
 export default class InventoryListScreen extends Component {
   state = {
@@ -14,7 +11,8 @@ export default class InventoryListScreen extends Component {
   };
 
   componentDidMount() {
-    productsRef.on('value', snapshot => {
+    let uid = auth.currentUser.uid;
+    db.ref('/products/' + uid).on('value', snapshot => {
       let data = snapshot.val();
       let products = Object.values(data);
       console.log(products);

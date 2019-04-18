@@ -17,7 +17,7 @@ handleSubmit = () => {
         this.props.navigation.navigate('AppStack');
       })
     } else {
-      Alert.alert('Oops! There was a problem with that. Try again plz.');
+      alert('Oops! There was a problem with that. Try again plz.');
     }
   });
 }

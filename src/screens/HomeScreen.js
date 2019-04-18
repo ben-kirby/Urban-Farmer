@@ -23,7 +23,7 @@ export default class HomeScreen extends Component {
 				this.props.navigation.navigate('AuthStack');
 			});
 		} catch (error) {
-			Alert.alert(error.message)
+			alert(error.message)
 		}
 	}
 
