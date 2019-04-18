@@ -7,6 +7,9 @@ import AddItemScreen from '../screens/AddItemScreen';
 import InventoryListScreen from '../screens/InventoryListScreen';
 import SalesDetailScreen from '../screens/SalesDetailScreen';
 
+import Icon from 'react-native-vector-icons/FontAwesome';
+
+//Note:  See this link for icon library:  https://fontawesome.com/v4.7.0/icons/
 const RouterConfig =
 	{
 		Home:
@@ -15,6 +18,7 @@ const RouterConfig =
 				navigationOptions:
 				{
 					title: 'Home',
+					tabBarIcon: (<Icon name="home" size={30}/>),
 				}
 			},
 		InventoryList:
@@ -22,6 +26,7 @@ const RouterConfig =
 				screen: InventoryListScreen,
 				navigationOptions: {
 					title: 'View Inventory',
+					tabBarIcon: (<Icon name="list-ul" size={30}/>),
 				}
 			},
 		AddItem:
@@ -29,6 +34,7 @@ const RouterConfig =
 				screen: AddItemScreen,
 				navigationOptions: {
 					title: 'Add Inventory',
+					tabBarIcon: (<Icon name="plus" size={30}/>),
 				}
 			},
 		SalesDetail:
@@ -36,6 +42,7 @@ const RouterConfig =
 				screen: SalesDetailScreen,
 				navigationOptions: {
 					title: 'Sales Details',
+					tabBarIcon: (<Icon name="usd" size={30}/>),
 				}
 			},
 	}

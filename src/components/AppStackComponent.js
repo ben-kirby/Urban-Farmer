@@ -2,13 +2,15 @@ import React, {Component} from 'react';
 import { Platform, StyleSheet, Text, View, TextInput, Button, TouchableOpacity } from 'react-native';
 import { createStackNavigator, navigationOptions } from 'react-navigation';
 
+import Icon from 'react-native-vector-icons/FontAwesome';
+
 import MainFooterMenuComponent from './MainFooterMenuComponent';
 
 class UpperLeftCornerIcon extends Component {
   render() {
     return(
       <TouchableOpacity onPress={''}>
-        <Text style={{ fontSize: 35 }}>🌿</Text>
+        <Icon name="leaf" size={30}/>
       </TouchableOpacity>
     );
   }
@@ -17,9 +19,9 @@ class UpperLeftCornerIcon extends Component {
 class UpperRightCornerIcon extends Component {
   render() {
     return(
-      <View>
-        <Button title='LogOut' onPress={() => alert('Put LogOut Here!')}/>
-      </View>
+      <TouchableOpacity onPress={''}>
+        <Icon name="sign-out" size={30}/>
+      </TouchableOpacity>
     );
   }
 };
