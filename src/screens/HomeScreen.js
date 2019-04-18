@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Button, Alert, Card } from 'react-native';
+import { View, Button, Alert, Card, Text, Image, ListItem, ListView } from 'react-native';
 import { navigationOptions } from 'react-navigation';
 import AsyncStorage from '@react-native-community/async-storage';
 
@@ -56,6 +56,7 @@ export default class HomeScreen extends Component {
 					title='*Sign Out'
 					onPress={this.signUserOut}
 				/>
+			
 			</View>
 		);
 	}
