@@ -4,7 +4,6 @@ import ItemComponent from '../components/ItemComponent';
 import { navigationOptions } from 'react-navigation';
 import firebase, { db, auth } from '../config';
 
-
 export default class InventoryListScreen extends Component {
   state = {
     products: []
@@ -26,7 +25,6 @@ export default class InventoryListScreen extends Component {
       }
       )}
       let products = Object.values(data);
-      console.log(products);
       this.setState({ products });
     });
   }
