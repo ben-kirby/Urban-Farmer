@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { Button } from 'react-native';
 import {Modal, Text, TouchableHighlight, View, Alert} from 'react-native';
+import PropTypes from 'prop-types';
 
 export default class SoldModal extends Component {
   state = {
@@ -12,6 +13,10 @@ export default class SoldModal extends Component {
         modalVisible: visible
     });
   }
+
+  static propTypes = {
+    item: PropTypes.object
+  };
 
   render() {
     return (
@@ -25,9 +30,9 @@ export default class SoldModal extends Component {
           }}>
           <View style={{marginTop: 22}}>
             <View>
-            <Text>product name here</Text>
-				    <Text> in stock</Text>
-				    <Text>product price</Text>
+            <Text>{this.props.item.name}</Text>
+				    <Text>{this.props.item.quantity}</Text>
+				    <Text>{this.props.item.price}</Text>
 
 
 

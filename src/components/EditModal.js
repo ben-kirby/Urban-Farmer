@@ -33,7 +33,7 @@ export default class EditModal extends Component {
               <TextInput
                 style={styles.itemInput}
     
-                placeholder= product={this.props.prodduct.name}
+                placeholder='Item quantity'
             />
             <TextInput
                 style={styles.itemInput}
