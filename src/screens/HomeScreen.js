@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Button, Alert } from 'react-native';
+import { View, Button, Alert, Card } from 'react-native';
 import { navigationOptions } from 'react-navigation';
 import AsyncStorage from '@react-native-community/async-storage';
 
@@ -31,11 +31,11 @@ export default class HomeScreen extends Component {
 		return(
 			<View>
 				<Button
-					title="Add Item"
+					title="*Add Item"
 					onPress={() => this.props.navigation.navigate('AddItem')}
 				/>
 				<Button
-					title="Item List"
+					title="*Item List"
 					color="green"
 					onPress={() =>  this.props.navigation.navigate('InventoryList')}
 				/>
@@ -48,12 +48,12 @@ export default class HomeScreen extends Component {
 					onPress={() => this.props.navigation.navigate('CreateUser')}
 				/>
 				<Button
-					title='Item Detail Page'
+					title='*Sales Detail Page'
 					onPress={() => this.props.navigation.navigate('SalesDetail')}
 				/>
 
 				<Button
-					title='Sign Out'
+					title='*Sign Out'
 					onPress={this.signUserOut}
 				/>
 			</View>

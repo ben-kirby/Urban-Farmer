@@ -40,10 +40,22 @@ const RouterConfig =
 			},
 	}
 
+//Note:  For style options, see: https://reactnavigation.org/docs/en/material-bottom-tab-navigator.html#materialbottomtabnavigatorconfig
 const NavOptionsConfig =
 	{
+		shifting: false,
+		labeled: true,
 		initialRouteName: 'Home',
-		//navigationOptions: {},
+		activeColor: '#FFFFFF',
+		inactiveColor: '#999999',
+		backBehavior: 'order',
+		barStyle:
+			{
+				backgroundColor: '#009900',
+				borderColor: '#00FF55',
+				borderWidth: 2,
+				borderStyle: 'solid',
+			}
 	}
 
 export default MainFooterMenuComponent = createMaterialBottomTabNavigator(RouterConfig, NavOptionsConfig);
