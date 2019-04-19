@@ -19,6 +19,9 @@ export default class SoldModal extends Component {
   
 
   setModalVisible (visible) {
+    if(visible){
+      this.setState({ quantityToSell: 0})
+    }
     this.setState({ itemQty: this.state.itemStock });
     db.ref('products/' + this.state.userId + '/' + this.state.itemId + '/quantity').set(this.state.itemQty);
     this.setState({
