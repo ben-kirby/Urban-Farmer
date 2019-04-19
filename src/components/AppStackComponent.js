@@ -41,7 +41,7 @@ const RouterConfig =
         headerTitleStyle:
         {
           color: '#FFFFFF', //header text color
-          fontFamily: 'serif',
+          // fontFamily: 'serif',
           fontWeight: 'bold',
         },
         headerLeft: (<UpperLeftCornerIcon/>),
