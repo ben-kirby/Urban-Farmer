@@ -6,20 +6,44 @@ import PropTypes from 'prop-types';
 export default class SoldModal extends Component {
     state = {
       modalVisible: false,
-      item: this.props.item
+      itemName: this.props.item.name,
+      itemPrice: this.props.item.price,
+      itemQty: this.props.item.quantity,
+      quantityToSell: 1
     };
 
 
   setModalVisible (visible) {
-    console.log(this.props.item);
+    console.log(this.state.itemName);
     this.setState({
         modalVisible: visible
     });
   }
 
+  handleAdd = () => {
+    console.log(this.state.quantityToSell);
+    if (this.state.quantityToSell < this.state.itemQty) {
+			const add = this.state.quantityToSell + 1;
+			this.setState({
+				quantityToSell: add
+			});
+		}
+  }
+  
+  handleSubtract = () => {
+		if (this.state.quantityToSell > 1) {
+			const subtract = this.state.quantityToSell - 1;
+			this.setState({
+				quantityToSell: subtract
+			});
+		}
+	}
+
   static propTypes = {
     item: PropTypes.object
   };
+
+
 
   render() {
     return (
@@ -33,10 +57,19 @@ export default class SoldModal extends Component {
           }}>
           <View style={{marginTop: 22}}>
             <View>
-            <Text>{this.props.item.name}</Text>
-				    <Text>{this.props.item.quantity}</Text>
-				    <Text>{this.props.item.price}</Text>
+            <Text>{this.state.itemName}</Text>
+				    <Text>{this.state.itemQty}</Text>
+				    <Text>${this.state.itemPrice}</Text>
+            <Text>{this.state.quantityToSell}</Text>
             <Button
+						title='+'
+						onPress={this.handleAdd}
+					/>
+					<Button
+						title='-'
+						onPress={this.handleSubtract}
+					/>
+          <Button
             title="Done"
               onPress={() => {
               this.setModalVisible(!this.state.modalVisible);
@@ -47,13 +80,10 @@ export default class SoldModal extends Component {
         </Modal>
 
         <TouchableHighlight>
-         
           <Button 
           title='sold'
-          onPress={() => {this.setModalVisible(true);}}
+          onPress={() => {this.setModalVisible(true)}}
           />
-        
-
         </TouchableHighlight>
       </View>
     );
