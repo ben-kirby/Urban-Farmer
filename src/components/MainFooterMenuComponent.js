@@ -50,9 +50,9 @@ const RouterConfig =
 //Note:  For style options, see: https://reactnavigation.org/docs/en/material-bottom-tab-navigator.html#materialbottomtabnavigatorconfig
 const NavOptionsConfig =
 	{
+		initialRouteName: 'Home',
 		shifting: false,
 		labeled: true,
-		initialRouteName: 'Home',
 		activeTintColor: '#FFFFFF',
 		inactiveTintColor: '#999999',
 		backBehavior: 'order',
