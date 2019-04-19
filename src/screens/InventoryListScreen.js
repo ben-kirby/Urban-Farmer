@@ -46,8 +46,9 @@ export default class InventoryListScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 2,
-    justifyContent: "center",
-    backgroundColor: "#ebebeb"
+    justifyContent: 'center',
+    backgroundColor: '#ebebeb',
+    flex: 1,
   },
   footer: {
     alignSelf: "flex-end"
