@@ -4,8 +4,6 @@ import { Card, CardItem, Text, Body} from "native-base";
 import { navigationOptions } from 'react-navigation';
 import AsyncStorage from '@react-native-community/async-storage';
 
-import Image from 'react-native-scalable-image';
-
 export default class HomeScreen extends Component {
 
 	componentDidMount() {
