@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView, Button, View, StyleSheet, Dimensions } from 'react-native';
+import { ScrollView, Button, View, StyleSheet, Dimensions, Image } from 'react-native';
 import { Card, CardItem, Text, Body} from "native-base";
 import { navigationOptions } from 'react-navigation';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -91,6 +91,7 @@ const styles = StyleSheet.create({
 			flex: 1,
 			aspectRatio: 1.5,
 			resizeMode: 'contain',
+
 		},
 		input: {
 			width: 250,

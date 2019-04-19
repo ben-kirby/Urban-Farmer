@@ -9,7 +9,7 @@ import MainFooterMenuComponent from './MainFooterMenuComponent';
 class UpperLeftCornerIcon extends Component {
   render() {
     return(
-      <TouchableOpacity onPress={''}>
+      <TouchableOpacity onPress={ ()=> {return('Type Some Code here')} }>
         <Icon name="leaf" size={30} style={{padding: 10}}/>
       </TouchableOpacity>
     );
@@ -19,7 +19,7 @@ class UpperLeftCornerIcon extends Component {
 class UpperRightCornerIcon extends Component {
   render() {
     return(
-      <TouchableOpacity onPress={''}>
+      <TouchableOpacity onPress={ ()=> {return('Type Some Code here')} }>
         <Icon name="sign-out" size={30} style={{padding: 10}}/>
       </TouchableOpacity>
     );
