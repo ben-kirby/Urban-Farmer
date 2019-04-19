@@ -2,19 +2,24 @@ import React, {Component} from 'react';
 import { Button } from 'react-native';
 import {Modal, Text, TouchableHighlight, View, Alert} from 'react-native';
 import PropTypes from 'prop-types';
+import firebase, { db, auth } from '../config';
 
 export default class SoldModal extends Component {
     state = {
       modalVisible: false,
+      itemId: this.props.item.id,
       itemName: this.props.item.name,
       itemPrice: this.props.item.price,
       itemQty: this.props.item.quantity,
+      userId: this.props.item.uid,
       quantityToSell: 0
     };
 
 
   setModalVisible (visible) {
-    console.log(this.state.itemName);
+    console.log('userId', this.state.userId);
+    console.log('itemId', this.state.itemId);
+    db.ref('products/' + this.state.userId + '/' + this.state.itemId + '/quantity').set(this.state.itemQty);
     this.setState({
         modalVisible: visible
     });
@@ -45,10 +50,6 @@ export default class SoldModal extends Component {
 		}
   }
   
-  handleUpdateFirebase = () => {
-    
-  }
-
 
   static propTypes = {
     item: PropTypes.object
