@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView, Button, Image } from 'react-native';
+import { ScrollView, Button, Image, View } from 'react-native';
 import { Card, CardItem, Text, Body } from "native-base";
 import { navigationOptions } from 'react-navigation';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -32,27 +32,6 @@ export default class HomeScreen extends Component {
 		return(
 			<ScrollView>
 				<Button
-					title="*Add Item"
-					onPress={() => this.props.navigation.navigate('AddItem')}
-				/>
-				<Button
-					title="*Item List"
-					color="green"
-					onPress={() =>  this.props.navigation.navigate('InventoryList')}
-				/>
-				<Button
-					title="*Sign In"
-					onPress={() => this.props.navigation.navigate('SignIn')}
-				/>
-				<Button
-					title="*Create User"
-					onPress={() => this.props.navigation.navigate('CreateUser')}
-				/>
-				<Button
-					title='*Sales Detail Page'
-					onPress={() => this.props.navigation.navigate('SalesDetail')}
-				/>
-				<Button
 					title='*Sign Out'
 					onPress={this.signUserOut}
 				/>
@@ -63,9 +42,17 @@ export default class HomeScreen extends Component {
             </CardItem>
             <CardItem bordered>
               <Body>
-                <Text>
-                  {'Put react-native-dynamic-graph here.'}
-                </Text>
+								<View  style={{flex: 1}}>
+                	<Image
+										source={require('../img/salesGraph.gif')}
+										style={{
+											flex: 1,
+									    flexDirection: 'row',
+									    justifyContent: 'center',
+									    alignItems: 'stretch',
+									    resizeMode: 'stretch',}}
+										resizeMode="stretch"/>
+								</View>
               </Body>
             </CardItem>
           </Card>
