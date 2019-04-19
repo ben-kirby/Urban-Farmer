@@ -9,7 +9,7 @@ export default class SoldModal extends Component {
       itemName: this.props.item.name,
       itemPrice: this.props.item.price,
       itemQty: this.props.item.quantity,
-      quantityToSell: 1
+      quantityToSell: 0
     };
 
 
@@ -22,22 +22,33 @@ export default class SoldModal extends Component {
 
   handleAdd = () => {
     console.log(this.state.quantityToSell);
-    if (this.state.quantityToSell < this.state.itemQty) {
-			const add = this.state.quantityToSell + 1;
+    console.log('itemqty', this.state.itemQty);
+    if (this.state.itemQty > 0) {
+      const add = this.state.quantityToSell + 1;
+      const itemStock = this.state.itemQty - 1;
 			this.setState({
+        itemQty: itemStock,
 				quantityToSell: add
 			});
 		}
   }
   
   handleSubtract = () => {
-		if (this.state.quantityToSell > 1) {
-			const subtract = this.state.quantityToSell - 1;
+    console.log('itemqty', this.state.itemQty);
+		if (this.state.quantityToSell > 0) {
+      const subtract = this.state.quantityToSell - 1;
+      const itemStock = this.state.itemQty + 1;
 			this.setState({
-				quantityToSell: subtract
+        itemQty: itemStock,
+        quantityToSell: subtract
 			});
 		}
-	}
+  }
+  
+  handleUpdateFirebase = () => {
+    
+  }
+
 
   static propTypes = {
     item: PropTypes.object
