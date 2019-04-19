@@ -6,6 +6,19 @@ import AsyncStorage from '@react-native-community/async-storage';
 import AppStack from './src/components/AppStackComponent';
 import AuthStack from './src/components/AuthStackComponent';
 
+//This section of code ignores the yellow warning box
+import { YellowBox } from 'react-native';
+import _ from 'lodash';
+
+YellowBox.ignoreWarnings(['Setting a timer']);
+const _console = _.clone(console);
+console.warn = message => {
+  if (message.indexOf('Setting a timer') <= -1) {
+    _console.warn(message);
+  }
+};
+//End code that ignores yellow warning box
+
 //This should stay here
 const AppContainerAuth = createAppContainer(createSwitchNavigator(
   {
@@ -35,6 +48,7 @@ export default class App extends Component {
     loadingLocalData: true,
     localDataFound: false
   }
+
 
   componentDidMount() {
     if (this.state.loadingLocalData === true) {
