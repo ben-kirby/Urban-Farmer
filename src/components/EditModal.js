@@ -1,21 +1,53 @@
 import React, {Component} from 'react';
 import { Button } from 'react-native';
 import {Modal, Text, TouchableHighlight, View, Alert,TextInput, StyleSheet} from 'react-native';
+import PropTypes from 'prop-types';
+import { db, auth } from '../config';
 
 
 
+
+let updateItem = (a, b, c)=>{
+    auth.updateItem;
+    db.ref("/user/products").update({ 
+    name: a,
+    price: b,
+    quantity:c,
+});
+}
 export default class EditModal extends Component {
+    constructor(props){
+        super(props);
+        this.updateState = this.updateState.bind(this);
+    }
+    state = {
+        modalVisible: false,
+        item: this.props.item
+    };
     
-  state = {
-    modalVisible: false,
-    product:''
-  };
+    static propTypes = {
+        item: PropTypes.array.isRequired
+    };
 
+    componentWillReceiveProps() {
+        this.updateState();
+    }
+    updateState(){      
+    
+        this.setState({
+            item: 'item...'
+        });
+    }
+              
   setModalVisible(visible) {
     this.setState({
         modalVisible: visible
     });
   }
+  handleSubmit = () => {
+    updateItem(this.state.name, this.state.price, this.state.quantity);
+    alert('check update');
+  };
 
   render() {
     return (
@@ -32,25 +64,33 @@ export default class EditModal extends Component {
               <Text>Hello World!</Text>
               <TextInput
                 style={styles.itemInput}
-    
-                placeholder= product={this.props.prodduct.name}
+                onChangeText={(text) => this.updateState({name:text})}
+                placeholder={this.props.item.name}
             />
             <TextInput
                 style={styles.itemInput}
-                
-                placeholder='Item price'
+                onChangeText={(text) => this.updateState({price:text})}
+                placeholder={this.props.item.price}
             />
             <TextInput
                 style={styles.itemInput}
-               
-                placeholder='Item quantity'
+                onChangeText={(text) => this.updateState({quantity:text})}
+                placeholder={this.props.item.quantity}
             />
-              <TouchableHighlight
-                onPress={() => {
-                  this.setModalVisible(!this.state.modalVisible);
-                }}>
-                <Text>Hide Modal</Text>
+              <TouchableHighlight>
+
+
+                <Button 
+                title=' save update'
+                onPress={() => {this.setModalVisible(!this.state.modalVisible);
+                }}                     
+                />
+            
               </TouchableHighlight>
+                <Button
+                title='update'
+              onPress={this.handleSubmit}                    
+                />
             </View>
           </View>
         </Modal>
@@ -60,6 +100,7 @@ export default class EditModal extends Component {
           <Button 
           title='Edit'
           onPress={() => {this.setModalVisible(true);}}
+         
           />
         
 

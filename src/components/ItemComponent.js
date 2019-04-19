@@ -7,8 +7,8 @@ import EditModal from './EditModal';
 
 
 export default class ItemComponent extends Component {
+
   static propTypes = {
-    product:'',
     products: PropTypes.array.isRequired
   };
 
@@ -20,8 +20,8 @@ export default class ItemComponent extends Component {
             <View style={styles.itemCard} key={index}>
               <Text style={styles.itemtext}>Product Name: {item.name} </Text>
               
-              <EditModal product={this.props.product}/>
-              <SoldModal product={this.props.product}/>
+              <EditModal item={item}/>
+              <SoldModal item={item}/>
              
             </View>
           );
