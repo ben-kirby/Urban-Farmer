@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { ScrollView, Button, Image, View } from 'react-native';
-import { Card, CardItem, Text, Body } from "native-base";
+import { ScrollView, Button, View, StyleSheet, Dimensions } from 'react-native';
+import { Card, CardItem, Text, Body} from "native-base";
 import { navigationOptions } from 'react-navigation';
 import AsyncStorage from '@react-native-community/async-storage';
+
+import Image from 'react-native-scalable-image';
 
 export default class HomeScreen extends Component {
 
@@ -30,7 +32,7 @@ export default class HomeScreen extends Component {
 
 	render () {
 		return(
-			<ScrollView>
+			<ScrollView style={styles.container}>
 				<Button
 					title='*Sign Out'
 					onPress={this.signUserOut}
@@ -42,16 +44,11 @@ export default class HomeScreen extends Component {
             </CardItem>
             <CardItem bordered>
               <Body>
-								<View  style={{flex: 1}}>
+								<View style={{flex: 1, width: Dimensions.get('window').width, justifyContent: 'center', alignItems: 'center'}}>
                 	<Image
+										style={styles.image}
 										source={require('../img/salesGraph.gif')}
-										style={{
-											flex: 1,
-									    flexDirection: 'row',
-									    justifyContent: 'center',
-									    alignItems: 'stretch',
-									    resizeMode: 'stretch',}}
-										resizeMode="stretch"/>
+									/>
 								</View>
               </Body>
             </CardItem>
@@ -90,3 +87,25 @@ export default class HomeScreen extends Component {
 		);
 	}
 }
+
+const styles = StyleSheet.create({
+	  image: {
+			flex: 1,
+			aspectRatio: 1.5,
+			resizeMode: 'contain',
+		},
+		input: {
+			width: 250,
+			margin: 5,
+			backgroundColor: '#FFFFFF',
+			borderColor: '#d7ff8c',
+			borderWidth: 2,
+		},
+		container: {
+			color: '#91b43d',
+			backgroundColor: '#91b43d',
+			flex: 1,
+		},
+	}
+
+);
