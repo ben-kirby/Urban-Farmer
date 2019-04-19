@@ -10,7 +10,7 @@ class UpperLeftCornerIcon extends Component {
   render() {
     return(
       <TouchableOpacity onPress={''}>
-        <Icon name="leaf" size={30}/>
+        <Icon name="leaf" size={30} style={{padding: 10}}/>
       </TouchableOpacity>
     );
   }
@@ -20,7 +20,7 @@ class UpperRightCornerIcon extends Component {
   render() {
     return(
       <TouchableOpacity onPress={''}>
-        <Icon name="sign-out" size={30}/>
+        <Icon name="sign-out" size={30} style={{padding: 10}}/>
       </TouchableOpacity>
     );
   }
@@ -37,20 +37,16 @@ const RouterConfig =
         headerStyle:
         {
           backgroundColor: '#009900', //header background color
-          borderColor: '#00FF55', //header border color
-          borderWidth: 2,
-          borderStyle: 'solid',
         },
         headerTitleStyle:
         {
           color: '#FFFFFF', //header text color
-          fontFamily: 'italic',
+          fontFamily: 'serif',
           fontWeight: 'bold',
         },
         headerLeft: (<UpperLeftCornerIcon/>),
         headerRight: (<UpperRightCornerIcon/>),
       },
-      //defaultNavigationOptions: { //Note: This option configures the children screens }
     },
   }
 

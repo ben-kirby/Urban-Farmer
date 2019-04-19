@@ -18,7 +18,7 @@ const RouterConfig =
 			navigationOptions:
 			{
 				title: 'Home',
-				tabBarIcon: (<Icon name="home" size={30}/>),
+				tabBarIcon: (<Icon name="home" size={20}/>),
 			}
 		},
 		InventoryList:
@@ -26,7 +26,7 @@ const RouterConfig =
 			screen: InventoryListScreen,
 			navigationOptions: {
 				title: 'View Inventory',
-				tabBarIcon: (<Icon name="list-ul" size={30}/>),
+				tabBarIcon: (<Icon name="list-ul" size={20}/>),
 			}
 		},
 		AddItem:
@@ -34,7 +34,7 @@ const RouterConfig =
 			screen: AddItemScreen,
 			navigationOptions: {
 				title: 'Add Inventory',
-				tabBarIcon: (<Icon name="plus" size={30}/>),
+				tabBarIcon: (<Icon name="plus" size={20}/>),
 			}
 		},
 		SalesDetail:
@@ -42,7 +42,7 @@ const RouterConfig =
 			screen: SalesDetailScreen,
 			navigationOptions: {
 				title: 'Sales Details',
-				tabBarIcon: (<Icon name="usd" size={30}/>),
+				tabBarIcon: (<Icon name="usd" size={20}/>),
 			}
 		},
 	}
@@ -53,15 +53,12 @@ const NavOptionsConfig =
 		shifting: false,
 		labeled: true,
 		initialRouteName: 'Home',
-		activeColor: '#FFFFFF',
-		inactiveColor: '#999999',
+		activeTintColor: '#FFFFFF',
+		inactiveTintColor: '#999999',
 		backBehavior: 'order',
 		barStyle:
 		{
 			backgroundColor: '#009900',
-			borderColor: '#00FF55',
-			borderWidth: 2,
-			borderStyle: 'solid',
 		}
 	}
 
