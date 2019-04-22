@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import ItemComponent from '../components/ItemComponent';
-import { navigationOptions } from 'react-navigation';
-import firebase, { db, auth } from '../config';
-
+import React, { Component } from "react";
+import { View, Text, StyleSheet } from "react-native";
+import ItemComponent from "../components/ItemComponent";
+import { navigationOptions } from "react-navigation";
+import firebase, { db, auth } from "../config";
 
 export default class InventoryListScreen extends Component {
   state = {
@@ -12,10 +11,21 @@ export default class InventoryListScreen extends Component {
 
   componentDidMount() {
     let uid = auth.currentUser.uid;
-    db.ref('/products/' + uid).on('value', snapshot => {
-      let data = snapshot.val();
+    db.ref("/products/" + uid).on("value", snapshot => {
+      let items = snapshot.val();
+      let data = [];
+      {
+        Object.keys(items).map(index => {
+          data.push({
+            id: index,
+            uid: uid,
+            name: items[index].name,
+            price: items[index].price,
+            quantity: items[index].quantity
+          });
+        });
+      }
       let products = Object.values(data);
-      console.log(products);
       this.setState({ products });
     });
   }
@@ -28,8 +38,6 @@ export default class InventoryListScreen extends Component {
         ) : (
           <Text>No Products :(</Text>
         )}
-
-
       </View>
     );
   }
@@ -43,7 +51,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   footer: {
-    alignSelf: 'flex-end'
-
+    alignSelf: "flex-end"
   }
 });
