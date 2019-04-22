@@ -1,14 +1,17 @@
 import React, { Component } from "react";
-import { StyleSheet, TextInput, View, Button, Alert, Text } from "react-native";
+import { TextInput, View, Button, Alert, Text, console } from "react-native";
 import { auth } from "../config";
 import AsyncStorage from '@react-native-community/async-storage';
 import { navigationOptions } from 'react-navigation';
+
+var styles = require('../styles/styleComponent')
 
 export default class SignInScreen extends Component {
   state = {
     email: '',
     password: ''
   };
+
 
 handleSubmit = () => {
   auth.signInWithEmailAndPassword(this.state.email, this.state.password).then(response => {
@@ -67,21 +70,3 @@ storeData = async (key, value) => {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  input: {
-    width: 250,
-    margin: 5,
-    backgroundColor: '#FFFFFF',
-    borderColor: '#d7ff8c',
-    borderWidth: 2,
-  },
-  container: {
-    padding: 30,
-    paddingTop: 65,
-    alignItems: 'center',
-    color: '#91b43d',
-    backgroundColor: '#91b43d',
-    flex: 1,
-  }
-});

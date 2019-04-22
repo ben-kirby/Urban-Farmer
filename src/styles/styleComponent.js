@@ -1,8 +1,8 @@
-//Reusable style sheet
-import { StyleSheet } from 'react-native';
+'use strict';
+var React = require('react-native');
+var { StyleSheet } = React;
 
-export default Stylesheet.create({
-
+module.exports = StyleSheet.create({
   container: {
     padding: 30,
     paddingTop: 65,
@@ -42,5 +42,5 @@ export default Stylesheet.create({
     borderColor: '#48BBEC',
     borderRadius: 8,
     color: '#48BBEC',
-  },
-})
+  }
+});

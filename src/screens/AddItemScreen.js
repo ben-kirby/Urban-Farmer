@@ -1,11 +1,5 @@
 import React, { Component } from 'react';
-import {
-  View,
-  Text,
-  TouchableHighlight,
-  StyleSheet,
-  TextInput
-} from 'react-native';
+import { View, Text, TouchableHighlight, StyleSheet, TextInput } from 'react-native';
 import firebase, { db } from '../config';
 
 import { readData } from '../DataStorage';
@@ -54,7 +48,7 @@ export default class AddItemScreen extends Component {
 
   render(){
     return(
-     
+
       <View style={styles.main}>
 
       <Text style={styles.title}>Add Item</Text>
@@ -75,7 +69,7 @@ export default class AddItemScreen extends Component {
       />
       <TouchableHighlight
         style={styles.button}
-        
+
         onPress={this.handleSubmit}
 
       >
@@ -125,5 +119,5 @@ const styles = StyleSheet.create({
     marginTop: 10,
     alignSelf: 'stretch',
     justifyContent: 'center'
-  }
+  },
 });
