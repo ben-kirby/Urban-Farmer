@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import ItemComponent from '../components/ItemComponent';
+import { navigationOptions } from 'react-navigation';
+import firebase, { db, auth } from '../config';
 
 
 import { db, auth } from '../config';
@@ -52,7 +54,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 2,
     justifyContent: 'center',
-    backgroundColor: '#ebebeb'
+    backgroundColor: '#ebebeb',
+    flex: 1,
   },
   footer: {
     alignSelf: 'flex-end'

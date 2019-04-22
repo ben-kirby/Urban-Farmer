@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import { Platform, StyleSheet, Text, View, TextInput, Button } from 'react-native';
-import { createSwitchNavigator, createAppContainer, navigationOptions } from 'react-navigation';
-import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
+import { createSwitchNavigator, createAppContainer } from 'react-navigation';
 import AsyncStorage from '@react-native-community/async-storage';
 
 import AppStack from './src/components/AppStackComponent';
@@ -15,6 +14,7 @@ const AppContainerAuth = createAppContainer(createSwitchNavigator(
   },
   {
     initialRouteName: 'AuthStack',
+    headerMode: 'none',
   })
 );
 
@@ -25,6 +25,7 @@ const AppContainerSkipAuth = createAppContainer(createSwitchNavigator(
   },
   {
     initialRouteName: 'AppStack',
+    headerMode: 'none',
   })
 );
 
@@ -83,6 +84,7 @@ const styles = StyleSheet.create({
   page: {
     padding: 25,
     paddingTop: 75,
-    backgroundColor: 'bisque'
+    backgroundColor: 'bisque',
+    flex: 1,
   }
 });
