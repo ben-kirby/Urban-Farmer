@@ -5,6 +5,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 import AppStack from './src/components/AppStackComponent';
 import AuthStack from './src/components/AuthStackComponent';
+import Loading from './src/components/Loading';
 
 //This should stay here
 const AppContainerAuth = createAppContainer(createSwitchNavigator(
@@ -67,7 +68,7 @@ export default class App extends Component {
     if (this.state.loadingLocalData === true) {
       return (
         <View style={styles.page}>
-          <Text>Loading...</Text>
+          <Loading/>
         </View>
       );
     } else {
@@ -84,7 +85,5 @@ const styles = StyleSheet.create({
   page: {
     padding: 25,
     paddingTop: 75,
-    backgroundColor: 'bisque',
-    flex: 1,
   }
 });
