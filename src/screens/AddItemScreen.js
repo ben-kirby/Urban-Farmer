@@ -48,6 +48,7 @@ export default class AddItemScreen extends Component {
   handleSubmit = () => {
     console.log(readData)
     addItem(this.state.name, this.state.price, this.state.quantity, this.state.uid);
+    console.log("handle submit triggered")
     alert('item saved!');
   };
 
