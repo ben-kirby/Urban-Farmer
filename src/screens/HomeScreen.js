@@ -3,6 +3,7 @@ import { ScrollView, Button, View, StyleSheet, Dimensions, Image } from 'react-n
 import { Card, CardItem, Text, Body} from "native-base";
 import { navigationOptions } from 'react-navigation';
 import AsyncStorage from '@react-native-community/async-storage';
+import Loading from '../components/Loading'
 
 export default class HomeScreen extends Component {
 
@@ -31,6 +32,7 @@ export default class HomeScreen extends Component {
 	render () {
 		return(
 			<ScrollView style={styles.container}>
+				<Loading/>
 				<Button
 					title='*Sign Out'
 					onPress={this.signUserOut}
