@@ -4,7 +4,7 @@ import { auth } from "../config";
 import AsyncStorage from '@react-native-community/async-storage';
 import { navigationOptions } from 'react-navigation';
 
-var styles = require('../styles/styleComponent')
+import styles from '../styles/stylesComponent';
 
 export default class SignInScreen extends Component {
   state = {

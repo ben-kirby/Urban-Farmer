@@ -1,8 +1,6 @@
-'use strict';
-var React = require('react-native');
-var { StyleSheet } = React;
+import { StyleSheet } from 'react-native';
 
-module.exports = StyleSheet.create({
+export default StyleSheet.create({
   container: {
     padding: 30,
     paddingTop: 65,
