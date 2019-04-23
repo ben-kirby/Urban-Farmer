@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text, Button, Alert } from 'react-native';
 
+import styles from '../styles/stylesComponent';
+
 let productData = {
 	productName: 'Rutabaga',
 	quantity: 5,

@@ -5,7 +5,7 @@ import firebase, { db } from '../config';
 import { readData } from '../DataStorage';
 import AsyncStorage from '@react-native-community/async-storage';
 
-
+//import styles from '../styles/stylesComponent';  //This screen uses custom styles
 
 let addItem = (a, b, c, uid) => {
   db.ref('/products/' + uid).push({

@@ -1,14 +1,8 @@
 import React, { Component } from "react";
-import {
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-  Button,
-  ActivityIndicator,
-  Image
-} from "react-native";
+import { Text, TextInput, View, Button, ActivityIndicator, Image } from "react-native";
 import { navigationOptions } from 'react-navigation';
+
+import styles from '../styles/stylesComponent';
 
 export default class SearchScreen extends Component {
     constructor(props) {
@@ -35,35 +29,3 @@ export default class SearchScreen extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  description: {
-    marginBottom: 20,
-    fontSize: 18,
-    textAlign: "center",
-    color: "#656565"
-  },
-  container: {
-    padding: 30,
-    marginTop: 65,
-    alignItems: "center",
-    flex: 1,
-  },
-  flowRight: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    alignSelf: 'stretch',
-  },
-  searchInput: {
-    height: 36,
-    padding: 4,
-    marginRight: 5,
-    flexGrow: 1,
-    fontSize: 18,
-    borderWidth: 1,
-    borderColor: '#48BBEC',
-    borderRadius: 8,
-    color: '#48BBEC',
-  },
-
-});

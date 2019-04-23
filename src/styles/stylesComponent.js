@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Diemensions } from 'react-native';
 
 export default StyleSheet.create({
   container: {
@@ -30,6 +30,12 @@ export default StyleSheet.create({
     borderColor: '#d7ff8c',
     borderWidth: 2,
   },
+  image: {
+    flex: 1,
+    aspectRatio: 1,
+    width: '100%',
+    height: undefined,
+  },
   searchInput: {
     height: 36,
     padding: 4,
@@ -40,5 +46,5 @@ export default StyleSheet.create({
     borderColor: '#48BBEC',
     borderRadius: 8,
     color: '#48BBEC',
-  }
+  },
 });
