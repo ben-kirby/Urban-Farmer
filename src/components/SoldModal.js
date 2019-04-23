@@ -25,20 +25,24 @@ export default class SoldModal extends Component {
     }
     this.setState({ itemQty: this.state.itemStock });
     db.ref('products/' + this.state.userId + '/' + this.state.itemId + '/quantity').set(this.state.itemQty);
-    this.changeModalVisibility();
+    this.toggleModalVisibility();
   }
 
-  changeModalVisibility = () => {
+  toggleModalVisibility = () => {
     this.setState({
       modalVisible: !this.state.modalVisible
     });
   };
 
-  handleCancel = () => {
+  resetQuantityToSell = () => {
     this.setState({
       quantityToSell: 0
     });
-    this.changeModalVisibility();
+  }
+
+  handleCloseModal = () => {
+    this.resetQuantityToSell();
+    this.toggleModalVisibility();
   }
 
   createSale = () => {
@@ -95,10 +99,10 @@ export default class SoldModal extends Component {
           }}>
           <View style={{marginTop: 75}}>
           {(this.state.originalItem.itemQty  === 0) ? ( <View>
-            <Text>Out of Stock. Please restock this product for purchase function</Text>
+            <Text>Out of Stock.</Text>
             <Button
               title="OK"
-              onPress={this.changeModalVisibility}
+              onPress={this.toggleModalVisibility}
             />
           </View>) : (
             <View>
@@ -117,7 +121,7 @@ export default class SoldModal extends Component {
           {purchaseButton}
           <Button
             title="Cancel"
-            onPress={this.handleCancel}
+            onPress={this.handleCloseModal}
           />
             </View>
           )}
@@ -127,7 +131,7 @@ export default class SoldModal extends Component {
         <TouchableHighlight>
           <Button 
           title='Sell'
-          onPress={this.changeModalVisibility}
+          onPress={this.toggleModalVisibility}
           />
         </TouchableHighlight>
       </View>
