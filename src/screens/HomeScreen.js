@@ -33,26 +33,20 @@ export default class HomeScreen extends Component {
 
 	render () {
 		return(
-			<ScrollView>
+			<ScrollView style={styles.scrollContainer}>
 				<Button
 					title='*Sign Out'
 					onPress={this.signUserOut}
 				/>
-
           <Card>
             <CardItem header bordered>
               <Text>Sales vs. Time, for {'April 2019'}</Text>
             </CardItem>
             <CardItem bordered>
-              <Body>
-								<View style={{flex: 1, width: Dimensions.get('window').width, justifyContent: 'center', alignItems: 'center'}}>
-                	<Image
-										style={{width: Dimensions.get('parent').width, flex: 1, resizeMode: 'contain'}}
-										source={require('../img/salesGraph.gif')}
-
-									/>
-								</View>
-              </Body>
+            	<Image
+								style={styles.imageFit}
+								source={require('../img/salesGraph.gif')}
+							/>
             </CardItem>
           </Card>
 

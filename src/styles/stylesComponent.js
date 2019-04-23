@@ -30,11 +30,18 @@ export default StyleSheet.create({
     borderColor: '#d7ff8c',
     borderWidth: 2,
   },
-  image: {
+  imageFit: {
     flex: 1,
-    aspectRatio: 1,
-    width: '100%',
-    height: undefined,
+    resizeMode: 'contain',
+  },
+  itemInput: {
+    height: 50,
+    padding: 4,
+    margin: 5,
+    borderRadius: 4,
+    borderWidth:1,
+    borderColor: 'black',
+    backgroundColor: 'white',
   },
   searchInput: {
     height: 36,
@@ -47,4 +54,7 @@ export default StyleSheet.create({
     borderRadius: 8,
     color: '#48BBEC',
   },
+  scrollContainer: {
+    backgroundColor: '#91b43d',
+  }
 });

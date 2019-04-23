@@ -34,7 +34,7 @@ export default class InventoryListScreen extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View style={styles.scrollContainer}>
         {this.state.products.length > 0 ? (
           <ItemComponent products={this.state.products} />
         ) : (
