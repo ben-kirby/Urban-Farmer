@@ -5,39 +5,23 @@ import PropTypes from 'prop-types';
 import { db, auth } from '../config';
 
 
-
-
-let updateItem = (a, b, c)=>{
-    auth.updateItem;
-    db.ref("/user/products").update({ 
-    name: a,
-    price: b,
-    quantity:c,
-});
-}
 export default class EditModal extends Component {
     constructor(props){
         super(props);
-        this.updateState = this.updateState.bind(this);
     }
+    static propTypes = {
+      item: PropTypes.object
+    };
     state = {
         modalVisible: false,
-        item: this.props.item
-    };
-    
-    static propTypes = {
-        item: PropTypes.array.isRequired
-    };
-
-    componentWillReceiveProps() {
-        this.updateState();
-    }
-    updateState(){      
-    
-        this.setState({
-            item: 'item...'
-        });
-    }
+        itemId: this.props.item.id,
+        itemName: this.props.item.name,
+        itemPrice: this.props.item.price,
+        itemQty: this.props.item.quantity,
+        userId: this.props.item.uid
+      };
+      
+  
               
   setModalVisible(visible) {
     this.setState({
@@ -45,10 +29,18 @@ export default class EditModal extends Component {
     });
   }
   handleSubmit = () => {
-    updateItem(this.state.name, this.state.price, this.state.quantity);
-    alert('check update');
-  };
 
+    db.ref('products/' + this.state.userId + '/' + this.state.itemId + '/name').set(
+      this.state.itemName
+    );
+    db.ref('products/' + this.state.userId + '/' + this.state.itemId + '/price').set(
+      this.state.itemPrice
+      );
+    db.ref('products/' + this.state.userId + '/' + this.state.itemId + '/quantity').set(
+      this.state.itemQty
+      );
+  };
+s
   render() {
     return (
       <View style={{marginTop: 22}}>
@@ -61,25 +53,24 @@ export default class EditModal extends Component {
           }}>
           <View style={{marginTop: 22}}>
             <View>
-              <Text>Hello World!</Text>
+
               <TextInput
-                style={styles.itemInput}
-                onChangeText={(text) => this.updateState({name:text})}
-                placeholder={this.props.item.name}
-            />
+              style={styles.itemInput}
+              onChangeText={(text) => this.setState({itemName:text})}
+              placeholder={this.props.item.name}
+              />
+             
             <TextInput
                 style={styles.itemInput}
-                onChangeText={(text) => this.updateState({price:text})}
+                onChangeText={(text) => this.setState({itemPrice:text})}
                 placeholder={this.props.item.price}
             />
             <TextInput
                 style={styles.itemInput}
-                onChangeText={(text) => this.updateState({quantity:text})}
+                onChangeText={(text) => this.setState({itemQty:text})}
                 placeholder={this.props.item.quantity}
             />
               <TouchableHighlight>
-
-
                 <Button 
                 title=' save update'
                 onPress={() => {this.setModalVisible(!this.state.modalVisible);
@@ -89,8 +80,11 @@ export default class EditModal extends Component {
               </TouchableHighlight>
                 <Button
                 title='update'
-              onPress={this.handleSubmit}                    
+              onPress={this.handleSubmit}
+                          
                 />
+
+
             </View>
           </View>
         </Modal>

@@ -1,5 +1,7 @@
-//Note:  This screen is for the switch navigator for the authorization flow.
-
+//Note:  This screen is the login/sign-in loading screen for the switch navigator for the authorization flow.  It is a placeholder and not being used right now.  See the following hyper links for examples:
+//https://reactnavigation.org/docs/en/stack-navigator.html
+//https://reactnavigation.org/docs/en/switch-navigator.html
+//https://snack.expo.io/@react-navigation/auth-flow-v3
 import React from 'react';
 import {
   ActivityIndicator,
@@ -11,7 +13,7 @@ import {
 import { navigationOptions } from 'react-navigation';
 
 
-class AuthLoadingScreen extends React.Component {
+export default class AuthLoadingScreen extends React.Component {
   constructor(props) {
     super(props);
     this._bootstrapAsync();

@@ -14,11 +14,10 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 
 let addItem = (a, b, c, uid) => {
-  db.ref('/products').push({
+  db.ref('/products/' + uid).push({
     name: a,
     price: b,
-    quantity: c,
-    uid: uid
+    quantity: c
   });
 };
 
@@ -34,6 +33,7 @@ export default class AddItemScreen extends Component {
    try {
      const response = await AsyncStorage.getItem('uid');
        alert(response);
+       console.log(response);
        this.setState({uid: response});
      }
   catch (error) {
@@ -48,6 +48,7 @@ export default class AddItemScreen extends Component {
   handleSubmit = () => {
     console.log(readData)
     addItem(this.state.name, this.state.price, this.state.quantity, this.state.uid);
+    console.log("handle submit triggered")
     alert('item saved!');
   };
 
