@@ -1,17 +1,62 @@
 import React, {Component} from 'react';
 import { Button } from 'react-native';
 import {Modal, Text, TouchableHighlight, View, Alert} from 'react-native';
+import PropTypes from 'prop-types';
+import firebase, { db, auth } from '../config';
 
 export default class SoldModal extends Component {
-  state = {
-    modalVisible: false,
-  };
+    state = {
+      modalVisible: false,
+      itemId: this.props.item.id,
+      itemName: this.props.item.name,
+      itemPrice: this.props.item.price,
+      itemQty: this.props.item.quantity,
+      userId: this.props.item.uid,
+      itemStock: this.props.item.quantity,
+      quantityToSell: 0,
+      purchase: false
+    };
+  
 
-  setModalVisible(visible) {
+  setModalVisible (visible) {
+    if(visible){
+      this.setState({ quantityToSell: 0})
+    }
+    this.setState({ itemQty: this.state.itemStock });
+    db.ref('products/' + this.state.userId + '/' + this.state.itemId + '/quantity').set(this.state.itemQty);
     this.setState({
         modalVisible: visible
     });
   }
+
+  handleAdd = () => {
+    if (this.state.itemStock > 0) {
+      const add = this.state.quantityToSell + 1;
+      const itemStock = this.state.itemStock - 1;
+			this.setState({
+        itemStock: itemStock,
+				quantityToSell: add
+			});
+		}
+  }
+  
+  handleSubtract = () => {
+		if (this.state.quantityToSell > 0) {
+      const subtract = this.state.quantityToSell - 1;
+      const itemStock = this.state.itemStock + 1;
+			this.setState({
+        itemStock: itemStock,
+        quantityToSell: subtract
+			});
+		}
+  }
+  
+
+  static propTypes = {
+    item: PropTypes.object
+  };
+
+
 
   render() {
     return (
@@ -24,31 +69,44 @@ export default class SoldModal extends Component {
             Alert.alert('Modal has been closed.');
           }}>
           <View style={{marginTop: 22}}>
-            <View>
-            <Text>product name here</Text>
-				    <Text> in stock</Text>
-				    <Text>product price</Text>
-
-
-
+          {(this.state.itemQty  === 0) ? ( <View>
+            <Text>Out of Stock. Please restock this product for purchase function</Text>
             <Button
-            title="sold"
+            title="OK"
+              onPress={() => {
+              this.setModalVisible(!this.state.modalVisible);
+            }}
+            />
+          </View>) : (
+            <View>
+            <Text>Product Name:{this.state.itemName}</Text>
+				    <Text>Product Qty: {this.state.itemQty}</Text>
+				    <Text>Product Price: ${this.state.itemPrice}</Text>
+            <Text>Cart: {this.state.quantityToSell}</Text>
+            <Button
+						title='+'
+						onPress={this.handleAdd}
+					/>
+					<Button
+						title='-'
+						onPress={this.handleSubtract}
+					/>
+          <Button
+            title="Purchase"
               onPress={() => {
               this.setModalVisible(!this.state.modalVisible);
             }}
             />
             </View>
+          )}
           </View>
         </Modal>
 
         <TouchableHighlight>
-         
           <Button 
           title='sold'
-          onPress={() => {this.setModalVisible(true);}}
+          onPress={() => {this.setModalVisible(true)}}
           />
-        
-
         </TouchableHighlight>
       </View>
     );

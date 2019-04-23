@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
-import {
-	View,
-	TextInput,
-	Button,
-	StyleSheet,
-	Text,
-	Alert
-} from 'react-native';
+import { View, TextInput,	Button, Text,	Alert } from 'react-native';
 import { auth } from '../config';
 import AsyncStorage from '@react-native-community/async-storage';
+
+import styles from '../styles/stylesComponent';
 
 export default class CreateUserScreen extends Component {
 	state = {
@@ -69,20 +64,3 @@ export default class CreateUserScreen extends Component {
 		);
 	}
 }
-
-const styles = StyleSheet.create({
-	input: {
-		width: 250,
-    margin: 5,
-    backgroundColor: '#FFFFFF',
-    borderColor: '#d7ff8c',
-    borderWidth: 2,
-	},
-	container: {
-		padding: 30,
-    paddingTop: 65,
-    alignItems: 'center',
-    backgroundColor: '#91b43d',
-    flex: 1,
-	}
-});

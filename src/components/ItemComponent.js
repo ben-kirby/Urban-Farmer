@@ -7,7 +7,6 @@ import EditModal from './EditModal';
 
 
 export default class ItemComponent extends Component {
-
   static propTypes = {
     products: PropTypes.array.isRequired
   };
