@@ -17,8 +17,7 @@ export default class SoldModal extends Component {
       purchase: false
     };
   
-
-  setModalVisible (visible) {
+  setModalVisible = (visible) => {
     if(visible){
       this.setState({ quantityToSell: 0})
     }
@@ -51,12 +50,9 @@ export default class SoldModal extends Component {
 		}
   }
   
-
   static propTypes = {
     item: PropTypes.object
   };
-
-
 
   render() {
     return (
