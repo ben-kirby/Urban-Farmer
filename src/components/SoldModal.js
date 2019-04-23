@@ -7,12 +7,14 @@ import firebase, { db, auth } from '../config';
 export default class SoldModal extends Component {
     state = {
       modalVisible: false,
-      itemId: this.props.item.id,
-      itemName: this.props.item.name,
-      itemPrice: this.props.item.price,
-      itemQty: this.props.item.quantity,
-      userId: this.props.item.uid,
-      itemStock: this.props.item.quantity,
+      originalItem: {
+        itemId: this.props.item.id,
+        itemName: this.props.item.name,
+        itemPrice: this.props.item.price,
+        itemQty: this.props.item.quantity,
+        userId: this.props.item.uid,
+        itemStock: this.props.item.quantity
+      },
       quantityToSell: 0,
       purchase: false
     };
@@ -32,6 +34,13 @@ export default class SoldModal extends Component {
     });
   };
 
+  handleCancel = () => {
+    this.setState({
+      quantityToSell: 0
+    });
+    this.changeModalVisibility();
+  }
+
   createSale = () => {
     let sale = {
       item: this.props.item.name,
@@ -40,11 +49,9 @@ export default class SoldModal extends Component {
   }
 
   handleAdd = () => {
-    if (this.state.itemStock > 0) {
+    if (this.state.originalItem.itemStock > this.state.quantityToSell) {
       const add = this.state.quantityToSell + 1;
-      const itemStock = this.state.itemStock - 1;
 			this.setState({
-        itemStock: itemStock,
 				quantityToSell: add
 			});
 		}
@@ -53,9 +60,7 @@ export default class SoldModal extends Component {
   handleSubtract = () => {
 		if (this.state.quantityToSell > 0) {
       const subtract = this.state.quantityToSell - 1;
-      const itemStock = this.state.itemStock + 1;
 			this.setState({
-        itemStock: itemStock,
         quantityToSell: subtract
 			});
 		}
@@ -67,25 +72,20 @@ export default class SoldModal extends Component {
 
   render() {
     let purchaseButton;
+
     if (this.state.quantityToSell == 0) {
       purchaseButton = < Button
       title = "Purchase"
-      disabled='true'
-      />
+      disabled='true'/>
+
     } else {
       purchaseButton = < Button
       title = "Purchase"
-      onPress = {
-        () => {
-          this.setModalVisible(!this.state.modalVisible);
-        }
-      }
-      />
+      onPress = {() => {this.setModalVisible(!this.state.modalVisible)}}/>
     }
 
-
     return (
-      <View style={{marginTop: 22}}>
+      <View style={{marginTop: 75}}>
         <Modal
           animationType="slide"
           transparent={false}
@@ -93,21 +93,19 @@ export default class SoldModal extends Component {
           onRequestClose={() => {
             Alert.alert('Modal has been closed.');
           }}>
-          <View style={{marginTop: 22}}>
-          {(this.state.itemQty  === 0) ? ( <View>
+          <View style={{marginTop: 75}}>
+          {(this.state.originalItem.itemQty  === 0) ? ( <View>
             <Text>Out of Stock. Please restock this product for purchase function</Text>
             <Button
-            title="OK"
-              onPress={() => {
-              this.setModalVisible(!this.state.modalVisible);
-            }}
+              title="OK"
+              onPress={this.changeModalVisibility}
             />
           </View>) : (
             <View>
-            <Text>Product Name:{this.state.itemName}</Text>
-				    <Text>Product Qty: {this.state.itemQty}</Text>
-				    <Text>Product Price: ${this.state.itemPrice}</Text>
-            <Text>Cart: {this.state.quantityToSell}</Text>
+            <Text>this.state.itemName:{this.state.originalItem.itemName}</Text>
+				    <Text>this.state.itemQty: {this.state.originalItem.itemQty}</Text>
+				    <Text>this.state.itemPrice: ${this.state.originalItem.itemPrice}</Text>
+            <Text>this.state.quantityToSell: {this.state.quantityToSell}</Text>
             <Button
 						title='+'
 						onPress={this.handleAdd}
@@ -119,7 +117,7 @@ export default class SoldModal extends Component {
           {purchaseButton}
           <Button
             title="Cancel"
-            onPress={this.changeModalVisibility}
+            onPress={this.handleCancel}
           />
             </View>
           )}
@@ -129,7 +127,7 @@ export default class SoldModal extends Component {
         <TouchableHighlight>
           <Button 
           title='Sell'
-          onPress={() => {this.setModalVisible(true)}}
+          onPress={this.changeModalVisibility}
           />
         </TouchableHighlight>
       </View>
