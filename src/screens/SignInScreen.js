@@ -42,12 +42,16 @@ storeData = async (key, value) => {
         style={styles.input}
         onChangeText={(text) => this.setState({email: text})}
         placeholder="E-Mail"
+        value={this.state.text}
+        textContextType='emailAddress'
       />
       <TextInput
         style={styles.input}
         onChangeText={(text) => this.setState({password:text})}
         secureTextEntry={true}
         placeholder="Password"
+        value={this.state.text} 
+        textContextType='password'
       />
       <Button
         onPress={this.handleSubmit}
