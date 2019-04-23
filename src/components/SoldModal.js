@@ -23,9 +23,7 @@ export default class SoldModal extends Component {
     }
     this.setState({ itemQty: this.state.itemStock });
     db.ref('products/' + this.state.userId + '/' + this.state.itemId + '/quantity').set(this.state.itemQty);
-    this.setState({
-        modalVisible: visible
-    });
+    this.changeModalVisibility();
   }
 
   changeModalVisibility = () => {
@@ -68,6 +66,24 @@ export default class SoldModal extends Component {
   };
 
   render() {
+    let purchaseButton;
+    if (this.state.quantityToSell == 0) {
+      purchaseButton = < Button
+      title = "Purchase"
+      disabled='true'
+      />
+    } else {
+      purchaseButton = < Button
+      title = "Purchase"
+      onPress = {
+        () => {
+          this.setModalVisible(!this.state.modalVisible);
+        }
+      }
+      />
+    }
+
+
     return (
       <View style={{marginTop: 22}}>
         <Modal
@@ -100,14 +116,9 @@ export default class SoldModal extends Component {
 						title='-'
 						onPress={this.handleSubtract}
 					/>
+          {purchaseButton}
           <Button
-            title="Purchase"
-              onPress={() => {
-              this.setModalVisible(!this.state.modalVisible);
-            }}
-          />
-          <Button
-            title="Close"
+            title="Cancel"
             onPress={this.changeModalVisibility}
           />
             </View>
@@ -117,7 +128,7 @@ export default class SoldModal extends Component {
 
         <TouchableHighlight>
           <Button 
-          title='sold'
+          title='Sell'
           onPress={() => {this.setModalVisible(true)}}
           />
         </TouchableHighlight>
