@@ -28,6 +28,19 @@ export default class SoldModal extends Component {
     });
   }
 
+  changeModalVisibility = () => {
+    this.setState({
+      modalVisible: !this.state.modalVisible
+    });
+  };
+
+  createSale = () => {
+    let sale = {
+      item: this.props.item.name,
+      unitPrice: this.props.item.price
+    }
+  }
+
   handleAdd = () => {
     if (this.state.itemStock > 0) {
       const add = this.state.quantityToSell + 1;
@@ -92,7 +105,11 @@ export default class SoldModal extends Component {
               onPress={() => {
               this.setModalVisible(!this.state.modalVisible);
             }}
-            />
+          />
+          <Button
+            title="Close"
+            onPress={this.changeModalVisibility}
+          />
             </View>
           )}
           </View>
