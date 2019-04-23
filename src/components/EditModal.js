@@ -18,7 +18,8 @@ export default class EditModal extends Component {
         itemName: this.props.item.name,
         itemPrice: this.props.item.price,
         itemQty: this.props.item.quantity,
-        userId: this.props.item.uid
+        userId: this.props.item.uid,
+        item:this.props.item
       };
       
   
@@ -28,6 +29,12 @@ export default class EditModal extends Component {
         modalVisible: visible
     });
   }
+  handleDelete = () =>{
+    db.ref('products/' + this.state.userId ).child(this.state.itemId).remove();
+  }
+
+
+
   handleSubmit = () => {
 
     db.ref('products/' + this.state.userId + '/' + this.state.itemId + '/name').set(
@@ -73,15 +80,19 @@ s
               <TouchableHighlight>
                 <Button 
                 title=' save update'
-                onPress={() => {this.setModalVisible(!this.state.modalVisible);
-                }}                     
+                onPress={() => {this.setModalVisible(!this.state.modalVisible);}}                     
                 />
             
               </TouchableHighlight>
                 <Button
                 title='update'
-              onPress={this.handleSubmit}
+                onPress={this.handleSubmit}
                           
+                />
+
+                <Button
+                title='Delete'
+                onPress={() => {this.handleDelete, this.setModalVisible(false);}}
                 />
 
 
