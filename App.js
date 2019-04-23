@@ -1,49 +1,104 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import { Platform, StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import { createSwitchNavigator, createAppContainer } from 'react-navigation';
+import AsyncStorage from '@react-native-community/async-storage';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+import AppStack from './src/components/AppStackComponent';
+import AuthStack from './src/components/AuthStackComponent';
 
-type Props = {};
-export default class App extends Component<Props> {
+//This section of code ignores the yellow warning box
+import { YellowBox } from 'react-native';
+import _ from 'lodash';
+
+YellowBox.ignoreWarnings(['Setting a timer']);
+const _console = _.clone(console);
+console.warn = message => {
+  if (message.indexOf('Setting a timer') <= -1) {
+    _console.warn(message);
+  }
+};
+//End code that ignores yellow warning box
+
+//This should stay here
+const AppContainerAuth = createAppContainer(createSwitchNavigator(
+  {
+    AppStack,
+    AuthStack,
+  },
+  {
+    initialRouteName: 'AuthStack',
+    headerMode: 'none',
+  })
+);
+
+const AppContainerSkipAuth = createAppContainer(createSwitchNavigator(
+  {
+    AppStack,
+    AuthStack,
+  },
+  {
+    initialRouteName: 'AppStack',
+    headerMode: 'none',
+  })
+);
+
+export default class App extends Component {
+  state = {
+    uid: null,
+    loadingLocalData: true,
+    localDataFound: false
+  }
+
+
+  componentDidMount() {
+    if (this.state.loadingLocalData === true) {
+      this.readUserData();
+    }
+  }
+
+  readUserData = async () => {
+    try {
+      await AsyncStorage.getItem('uid').then(response => {
+        if (response !== null) {
+          this.setState({
+            loadingLocalData: false,
+            localDataFound: true
+          });
+        } else {
+          this.setState({
+            loadingLocalData: false,
+            localDataFound: false
+          });
+        }
+
+      });
+    } catch (e) {
+      Alert.alert('Catch', e.message)
+    }
+  }
+
   render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
-      </View>
-    );
+    if (this.state.loadingLocalData === true) {
+      return (
+        <View style={styles.page}>
+          <Text>Loading...</Text>
+        </View>
+      );
+    } else {
+      if (this.state.localDataFound === true) {
+        return <AppContainerSkipAuth/>
+      } else {
+        return <AppContainerAuth/>
+      }
+    }
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
+  page: {
+    padding: 25,
+    paddingTop: 75,
+    backgroundColor: 'bisque',
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+  }
 });
