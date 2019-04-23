@@ -9,7 +9,7 @@ import styles from '../styles/stylesComponent';
 export default class SignInScreen extends Component {
   state = {
     email: '',
-    password: ''
+    password: '',
   };
 
   handleEmail = (text) => {
@@ -19,6 +19,8 @@ export default class SignInScreen extends Component {
   handlePassword = (text) => {
     this.setState({ password: text })
   };
+
+  console.log(this.state.email)
 
   handleSubmit = () => {
     auth.signInWithEmailAndPassword(this.state.email, this.state.password).then(response => {
@@ -73,6 +75,7 @@ export default class SignInScreen extends Component {
           onPress={this.handleSubmit}
           title="Sign In"
           color="#4a822f"
+          disabled={!this.isEnabled}
           />
         <Text>{'\nNot an existing user?\n'}</Text>
         <Button
