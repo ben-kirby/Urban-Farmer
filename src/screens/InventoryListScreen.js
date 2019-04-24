@@ -45,14 +45,3 @@ export default class InventoryListScreen extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 2,
-    justifyContent: 'center',
-    backgroundColor: '#ebebeb',
-  },
-  footer: {
-    alignSelf: "flex-end"
-  }
-});
