@@ -3,6 +3,7 @@ import { View, Text } from "react-native";
 import ItemComponent from "../components/ItemComponent";
 import { navigationOptions } from "react-navigation";
 import firebase, { db, auth } from "../config";
+import Loading from '../components/Loading';
 
 import styles from '../styles/stylesComponent';
 
@@ -38,9 +39,20 @@ export default class InventoryListScreen extends Component {
         {this.state.products.length > 0 ? (
           <ItemComponent products={this.state.products} />
         ) : (
-          <Text>No Products :(</Text>
+          <Loading/>
         )}
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 2,
+    justifyContent: 'center',
+    backgroundColor: '#ebebeb',
+  },
+  footer: {
+    alignSelf: "flex-end"
+  }
+});
