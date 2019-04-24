@@ -64,7 +64,7 @@ export default class SignInScreen extends Component {
           underlineColorAndroid = 'transparent'
           style={styles.input}
           onChangeText={this.handleEmail}
-          placeholder="E-Mail"
+          placeholder='E-mail'
           autoCapitalize='none'
           value={this.state.text}
           textContextType='emailAddress'
@@ -81,12 +81,11 @@ export default class SignInScreen extends Component {
           value={this.state.text}
           textContextType='password'
           keyboardType='default'
-          maxLength={32}
+          maxLength={128}
           />
         <Button
           onPress={this.handleSubmit}
           title="Sign In"
-          color="#4a822f"
           disabled={this.isEnabled()}
           />
         <Text>{'\nNot an existing user?\n'}</Text>
