@@ -42,7 +42,7 @@ export default class SignInScreen extends Component {
   }
 
   isEnabled = () => {
-    if (this.state.email === '') {
+    if ((this.state.email === '') || (this.state.password === '')) {
       return true;
     } else {
       return false;
