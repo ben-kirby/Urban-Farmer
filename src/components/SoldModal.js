@@ -5,29 +5,47 @@ import PropTypes from 'prop-types';
 import firebase, { db, auth } from '../config';
 
 export default class SoldModal extends Component {
-    state = {
-      modalVisible: false,
-      originalItem: {
-        itemId: this.props.item.id,
-        itemName: this.props.item.name,
-        itemPrice: this.props.item.price,
-        itemQty: this.props.item.quantity,
-        userId: this.props.item.uid,
-        itemStock: this.props.item.quantity
-      },
-      quantityToSell: 0,
-      purchase: false
-    };
+  state = {
+    modalVisible: false,
+    itemId: this.props.item.id,
+    itemName: this.props.item.name,
+    itemPrice: this.props.item.price,
+    itemQty: this.props.item.quantity,
+    userId: this.props.item.uid,
+    itemStock: this.props.item.quantity,
+    quantityToSell: 0,
+    purchase: false
+  };
   
-  setModalVisible = (visible) => {
-    if(visible){
-      this.setState({ quantityToSell: 0})
-    }
-    this.setState({ itemQty: this.state.itemStock });
-    db.ref('products/' + this.state.userId + '/' + this.state.itemId + '/quantity').set(this.state.itemQty);
-    this.toggleModalVisibility();
+  handlePurchase = () => {
+    let newQty = this.state.itemQty - this.state.quantityToSell;
+    db.ref('products/' + this.state.userId + '/' + this.state.itemId + '/quantity').set(newQty);
+    this.handleCloseModal();
   }
 
+  handleCloseModal = () => {
+    this.resetQuantityToSell();
+    this.toggleModalVisibility();
+  }
+  
+    handleAdd = () => {
+      if (this.state.itemStock > this.state.quantityToSell) {
+        const add = this.state.quantityToSell + 1;
+        this.setState({
+          quantityToSell: add
+        });
+      }
+    }
+    
+  handleSubtract = () => {
+    if (this.state.quantityToSell > 0) {
+      const subtract = this.state.quantityToSell - 1;
+      this.setState({
+        quantityToSell: subtract
+      });
+    }
+  }
+    
   toggleModalVisibility = () => {
     this.setState({
       modalVisible: !this.state.modalVisible
@@ -40,11 +58,6 @@ export default class SoldModal extends Component {
     });
   }
 
-  handleCloseModal = () => {
-    this.resetQuantityToSell();
-    this.toggleModalVisibility();
-  }
-
   createSale = () => {
     let sale = {
       item: this.props.item.name,
@@ -52,24 +65,6 @@ export default class SoldModal extends Component {
     }
   }
 
-  handleAdd = () => {
-    if (this.state.originalItem.itemStock > this.state.quantityToSell) {
-      const add = this.state.quantityToSell + 1;
-			this.setState({
-				quantityToSell: add
-			});
-		}
-  }
-  
-  handleSubtract = () => {
-		if (this.state.quantityToSell > 0) {
-      const subtract = this.state.quantityToSell - 1;
-			this.setState({
-        quantityToSell: subtract
-			});
-		}
-  }
-  
   static propTypes = {
     item: PropTypes.object
   };
@@ -85,11 +80,11 @@ export default class SoldModal extends Component {
     } else {
       purchaseButton = < Button
       title = "Purchase"
-      onPress = {() => {this.setModalVisible(!this.state.modalVisible)}}/>
+      onPress = {this.handlePurchase}/>
     }
 
     return (
-      <View style={{marginTop: 75}}>
+      <View style={{marginTop: 25}}>
         <Modal
           animationType="slide"
           transparent={false}
@@ -98,22 +93,23 @@ export default class SoldModal extends Component {
             Alert.alert('Modal has been closed.');
           }}>
           <View style={{marginTop: 75}}>
-          {(this.state.originalItem.itemQty  === 0) ? ( <View>
+          {(this.state.itemQty  === 0) ? ( 
+          <View>
             <Text>Out of Stock.</Text>
             <Button
               title="OK"
               onPress={this.toggleModalVisibility}
             />
           </View>) : (
-            <View>
-            <Text>this.state.itemName:{this.state.originalItem.itemName}</Text>
-				    <Text>this.state.itemQty: {this.state.originalItem.itemQty}</Text>
-				    <Text>this.state.itemPrice: ${this.state.originalItem.itemPrice}</Text>
+          <View>
+            <Text>this.state.itemName:{this.state.itemName}</Text>
+				    <Text>this.state.itemQty: {this.state.itemQty}</Text>
+				    <Text>this.state.itemPrice: ${this.state.itemPrice}</Text>
             <Text>this.state.quantityToSell: {this.state.quantityToSell}</Text>
             <Button
-						title='+'
-						onPress={this.handleAdd}
-					/>
+              title='+'
+              onPress={this.handleAdd}
+            />
 					<Button
 						title='-'
 						onPress={this.handleSubtract}
