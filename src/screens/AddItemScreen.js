@@ -74,7 +74,6 @@ export default class AddItemScreen extends Component {
   };
 
 
-
   render(){
     let errorQtyVisible;
     let errorNameVisible;
@@ -109,13 +108,10 @@ export default class AddItemScreen extends Component {
         placeholder='Item quantity'
       />
       {errorQtyVisible}
-      <TouchableHighlight
-        style={styles.button}
-        
-        onPress={this.handleSubmit}
-      >
-       <Text style={styles.buttonText}>Add</Text>
-      </TouchableHighlight>
+      <Button
+         onPress={this.handleSubmit}
+         title='Add Item'
+      />
       {errorSubmitVisible}
       </ScrollView>
     );
