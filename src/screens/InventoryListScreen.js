@@ -31,7 +31,6 @@ export default class InventoryListScreen extends Component {
           });
         });
       }
-      )}
       let products = Object.values(data);
       this.setState({ products });
     });
