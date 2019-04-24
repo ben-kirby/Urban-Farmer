@@ -52,17 +52,20 @@ export default class CreateUserScreen extends Component {
 
 	isEnabled = () => {
     if (
-			(this.state.email === '') ||
-			(this.state.password === '') ||
-			(this.state.confirmPass === '') ||
-			(this.isGoodEmail(this.state.email) === false) ||
-			(this.state.dontMatch === true)
+			this.state.dontMatch ||
+			!this.isGoodEmail(this.state.email) ||
+			!this.isGoodPassword(this.state.password)
 		) {
       return true;
     } else {
       return false;
     };
   }
+
+	isGoodPassword = (password) => {
+		var passwordReg = /^\w{6,}$/;
+		return passwordReg.test(password);
+	}
 
   isGoodEmail = (email) => {
     var emailReg = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
