@@ -3,15 +3,10 @@
 //https://reactnavigation.org/docs/en/switch-navigator.html
 //https://snack.expo.io/@react-navigation/auth-flow-v3
 import React from 'react';
-import {
-  ActivityIndicator,
-  AsyncStorage,
-  StatusBar,
-  StyleSheet,
-  View,
-} from 'react-native';
+import { ActivityIndicator, AsyncStorage, StatusBar, View, } from 'react-native';
 import { navigationOptions } from 'react-navigation';
 
+import styles from '../styles/stylesComponent';
 
 export default class AuthLoadingScreen extends React.Component {
   constructor(props) {

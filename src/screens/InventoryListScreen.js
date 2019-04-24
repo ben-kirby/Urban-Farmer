@@ -1,8 +1,10 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text } from "react-native";
 import ItemComponent from "../components/ItemComponent";
 import { navigationOptions } from "react-navigation";
 import firebase, { db, auth } from "../config";
+
+import styles from '../styles/stylesComponent';
 
 export default class InventoryListScreen extends Component {
   state = {
@@ -32,7 +34,7 @@ export default class InventoryListScreen extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View style={styles.scrollContainer}>
         {this.state.products.length > 0 ? (
           <ItemComponent products={this.state.products} />
         ) : (
@@ -42,16 +44,3 @@ export default class InventoryListScreen extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 2,
-    justifyContent: "center",
-    backgroundColor: "#ebebeb",
-    flex: 1
-  },
-  footer: {
-    alignSelf: "flex-end"
-  },
-}
-);
