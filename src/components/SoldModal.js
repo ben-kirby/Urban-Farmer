@@ -19,6 +19,7 @@ export default class SoldModal extends Component {
   
   handlePurchase = () => {
     let newQty = this.state.itemQty - this.state.quantityToSell;
+    Alert.alert(newQty)
     db.ref('products/' + this.state.userId + '/' + this.state.itemId + '/quantity').set(newQty);
     this.handleCloseModal();
   }
@@ -28,14 +29,14 @@ export default class SoldModal extends Component {
     this.toggleModalVisibility();
   }
   
-    handleAdd = () => {
-      if (this.state.itemStock > this.state.quantityToSell) {
-        const add = this.state.quantityToSell + 1;
-        this.setState({
-          quantityToSell: add
-        });
-      }
+  handleAdd = () => {
+    if (this.state.itemStock > this.state.quantityToSell) {
+      const add = this.state.quantityToSell + 1;
+      this.setState({
+        quantityToSell: add
+      });
     }
+  }
     
   handleSubtract = () => {
     if (this.state.quantityToSell > 0) {
