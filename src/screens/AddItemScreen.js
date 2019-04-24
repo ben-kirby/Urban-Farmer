@@ -24,7 +24,8 @@ export default class AddItemScreen extends Component {
     errorQty: false,
     errorPrice: false,
     errorName: false,
-    submitValid: true
+    submitValid: true,
+    submitEmpty: true
   };
 
   async getUserId(){
@@ -61,13 +62,27 @@ export default class AddItemScreen extends Component {
     this.setState({quantity:text});
   }   
 
+  checkInputEmpty = () => {
+    const { name, price, quantity } = this.state;
+    if(name !== '' && price !== '' && quantity !== ''){
+      this.setState({submitEmpty: true})
+    }
+  } 
+
   handleSubmit = () => {
-    console.log(readData)
-    if(this.state.submitValid){
+    console.log(readData);
+    this.checkInputEmpty();
+    if(this.state.submitValid && this.state.submitEmpty){
       addItem(this.state.name, this.state.price, this.state.quantity, this.state.uid);
       this.nameInputRef.clear();
       this.priceInputRef.clear();
       this.quantityInputRef.clear();
+      this.setState({
+        name: '',
+        quantity: '',
+        price: '',
+        submitEmpty: false
+      });
       console.log("handle submit triggered");
       alert('item saved!');
     }
