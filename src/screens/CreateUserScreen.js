@@ -51,7 +51,13 @@ export default class CreateUserScreen extends Component {
 	}
 
 	isEnabled = () => {
-    if (((this.state.email === '') || (this.state.password === '')) || (this.isGoodEmail(this.state.email) === false) ) {
+    if (
+			(this.state.email === '') ||
+			(this.state.password === '') ||
+			(this.state.confirmPass === '') ||
+			(this.isGoodEmail(this.state.email) === false) ||
+			(this.state.dontMatch === true)
+		) {
       return true;
     } else {
       return false;
@@ -104,12 +110,12 @@ export default class CreateUserScreen extends Component {
 					keyboardType='default'
 					maxLength={128}
 					/>
+				{dontMatchError}
 				<Button
 					onPress={this.handleSubmit}
 					title="Sign Up"
 					disabled={this.isEnabled()}
 					/>
-					{dontMatchError}
 			<Text>{'\nOops, I\'m already an returning user...\n'}</Text>
 				<Button
 					onPress={() => this.props.navigation.navigate('SignIn')}
