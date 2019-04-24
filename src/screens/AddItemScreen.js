@@ -1,17 +1,11 @@
 import React, { Component } from 'react';
-import {
-  View,
-  Text,
-  TouchableHighlight,
-  StyleSheet,
-  TextInput
-} from 'react-native';
+import { ScrollView, View, Text, TouchableHighlight, StyleSheet, TextInput, Button } from 'react-native';
 import firebase, { db } from '../config';
 
 import { readData } from '../DataStorage';
 import AsyncStorage from '@react-native-community/async-storage';
 
-
+import styles from '../styles/stylesComponent';
 
 let addItem = (a, b, c, uid) => {
   db.ref('/products/' + uid).push({
@@ -33,17 +27,16 @@ export default class AddItemScreen extends Component {
     submitValid: true
   };
 
-
- async getUserId(){
-   try {
-     const response = await AsyncStorage.getItem('uid');
-       alert(response);
-       console.log(response);
-       this.setState({uid: response});
-     }
-  catch (error) {
-    console.log("Error while storing the token");
-  }
+  async getUserId(){
+    try {
+      const response = await AsyncStorage.getItem('uid');
+      alert(response);
+      console.log(response);
+      this.setState({uid: response});
+    }
+    catch (error) {
+      console.log("Error while storing the token");
+    }
   }
 
   componentDidMount() {
@@ -92,8 +85,7 @@ export default class AddItemScreen extends Component {
     this.state.errorQty ? (errorQtyVisible = <Text>please enter a number</Text>) : null;
     (this.state.submitValid === false) ? (errorSubmitVisible = <Text>please correct the inputs</Text>) : null;
     return(
-     
-      <View style={styles.main}>
+    <ScrollView style={styles.scrollContainer}>
 
       <Text style={styles.title}>Add Item</Text>
       <TextInput
@@ -125,49 +117,7 @@ export default class AddItemScreen extends Component {
        <Text style={styles.buttonText}>Add</Text>
       </TouchableHighlight>
       {errorSubmitVisible}
-
-    </View>
-
-   );
+      </ScrollView>
+    );
   }
 }
-
-const styles = StyleSheet.create({
-  main: {
-    flex: 1,
-    padding: 30,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    backgroundColor: 'white'
-  },
-  title: {
-    marginTop: 10,
-    fontSize: 25,
-    textAlign: 'center'
-  },
-  itemInput: {
-    height: 50,
-    padding: 4,
-    margin: 5,
-    borderRadius: 4,
-    borderWidth:1,
-    borderColor: 'black'
-  },
-  buttonText: {
-    fontSize: 18,
-    color: '#111',
-    alignSelf: 'center'
-  },
-  button: {
-    height: 45,
-    flexDirection: 'row',
-    backgroundColor: '#6e5cff',
-    borderColor: 'grey',
-    borderWidth: 1,
-    borderRadius: 8,
-    marginBottom: 10,
-    marginTop: 10,
-    alignSelf: 'stretch',
-    justifyContent: 'center'
-  }
-});
