@@ -72,7 +72,9 @@ export default class AddItemScreen extends Component {
     console.log(readData)
     if(this.state.submitValid){
       addItem(this.state.name, this.state.price, this.state.quantity, this.state.uid);
+      this.nameInputRef.clear();
       this.priceInputRef.clear();
+      this.quantityInputRef.clear();
       console.log("handle submit triggered");
       alert('item saved!');
     }
@@ -95,6 +97,7 @@ export default class AddItemScreen extends Component {
 
       <Text style={styles.title}>Add Item</Text>
       <TextInput
+        ref={ref => this.nameInputRef = ref}
         style={styles.itemInput}
         onChangeText={this.handleChangeName}
         placeholder='Item name'
@@ -103,12 +106,12 @@ export default class AddItemScreen extends Component {
       <TextInput
         ref={ref => this.priceInputRef = ref}
         style={styles.itemInput}
-        value={this.state.price}
         onChangeText={this.handleChangePrice}
         placeholder='Item price'
       />
       {errorPriceVisible}
       <TextInput
+        ref={ref => this.quantityInputRef = ref}
         style={styles.itemInput}
         onChangeText={this.handleChangeQuantity}
         placeholder='Item quantity'
