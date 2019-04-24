@@ -29,11 +29,10 @@ export default class EditModal extends Component {
         modalVisible: visible
     });
   }
+
   handleDelete = () =>{
     db.ref('products/' + this.state.userId ).child(this.state.itemId).remove();
   }
-
-
 
   handleSubmit = () => {
 
@@ -92,7 +91,7 @@ s
 
                 <Button
                 title='Delete'
-                onPress={() => {this.handleDelete, this.setModalVisible(false);}}
+                onPress={this.handleDelete}
                 />
 
 
@@ -104,7 +103,7 @@ s
          
           <Button 
           title='Edit'
-          onPress={() => {this.setModalVisible(true);}}
+          onPress={() => {this.setModalVisible(true)}}
          
           />
         
