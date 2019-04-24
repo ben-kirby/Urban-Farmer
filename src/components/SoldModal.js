@@ -82,7 +82,7 @@ export default class SoldModal extends Component {
     if (this.state.quantityToSell == 0) {
       purchaseButton = < Button
       title = "Purchase"
-      disabled='true'/>
+      disabled={true}/>
 
     } else {
       purchaseButton = < Button
@@ -109,9 +109,8 @@ export default class SoldModal extends Component {
             />
           </View>) : (
           <View>
-            <Text>this.state.itemName:{this.state.itemName}</Text>
-				    <Text>this.state.itemQty: {this.state.itemQty}</Text>
-				    <Text>this.state.itemPrice: ${this.state.itemPrice}</Text>
+            <Text>{this.state.itemName}</Text>
+				    <Text>{this.state.itemQty} available at ${this.state.itemPrice} each</Text>
             <Text>this.state.quantityToSell: {this.state.quantityToSell}</Text>
             <Button
               title='+'
