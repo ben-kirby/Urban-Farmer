@@ -19,13 +19,22 @@ export default class SoldModal extends Component {
   
   handlePurchase = () => {
     let newQty = this.state.itemQty - this.state.quantityToSell;
-    console.log(this.state.itemQty - this.state.quantityToSell);
-    
     db.ref('products/' + this.state.userId + '/' + this.state.itemId + '/quantity').set(newQty);
     this.setState({
       itemQty: newQty
-    })
+    });
+    this.createSale();
     this.handleCloseModal();
+  }
+  
+  createSale = () => {
+    let sale = {
+      item: this.state.itemName,
+      unitPrice: this.state.itemPrice,
+      qtySold: this.state.quantityToSell,
+      timestamp: Date.now()
+    }
+    db.ref('transactions/'+ this.state.userId).push(sale);
   }
 
   handleCloseModal = () => {
@@ -61,13 +70,6 @@ export default class SoldModal extends Component {
     this.setState({
       quantityToSell: 0
     });
-  }
-
-  createSale = () => {
-    let sale = {
-      item: this.props.item.name,
-      unitPrice: this.props.item.price
-    }
   }
 
   static propTypes = {
