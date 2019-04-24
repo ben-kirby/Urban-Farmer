@@ -56,5 +56,8 @@ export default StyleSheet.create({
   },
   scrollContainer: {
     backgroundColor: '#91b43d',
+  },
+  buttonMargin: {
+    marginBottom: 20,
   }
 });
