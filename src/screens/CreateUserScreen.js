@@ -52,7 +52,7 @@ export default class CreateUserScreen extends Component {
 
 	isEnabled = () => {
     if (
-			this.state.dontMatch ||
+			this.state.confirmPass != this.state.password ||
 			!this.isGoodEmail(this.state.email) ||
 			!this.isGoodPassword(this.state.password)
 		) {
