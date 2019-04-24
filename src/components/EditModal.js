@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import { Button } from 'react-native';
-import {Modal, Text, TouchableHighlight, View, Alert,TextInput, StyleSheet} from 'react-native';
+import {Modal, TouchableHighlight, View, Alert,TextInput, StyleSheet} from 'react-native';
 import PropTypes from 'prop-types';
 import { db, auth } from '../config';
+
 
 
 export default class EditModal extends Component {
@@ -18,19 +19,19 @@ export default class EditModal extends Component {
         itemName: this.props.item.name,
         itemPrice: this.props.item.price,
         itemQty: this.props.item.quantity,
-        userId: this.props.item.uid,
-        item:this.props.item
+        userId: this.props.item.uid
       };
       
   
               
   setModalVisible(visible) {
+    console.log(visible)
     this.setState({
         modalVisible: visible
     });
   }
-
   handleDelete = () =>{
+    
     db.ref('products/' + this.state.userId ).child(this.state.itemId).remove();
   }
 
@@ -45,6 +46,7 @@ export default class EditModal extends Component {
     db.ref('products/' + this.state.userId + '/' + this.state.itemId + '/quantity').set(
       this.state.itemQty
       );
+      
   };
 s
   render() {
@@ -70,31 +72,34 @@ s
                 style={styles.itemInput}
                 onChangeText={(text) => this.setState({itemPrice:text})}
                 placeholder={this.props.item.price}
+               
             />
             <TextInput
                 style={styles.itemInput}
                 onChangeText={(text) => this.setState({itemQty:text})}
                 placeholder={this.props.item.quantity}
+               
             />
               <TouchableHighlight>
+
                 <Button 
-                title=' save update'
-                onPress={() => {this.setModalVisible(!this.state.modalVisible);}}                     
+                title=' save update'           
+                onPress={() => {this.setModalVisible(!this.state.modalVisible);
+                }} 
+                />
+                
+              </TouchableHighlight>
+
+                <Button 
+                title=' update'
+                onPress={this.handleSubmit}                    
+        
                 />
             
-              </TouchableHighlight>
-                <Button
-                title='update'
-                onPress={this.handleSubmit}
-                          
-                />
-
-                <Button
+                  <Button
                 title='Delete'
-                onPress={this.handleDelete}
+                onPress={this.handleDelete}     
                 />
-
-
             </View>
           </View>
         </Modal>
@@ -103,7 +108,7 @@ s
          
           <Button 
           title='Edit'
-          onPress={() => {this.setModalVisible(true)}}
+          onPress={() => {this.setModalVisible(true);}}
          
           />
         
