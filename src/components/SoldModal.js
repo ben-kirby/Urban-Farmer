@@ -2,65 +2,96 @@ import React, {Component} from 'react';
 import { Button } from 'react-native';
 import {Modal, Text, TouchableHighlight, View, Alert} from 'react-native';
 import PropTypes from 'prop-types';
-import { db, auth } from '../config';
+import { db } from '../config';
 
 export default class SoldModal extends Component {
-    state = {
-      modalVisible: false,
-      itemId: this.props.item.id,
-      itemName: this.props.item.name,
-      itemPrice: this.props.item.price,
-      itemQty: this.props.item.quantity,
-      userId: this.props.item.uid,
-      itemStock: this.props.item.quantity,
-      quantityToSell: 0,
-      purchase: false
-    };
+  state = {
+    modalVisible: false,
+    itemId: this.props.item.id,
+    itemName: this.props.item.name,
+    itemPrice: this.props.item.price,
+    itemQty: this.props.item.quantity,
+    userId: this.props.item.uid,
+    itemStock: this.props.item.quantity,
+    quantityToSell: 0,
+    purchase: false
+  };
   
-
-  setModalVisible (visible) {
-    if(visible){
-      this.setState({ quantityToSell: 0})
-    }
-    this.setState({ itemQty: this.state.itemStock });
-    db.ref('products/' + this.state.userId + '/' + this.state.itemId + '/quantity').set(this.state.itemQty);
+  handlePurchase = () => {
+    let newQty = this.state.itemQty - this.state.quantityToSell;
+    db.ref('products/' + this.state.userId + '/' + this.state.itemId + '/quantity').set(newQty);
     this.setState({
-        modalVisible: visible
+      itemQty: newQty
+    });
+    this.createSale();
+    this.handleCloseModal();
+  }
+  
+  createSale = () => {
+    let sale = {
+      item: this.state.itemName,
+      unitPrice: this.state.itemPrice,
+      qtySold: this.state.quantityToSell,
+      timestamp: Date.now()
+    }
+    db.ref('transactions/'+ this.state.userId).push(sale);
+  }
+
+  handleCloseModal = () => {
+    this.resetQuantityToSell();
+    this.toggleModalVisibility();
+  }
+  
+  handleAdd = () => {
+    if (this.state.itemStock > this.state.quantityToSell) {
+      const add = this.state.quantityToSell + 1;
+      this.setState({
+        quantityToSell: add
+      });
+    }
+  }
+    
+  handleSubtract = () => {
+    if (this.state.quantityToSell > 0) {
+      const subtract = this.state.quantityToSell - 1;
+      this.setState({
+        quantityToSell: subtract
+      });
+    }
+  }
+    
+  toggleModalVisibility = () => {
+    this.setState({
+      modalVisible: !this.state.modalVisible
+    });
+  };
+
+  resetQuantityToSell = () => {
+    this.setState({
+      quantityToSell: 0
     });
   }
-
-  handleAdd = () => {
-    if (this.state.itemStock > 0) {
-      const add = this.state.quantityToSell + 1;
-      const itemStock = this.state.itemStock - 1;
-			this.setState({
-        itemStock: itemStock,
-				quantityToSell: add
-			});
-		}
-  }
-  
-  handleSubtract = () => {
-		if (this.state.quantityToSell > 0) {
-      const subtract = this.state.quantityToSell - 1;
-      const itemStock = this.state.itemStock + 1;
-			this.setState({
-        itemStock: itemStock,
-        quantityToSell: subtract
-			});
-		}
-  }
-  
 
   static propTypes = {
     item: PropTypes.object
   };
 
-
-
   render() {
+    let purchaseButton;
+
+    if (this.state.quantityToSell == 0) {
+      purchaseButton = < Button
+      title = "Purchase"
+      disabled={true}/>
+
+    } else {
+      purchaseButton = < Button
+      title = "Purchase"
+      onPress = {this.handlePurchase}/>
+    }
+
     return (
-      <View style={{marginTop: 22}}>
+      <View style={{marginTop: 25}}>
         <Modal
           animationType="slide"
           transparent={false}
@@ -68,35 +99,32 @@ export default class SoldModal extends Component {
           onRequestClose={() => {
             Alert.alert('Modal has been closed.');
           }}>
-          <View style={{marginTop: 22}}>
-          {(this.state.itemQty  === 0) ? ( <View>
-            <Text>Out of Stock. Please restock this product for purchase function</Text>
+          <View style={{marginTop: 75}}>
+          {(this.state.itemQty  === 0) ? ( 
+          <View>
+            <Text>Out of Stock.</Text>
             <Button
-            title="OK"
-              onPress={() => {
-              this.setModalVisible(!this.state.modalVisible);
-            }}
+              title="OK"
+              onPress={this.toggleModalVisibility}
             />
           </View>) : (
-            <View>
-            <Text>Product Name:{this.state.itemName}</Text>
-				    <Text>Product Qty: {this.state.itemQty}</Text>
-				    <Text>Product Price: ${this.state.itemPrice}</Text>
-            <Text>Cart: {this.state.quantityToSell}</Text>
+          <View>
+            <Text>{this.state.itemName}</Text>
+				    <Text>{this.state.itemQty} available at ${this.state.itemPrice} each</Text>
+            <Text>this.state.quantityToSell: {this.state.quantityToSell}</Text>
             <Button
-						title='+'
-						onPress={this.handleAdd}
-					/>
+              title='+'
+              onPress={this.handleAdd}
+            />
 					<Button
 						title='-'
 						onPress={this.handleSubtract}
 					/>
+          {purchaseButton}
           <Button
-            title="Purchase"
-              onPress={() => {
-              this.setModalVisible(!this.state.modalVisible);
-            }}
-            />
+            title="Cancel"
+            onPress={this.handleCloseModal}
+          />
             </View>
           )}
           </View>
@@ -104,8 +132,8 @@ export default class SoldModal extends Component {
 
         <TouchableHighlight>
           <Button 
-          title='sold'
-          onPress={() => {this.setModalVisible(true)}}
+          title='Sell'
+          onPress={this.toggleModalVisibility}
           />
         </TouchableHighlight>
       </View>

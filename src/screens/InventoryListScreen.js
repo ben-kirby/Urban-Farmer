@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import ItemComponent from '../components/ItemComponent';
-import { db, auth } from '../config';
+import { navigationOptions } from "react-navigation";
+import firebase, { db, auth } from "../config";
+import Loading from '../components/Loading';
 
 import styles from '../styles/stylesComponent';
+
+
+
 
 
 
@@ -14,7 +19,7 @@ export default class InventoryListScreen extends Component {
 
   componentDidMount() {
     let uid = auth.currentUser.uid;
-    db.ref('/products/' + uid).on('value', snapshot => {
+    db.ref("/products/" + uid).on("value", snapshot => {
       let items = snapshot.val();
       let data = [];
       {
@@ -39,7 +44,7 @@ export default class InventoryListScreen extends Component {
         {this.state.products.length > 0 ? (
           <ItemComponent products={this.state.products} />
         ) : (
-          <Text>No Products :(</Text>
+          <Loading/>
         )}
       </View>
     );
