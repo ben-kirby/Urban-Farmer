@@ -62,18 +62,18 @@ export default class ItemDetailScreen extends Component {
 				<Button
 						title='+'
 						onPress={this.handleAdd}
-						disabled='true'
+						disabled={true}
 					/>
 					<Button
 						title='-'
 						onPress={this.handleSubtract}
-						disabled = 'true'
+						disabled = {true}
 					/>
 					<Text>0</Text>
 					<Button
 						title='Sell'
 						onPress={this.handleSale}
-						disabled = 'true'
+						disabled = {true}
 					/>
 			</View>
 		}
