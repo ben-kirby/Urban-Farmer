@@ -17,7 +17,7 @@ export default class InventoryListScreen extends Component {
 
   componentDidMount() {
     let uid = auth.currentUser.uid;
-    db.ref('/products/' + uid).on('value', snapshot => {
+    db.ref("/products/" + uid).on("value", snapshot => {
       let items = snapshot.val();
       let data = [];
       {
@@ -42,8 +42,8 @@ export default class InventoryListScreen extends Component {
         {this.state.products.length > 0 ? (
           <ItemComponent products={this.state.products} />
         ) : (
-          <Text>No Products :(</Text>
-        )}
+            <Text>No Products :(</Text>
+          )}
       </View>
     );
   }
