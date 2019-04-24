@@ -8,19 +8,32 @@ import styles from '../styles/stylesComponent';
 export default class CreateUserScreen extends Component {
 	state = {
 		email: '',
-		password: ''
+		password: '',
+		confirmPass: '',
+		dontMatch: false
 	};
 
+
+	handleChangePassConfirm = (text) => {
+	this.setState({confirmPass: text});
+	const { password } = this.state;
+	if(password !== text ){
+		this.setState({dontMatch: true});
+	} else 
+	this.setState({dontMatch: false});
+	}
+
+
 	handleSubmit = () => {
-		auth.createUserWithEmailAndPassword(this.state.email, this.state.password).then(response => {
-			if (response.user) {
-				this.storeData('uid', response.user.uid).then(() => {
-					this.props.navigation.navigate('AppStack');
-				})
-			} else {
-				alert('Oops! There was a problem with that. Try again plz.');
-			}
-		});
+			auth.createUserWithEmailAndPassword(this.state.email, this.state.password).then(response => {
+				if (response.user) {
+					this.storeData('uid', response.user.uid).then(() => {
+						this.props.navigation.navigate('AppStack');
+					})
+				} else {
+					alert('Oops! There was a problem with that. Try again plz.');
+				}
+			});
 	}
 
 	storeData = async (key, value) => {
@@ -34,6 +47,8 @@ export default class CreateUserScreen extends Component {
 
 
 	render() {
+		let dontMatchError;
+		this.state.dontMatch ? (dontMatchError = <Text>Passwords don't match</Text>) : null;
 		return(
 			<View style={styles.container}>
 				<Text style={{fontWeight: 'bold', fontSize: 24}}>URBAN FARMER</Text>
@@ -49,6 +64,13 @@ export default class CreateUserScreen extends Component {
 					secureTextEntry={true}
 					placeholder="Password"
 				/>
+				<TextInput
+					style={styles.input}
+					onChangeText={this.handleChangePassConfirm}
+					secureTextEntry={true}
+					placeholder="Confirm Password"
+				/>
+				{dontMatchError}
 				<Button
 					onPress={this.handleSubmit}
 					title="Submit"
