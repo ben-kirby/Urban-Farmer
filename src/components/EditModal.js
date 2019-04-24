@@ -1,22 +1,46 @@
 import React, {Component} from 'react';
 import { Button } from 'react-native';
 import {Modal, Text, TouchableHighlight, View, Alert,TextInput, StyleSheet} from 'react-native';
-
+import PropTypes from 'prop-types';
+import { db, auth } from '../config';
 
 
 export default class EditModal extends Component {
-    
-  state = {
-    modalVisible: false,
-    product:''
-  };
-
+    constructor(props){
+        super(props);
+    }
+    static propTypes = {
+      item: PropTypes.object
+    };
+    state = {
+        modalVisible: false,
+        itemId: this.props.item.id,
+        itemName: this.props.item.name,
+        itemPrice: this.props.item.price,
+        itemQty: this.props.item.quantity,
+        userId: this.props.item.uid
+      };
+      
+  
+              
   setModalVisible(visible) {
     this.setState({
         modalVisible: visible
     });
   }
+  handleSubmit = () => {
 
+    db.ref('products/' + this.state.userId + '/' + this.state.itemId + '/name').set(
+      this.state.itemName
+    );
+    db.ref('products/' + this.state.userId + '/' + this.state.itemId + '/price').set(
+      this.state.itemPrice
+      );
+    db.ref('products/' + this.state.userId + '/' + this.state.itemId + '/quantity').set(
+      this.state.itemQty
+      );
+  };
+s
   render() {
     return (
       <View style={{marginTop: 22}}>
@@ -29,28 +53,38 @@ export default class EditModal extends Component {
           }}>
           <View style={{marginTop: 22}}>
             <View>
-              <Text>Hello World!</Text>
+
               <TextInput
+              style={styles.itemInput}
+              onChangeText={(text) => this.setState({itemName:text})}
+              placeholder={this.props.item.name}
+              />
+             
+            <TextInput
                 style={styles.itemInput}
-    
-                placeholder='Item quantity'
+                onChangeText={(text) => this.setState({itemPrice:text})}
+                placeholder={this.props.item.price}
             />
             <TextInput
                 style={styles.itemInput}
-                
-                placeholder='Item price'
+                onChangeText={(text) => this.setState({itemQty:text})}
+                placeholder={this.props.item.quantity}
             />
-            <TextInput
-                style={styles.itemInput}
-               
-                placeholder='Item quantity'
-            />
-              <TouchableHighlight
-                onPress={() => {
-                  this.setModalVisible(!this.state.modalVisible);
-                }}>
-                <Text>Hide Modal</Text>
+              <TouchableHighlight>
+                <Button 
+                title=' save update'
+                onPress={() => {this.setModalVisible(!this.state.modalVisible);
+                }}                     
+                />
+            
               </TouchableHighlight>
+                <Button
+                title='update'
+              onPress={this.handleSubmit}
+                          
+                />
+
+
             </View>
           </View>
         </Modal>
@@ -60,6 +94,7 @@ export default class EditModal extends Component {
           <Button 
           title='Edit'
           onPress={() => {this.setModalVisible(true);}}
+         
           />
         
 
