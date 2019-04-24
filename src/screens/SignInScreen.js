@@ -41,6 +41,14 @@ export default class SignInScreen extends Component {
     }
   }
 
+  isEnabled = () => {
+    if (this.state.email === '') {
+      return true;
+    } else {
+      return false;
+    };
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -73,7 +81,7 @@ export default class SignInScreen extends Component {
           onPress={this.handleSubmit}
           title="Sign In"
           color="#4a822f"
-          disabled={if this.state.email === 0 && this.state.password === 0}
+          disabled={this.isEnabled()}
           />
         <Text>{'\nNot an existing user?\n'}</Text>
         <Button
