@@ -8,7 +8,9 @@ import styles from '../styles/stylesComponent';
 export default class CreateUserScreen extends Component {
 	state = {
 		email: '',
-		password: ''
+		password: '',
+		confirmPass: '',
+		dontMatch: false
 	};
 
 	handleEmail = (text) => {
@@ -19,16 +21,25 @@ export default class CreateUserScreen extends Component {
 		this.setState({ password: text })
 	};
 
+	handleChangePassConfirm = (text) => {
+	this.setState({confirmPass: text});
+	const { password } = this.state;
+	if(password !== text ){
+		this.setState({dontMatch: true});
+	} else
+	this.setState({dontMatch: false});
+	}
+
 	handleSubmit = () => {
-		auth.createUserWithEmailAndPassword(this.state.email, this.state.password).then(response => {
-			if (response.user) {
-				this.storeData('uid', response.user.uid).then(() => {
-					this.props.navigation.navigate('AppStack');
-				})
-			} else {
-				alert('Oops! There was a problem with that. Try again plz.');
-			}
-		});
+			auth.createUserWithEmailAndPassword(this.state.email, this.state.password).then(response => {
+				if (response.user) {
+					this.storeData('uid', response.user.uid).then(() => {
+						this.props.navigation.navigate('AppStack');
+					})
+				} else {
+					alert('Oops! There was a problem with that. Try again plz.');
+				}
+			});
 	}
 
 	storeData = async (key, value) => {
@@ -53,6 +64,8 @@ export default class CreateUserScreen extends Component {
   }
 
 	render() {
+		let dontMatchError;
+		this.state.dontMatch ? (dontMatchError = <Text>Passwords don't match</Text>) : null;
 		return(
 			<View style={styles.container}>
 				<Text style={{fontWeight: 'bold', fontSize: 24}}>URBAN FARMER</Text>
@@ -80,11 +93,23 @@ export default class CreateUserScreen extends Component {
           keyboardType='default'
           maxLength={128}
           />
-        <Button
-          onPress={this.handleSubmit}
-          title="Sign Up"
-          disabled={this.isEnabled()}
-          />
+				<TextInput
+					underlineColorAndroid = 'transparent'
+          style={styles.input}
+					onChangeText={this.handleChangePassConfirm}
+					secureTextEntry={true}
+					placeholder="Confirm Password"
+					autoCapitalize='none'
+					textContextType='password'
+					keyboardType='default'
+					maxLength={128}
+					/>
+				<Button
+					onPress={this.handleSubmit}
+					title="Sign Up"
+					disabled={this.isEnabled()}
+					/>
+					{dontMatchError}
 			<Text>{'\nOops, I\'m already an returning user...\n'}</Text>
 				<Button
 					onPress={() => this.props.navigation.navigate('SignIn')}
