@@ -45,19 +45,20 @@ export default class EditModal extends Component {
 
   handleNameVal = (nam) => {
     this.setState({
-      itemName: nam
+    itemName: nam
     })
   }
-  handlePriVal = ( pri) => {
+  handlePriceVal = (pri) => {
     this.setState({
-      itemPrice: pri
+     itemPrice: pri
     })
   }
-  handleQtyVal = ( qty) => {
+  handleQtyVal = (qty) => {
     this.setState({
       itemQty: qty
     })
   }
+
 
   handleSubmit = () => {
 
@@ -94,7 +95,7 @@ s
              
             <TextInput
                 style={styles.itemInput}
-                onChangeText={(text) => this.handlePriVal(text)}
+                onChangeText={(text) => this.handlePriceVal(text)}
                 placeholder={this.props.item.price}
                
             />
@@ -132,10 +133,7 @@ s
           <Button 
           title='Edit'
           onPress={() => {this.setModalVisible(true);}}
-         
           />
-        
-
         </TouchableHighlight>
       </View>
     );
