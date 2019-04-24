@@ -25,14 +25,38 @@ export default class EditModal extends Component {
   
               
   setModalVisible(visible) {
-    console.log(visible)
     this.setState({
         modalVisible: visible
     });
   }
-  handleDelete = () =>{
-    
+  handleDelete = () =>{    
     db.ref('products/' + this.state.userId ).child(this.state.itemId).remove();
+  }
+
+  deleteCombo= () =>{
+    this.handleDelete();
+    this.setModalVisible(false);
+  }
+
+  updateCombo = () =>{
+    this.handleSubmit();
+    this.setModalVisible(false);
+  }
+
+  handleNameVal = (nam) => {
+    this.setState({
+      itemName: nam
+    })
+  }
+  handlePriVal = ( pri) => {
+    this.setState({
+      itemPrice: pri
+    })
+  }
+  handleQtyVal = ( qty) => {
+    this.setState({
+      itemQty: qty
+    })
   }
 
   handleSubmit = () => {
@@ -64,41 +88,40 @@ s
 
               <TextInput
               style={styles.itemInput}
-              onChangeText={(text) => this.setState({itemName:text})}
+              onChangeText={(text) => this.handleNameVal(text)}
               placeholder={this.props.item.name}
               />
              
             <TextInput
                 style={styles.itemInput}
-                onChangeText={(text) => this.setState({itemPrice:text})}
+                onChangeText={(text) => this.handlePriVal(text)}
                 placeholder={this.props.item.price}
                
             />
             <TextInput
                 style={styles.itemInput}
-                onChangeText={(text) => this.setState({itemQty:text})}
+                onChangeText={(text) => this.handleQtyVal(text)}
                 placeholder={this.props.item.quantity}
                
             />
               <TouchableHighlight>
 
                 <Button 
-                title=' save update'           
+                title='Close Modal'           
                 onPress={() => {this.setModalVisible(!this.state.modalVisible);
                 }} 
                 />
-                
+
               </TouchableHighlight>
 
-                <Button 
-                title=' update'
-                onPress={this.handleSubmit}                    
-        
+              <Button
+                title='update'
+                onPress={this.updateCombo}                     
                 />
             
                   <Button
                 title='Delete'
-                onPress={this.handleDelete}     
+                onPress={this.deleteCombo}                     
                 />
             </View>
           </View>
