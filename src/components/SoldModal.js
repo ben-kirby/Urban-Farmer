@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { Button } from 'react-native';
 import {Modal, Text, TouchableHighlight, View, Alert} from 'react-native';
 import PropTypes from 'prop-types';
-import firebase, { db, auth } from '../config';
+import { db } from '../config';
 
 export default class SoldModal extends Component {
   state = {
