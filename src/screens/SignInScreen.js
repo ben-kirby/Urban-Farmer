@@ -20,8 +20,6 @@ export default class SignInScreen extends Component {
     this.setState({ password: text })
   };
 
-  console.log(this.state.email)
-
   handleSubmit = () => {
     auth.signInWithEmailAndPassword(this.state.email, this.state.password).then(response => {
       if (response.user) {
@@ -75,7 +73,7 @@ export default class SignInScreen extends Component {
           onPress={this.handleSubmit}
           title="Sign In"
           color="#4a822f"
-          disabled={!this.isEnabled}
+          disabled={if this.state.email === 0 && this.state.password === 0}
           />
         <Text>{'\nNot an existing user?\n'}</Text>
         <Button
