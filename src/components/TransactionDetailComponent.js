@@ -39,11 +39,8 @@ export default class TransactionDetail extends Component {
 		return moment(timestamp).format('M/D/YY, h:mm a');
 	}
 
-	formatContent = (content) => {
-		console.log(content);
-		
-		let formattedContent = content.qtySold + ' ' + content.item + '\n' + '$' + (content.unitPrice).toFixed(2) + ' each\n' + '$' + (content.unitPrice * content.qtySold).toFixed(2) + ' total';
-		return formattedContent;		
+	formatContent = (content) => {		
+		return content.qtySold + ' ' + content.item + '\n' + '$' + (content.unitPrice).toFixed(2) + ' each\n' + '$' + (content.unitPrice * content.qtySold).toFixed(2) + ' total';		
 	}
 
 	render() {
