@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text } from 'react-native';
 import ItemComponent from '../components/ItemComponent';
 import { navigationOptions } from "react-navigation";
 import firebase, { db, auth } from "../config";
