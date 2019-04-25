@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, ScrollView, RefreshControl } from 'react-native';
 import ItemComponent from '../components/ItemComponent';
 import { navigationOptions } from "react-navigation";
 import firebase, { db, auth } from "../config";
@@ -8,14 +8,10 @@ import OfflineNotice from '../components/OfflineNotice';
 
 import styles from '../styles/stylesComponent';
 
-
-
-
-
-
 export default class InventoryListScreen extends Component {
   state = {
-    products: []
+    products: [],
+    refreshing: false
   };
 
   componentDidMount() {
@@ -50,19 +46,35 @@ export default class InventoryListScreen extends Component {
   }
 
   handleRefresh = () => {
+    this.setState({refreshing: true});
     this.clearProductList();
-    this.getProducts();
+    this.getProducts().then(() => {
+      this.setState({refreshing: false});
+    });
   }
 
   render() {
     return (
       <View style={styles.scrollContainer}>
         <OfflineNotice/>
+        <ScrollView
+          refreshControl={
+            <RefreshControl
+              refreshing={this.state.refreshing}
+              onRefresh={this.handleRefresh}
+            />
+          }
+        >
+
+        </ScrollView>
+        
         {this.state.products.length > 0 ? (
-          <ItemComponent 
-            products={this.state.products}
-            refresh={this.handleRefresh}
-          />
+          this.state.products.map((product) => {
+            <ItemComponent
+              key={product.id}
+              product={product}
+            />
+          });
         ) : (
           <Loading/>
         )}
