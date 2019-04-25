@@ -47,9 +47,9 @@ export default class HomeScreen extends Component {
             </CardItem>
             <CardItem bordered>
             	<Image
-								style={styles.imageFit}
-								source={require('../img/salesGraph.gif')}
-							/>
+					style={styles.imageFit}
+					source={require('../img/salesGraph.gif')}
+				/>
             </CardItem>
           </Card>
 
