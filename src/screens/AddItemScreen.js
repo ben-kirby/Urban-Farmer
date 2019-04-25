@@ -6,6 +6,7 @@ import { readData } from '../DataStorage';
 import AsyncStorage from '@react-native-community/async-storage';
 
 import styles from '../styles/stylesComponent';
+import OfflineNotice from '../components/OfflineNotice';
 
 let addItem = (a, b, c, uid) => {
   db.ref('/products/' + uid).push({
@@ -24,7 +25,8 @@ export default class AddItemScreen extends Component {
     errorQty: false,
     errorPrice: false,
     errorName: false,
-    submitValid: true
+    submitValid: true,
+    submitEmpty: true
   };
 
   async getUserId(){
@@ -44,7 +46,7 @@ export default class AddItemScreen extends Component {
   }
   
   handleChangeName = (text) => {
-    const reg = /^[a-zA-Z]+$/;
+    const reg = /^[a-zA-Z\s]*$/;
     let correctName = text.match(reg) ? this.setState({submitValid: true, errorName: false}) : this.setState({errorName: true,  submitValid: false});
     this.setState({name:text});
   }
@@ -61,13 +63,27 @@ export default class AddItemScreen extends Component {
     this.setState({quantity:text});
   }   
 
+  checkInputEmpty = () => {
+    const { name, price, quantity } = this.state;
+    if(name !== '' && price !== '' && quantity !== ''){
+      this.setState({submitEmpty: true})
+    }
+  } 
+
   handleSubmit = () => {
-    console.log(readData)
-    if(this.state.submitValid){
+    console.log(readData);
+    this.checkInputEmpty();
+    if(this.state.submitValid && this.state.submitEmpty){
       addItem(this.state.name, this.state.price, this.state.quantity, this.state.uid);
       this.nameInputRef.clear();
       this.priceInputRef.clear();
       this.quantityInputRef.clear();
+      this.setState({
+        name: '',
+        quantity: '',
+        price: '',
+        submitEmpty: false
+      });
       console.log("handle submit triggered");
       alert('item saved!');
     }
@@ -85,6 +101,7 @@ export default class AddItemScreen extends Component {
     (this.state.submitValid === false) ? (errorSubmitVisible = <Text>please correct the inputs</Text>) : null;
     return(
     <ScrollView style={styles.scrollContainer}>
+      <OfflineNotice/>
 
       <Text style={styles.title}>Add Item</Text>
       <TextInput

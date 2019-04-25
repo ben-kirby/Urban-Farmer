@@ -140,3 +140,7 @@ export default class SoldModal extends Component {
     );
   }
 }
+
+
+
+

@@ -5,6 +5,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import { navigationOptions } from 'react-navigation';
 
 import styles from '../styles/stylesComponent';
+import OfflineNotice from '../components/OfflineNotice';
 
 export default class SignInScreen extends Component {
   state = {
@@ -83,6 +84,7 @@ export default class SignInScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <OfflineNotice/>
         <Text style={{fontWeight: 'bold', fontSize: 24}}>URBAN FARMER</Text>
         <Text>Login</Text>
         <TextInput
