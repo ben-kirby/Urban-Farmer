@@ -3,6 +3,7 @@ import { Text, TextInput, View, Button, ActivityIndicator, Image } from "react-n
 import { navigationOptions } from 'react-navigation';
 
 import styles from '../styles/stylesComponent';
+import OfflineNotice from '../components/OfflineNotice';
 
 export default class SearchScreen extends Component {
     constructor(props) {
@@ -15,6 +16,7 @@ export default class SearchScreen extends Component {
     render() {
     return (
       <View style={styles.container}>
+        <OfflineNotice/>
         <Text style={styles.description}>Search for Items!</Text>
         <Text style={styles.description}>Search by item name.</Text>
         <View style={styles.flowRight}>

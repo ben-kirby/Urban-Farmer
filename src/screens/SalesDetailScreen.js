@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView } from 'react-native';
+import { View, Text, Button, ScrollView } from 'react-native';
 import { auth, db } from '../config';
+import OfflineNotice from '../components/OfflineNotice';
 
 import Loading from '../components/Loading';
 import TransactionDetail from '../components/TransactionDetailComponent';
@@ -51,6 +52,7 @@ export default class ItemDetailScreen extends Component {
 		}
 		return (
 			<View>
+				<OfflineNotice />
 				{content}
 			</View>
 		);

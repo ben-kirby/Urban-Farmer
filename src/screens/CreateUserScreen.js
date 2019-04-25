@@ -4,6 +4,7 @@ import { auth } from '../config';
 import AsyncStorage from '@react-native-community/async-storage';
 
 import styles from '../styles/stylesComponent';
+import OfflineNotice from '../components/OfflineNotice';
 
 export default class CreateUserScreen extends Component {
 	state = {
@@ -13,16 +14,22 @@ export default class CreateUserScreen extends Component {
 		dontMatch: false
 	};
 
+	handleEmail = (text) => {
+    this.setState({ email: text })
+  };
+
+	handlePassword = (text) => {
+		this.setState({ password: text })
+	};
 
 	handleChangePassConfirm = (text) => {
 	this.setState({confirmPass: text});
 	const { password } = this.state;
 	if(password !== text ){
 		this.setState({dontMatch: true});
-	} else 
+	} else
 	this.setState({dontMatch: false});
 	}
-
 
 	handleSubmit = () => {
 			auth.createUserWithEmailAndPassword(this.state.email, this.state.password).then(response => {
@@ -44,38 +51,73 @@ export default class CreateUserScreen extends Component {
 		}
 	}
 
+	isEnabled = () => {
+    if (
+			(this.state.email === '') ||
+			(this.state.password === '') ||
+			(this.state.confirmPass === '') ||
+			(this.isGoodEmail(this.state.email) === false) ||
+			(this.state.dontMatch === true)
+		) {
+      return true;
+    } else {
+      return false;
+    };
+  }
 
+  isGoodEmail = (email) => {
+    var emailReg = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    return emailReg.test(email);
+  }
 
 	render() {
 		let dontMatchError;
 		this.state.dontMatch ? (dontMatchError = <Text>Passwords don't match</Text>) : null;
 		return(
 			<View style={styles.container}>
+				<OfflineNotice/>
 				<Text style={{fontWeight: 'bold', fontSize: 24}}>URBAN FARMER</Text>
 				<Text>Sign Up</Text>
 				<TextInput
-					style={styles.input}
-					onChangeText={(text) => this.setState({email: text})}
-					placeholder="E-Mail"
-				/>
+          underlineColorAndroid = 'transparent'
+          style={styles.input}
+          onChangeText={this.handleEmail}
+          placeholder='E-mail'
+          autoCapitalize='none'
+          value={this.state.text}
+          textContextType='emailAddress'
+          keyboardType='email-address'
+          maxLength={255}
+          />
+        <TextInput
+          underlineColorAndroid = 'transparent'
+          style={styles.input}
+          onChangeText={this.handlePassword}
+          secureTextEntry={true}
+          placeholder="Password"
+          autoCapitalize='none'
+          value={this.state.text}
+          textContextType='password'
+          keyboardType='default'
+          maxLength={128}
+          />
 				<TextInput
-					style={styles.input}
-					onChangeText={(text) => this.setState({password:text})}
-					secureTextEntry={true}
-					placeholder="Password"
-				/>
-				<TextInput
-					style={styles.input}
+					underlineColorAndroid = 'transparent'
+          style={styles.input}
 					onChangeText={this.handleChangePassConfirm}
 					secureTextEntry={true}
 					placeholder="Confirm Password"
-				/>
+					autoCapitalize='none'
+					textContextType='password'
+					keyboardType='default'
+					maxLength={128}
+					/>
 				{dontMatchError}
 				<Button
 					onPress={this.handleSubmit}
-					title="Submit"
-					color="#4a822f"
-				/>
+					title="Sign Up"
+					disabled={this.isEnabled()}
+					/>
 			<Text>{'\nOops, I\'m already an returning user...\n'}</Text>
 				<Button
 					onPress={() => this.props.navigation.navigate('SignIn')}
