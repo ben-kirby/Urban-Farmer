@@ -16,8 +16,7 @@ export default class TransactionDetail extends Component {
 
 	formatTransactionData = () => {
 		let formattedDataArray = [];
-		
-		
+	
 		for (let i = 0; i < this.props.transactionData.length; i++) {
 			let formattedContent = this.formatContent({
 				item: this.props.transactionData[i].item,
@@ -28,7 +27,6 @@ export default class TransactionDetail extends Component {
 				title: this.formatDate(this.props.transactionData[i].timestamp),
 				content: formattedContent
 			}
-
 			formattedDataArray.push(formattedDataElement);
 		}
 		this.setState({
