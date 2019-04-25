@@ -29,6 +29,25 @@ export default class SignInScreen extends Component {
       } else {
         alert('Oops! There was a problem with that. Try again plz.');
       }
+    }).catch( firebaseErrorCode  => {
+      var errorCode = firebaseErrorCode.code;
+      var errorMessage = firebaseErrorCode.message;
+      switch(firebaseErrorCode.code) {
+        case 'auth/invalid-email':
+          alert('bad email');
+          break;
+        case 'auth/user-disabled':
+          alert('user is disabled');
+          break;
+        case 'auth/user-not-found':
+          alert('user doesn\'t exist');
+          break;
+        case 'auth/wrong-password':
+          alert('wrong password');
+          break;
+        default:
+          alert(errorCode,':',errorMessage);
+      };
     });
   }
 
