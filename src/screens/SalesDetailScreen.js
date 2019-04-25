@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, ScrollView } from 'react-native';
 import { auth, db } from '../config';
 
+import Loading from '../components/Loading';
 import TransactionDetail from '../components/TransactionDetailComponent';
 import styles from '../styles/stylesComponent';
 
@@ -46,7 +47,7 @@ export default class ItemDetailScreen extends Component {
 					)}
 			</ScrollView>
 		} else {
-			content = <Text>Loading</Text>
+			content = <Loading/>
 		}
 		return (
 			<View>
