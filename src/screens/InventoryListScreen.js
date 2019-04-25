@@ -15,7 +15,8 @@ import styles from '../styles/stylesComponent';
 
 export default class InventoryListScreen extends Component {
   state = {
-    products: []
+    products: [],
+    loading: true
   };
 
   componentDidMount() {
@@ -36,18 +37,20 @@ export default class InventoryListScreen extends Component {
       }
       let products = Object.values(data);
       this.setState({ products });
+      if(this.state.products){
+        this.setState({loading: false});
+      }
     });
   }
 
   render() {
+    let loadingIndicator;
+    this.state.loading ? (loadingIndicator = <Loading/>) : null;
     return (
       <View style={styles.scrollContainer}>
         <OfflineNotice/>
-        {this.state.products.length > 0 ? (
-          <ItemComponent products={this.state.products} />
-        ) : (
-          <Loading/>
-        )}
+        {loadingIndicator}
+        <ItemComponent products={this.state.products} />
       </View>
     );
   }
