@@ -39,7 +39,26 @@ export default class CreateUserScreen extends Component {
 				} else {
 					alert('Oops! There was a problem with that. Try again plz.');
 				}
-			});
+			}).catch( firebaseErrorCode  => {
+	      var errorCode = firebaseErrorCode.code;
+	      var errorMessage = firebaseErrorCode.message;
+	      switch(firebaseErrorCode.code) {
+	        case 'auth/email-already-in-use':
+	          alert('User already exists');
+	          break;
+					case 'auth/invalid-email':
+					alert('Bad email');
+					break;
+	        case 'auth/operation-not-allowed':
+	          alert('Operation not allowed');
+	          break;
+	        case 'auth/weak-password':
+	          alert('Password is weak');
+	          break;
+	        default:
+	          alert(errorCode,':',errorMessage);
+	      };
+	    });;
 	}
 
 	storeData = async (key, value) => {
