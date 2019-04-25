@@ -30,22 +30,27 @@ export default class ItemDetailScreen extends Component {
 			this.setState({
 				transactions: Object.values(data)
 			});
-			console.log(this.state.transactions);
 		})
 	}
 
 	render() {
-		return (
-			<View>
-				<ScrollView>
-					{this.state.transactions.length > 0 ? (
-						<TransactionDetail
-							transactionData={this.state.transactions}
-						/>
-					) : (
+		let content;
+		if (this.state.transactions.length > 0) {
+			content = <ScrollView>
+				{this.state.transactions.length > 0 ? (
+					<TransactionDetail
+						transactionData={this.state.transactions}
+					/>
+				) : (
 						<Text>No sales yet</Text>
 					)}
-				</ScrollView>
+			</ScrollView>
+		} else {
+			content = <Text>Loading</Text>
+		}
+		return (
+			<View>
+				{content}
 			</View>
 		);
 	}
