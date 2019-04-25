@@ -4,6 +4,7 @@ import ItemComponent from '../components/ItemComponent';
 import { navigationOptions } from "react-navigation";
 import firebase, { db, auth } from "../config";
 import Loading from '../components/Loading';
+import OfflineNotice from '../components/OfflineNotice';
 
 import styles from '../styles/stylesComponent';
 
@@ -41,6 +42,7 @@ export default class InventoryListScreen extends Component {
   render() {
     return (
       <View style={styles.scrollContainer}>
+        <OfflineNotice/>
         {this.state.products.length > 0 ? (
           <ItemComponent products={this.state.products} />
         ) : (

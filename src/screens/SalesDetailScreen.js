@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, Button, Alert } from 'react-native';
+import OfflineNotice from '../components/OfflineNotice';
 
 import styles from '../styles/stylesComponent';
 
@@ -100,6 +101,7 @@ export default class ItemDetailScreen extends Component {
 		}
 		return (
 			<View>
+				<OfflineNotice/>
 				{sellUi}
 			</View>
 			);

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { ScrollView, Button, View, Dimensions, Image } from 'react-native';
-import { Card, CardItem, Text, Body} from "native-base";
+import { Card, CardItem, Text, Body, Container} from "native-base";
 import { navigationOptions } from 'react-navigation';
 import AsyncStorage from '@react-native-community/async-storage';
-import Loading from '../components/Loading'
-
+import Loading from '../components/Loading';
+import OfflineNotice from '../components/OfflineNotice';
 
 import styles from '../styles/stylesComponent';
 
@@ -34,8 +34,10 @@ export default class HomeScreen extends Component {
 
 	render () {
 		return(
-			<ScrollView style={styles.scrollContainer}>
-				<Button
+			<Container style={styles.scrollContainer}>
+
+				<OfflineNotice/>
+				<Button 
 					title='*Sign Out'
 					onPress={this.signUserOut}
 				/>
@@ -45,9 +47,9 @@ export default class HomeScreen extends Component {
             </CardItem>
             <CardItem bordered>
             	<Image
-								style={styles.imageFit}
-								source={require('../img/salesGraph.gif')}
-							/>
+					style={styles.imageFit}
+					source={require('../img/salesGraph.gif')}
+				/>
             </CardItem>
           </Card>
 
@@ -80,7 +82,7 @@ export default class HomeScreen extends Component {
 						</CardItem>
 					</Card>
 
-			</ScrollView>
+			</Container>
 		);
 	}
 }
