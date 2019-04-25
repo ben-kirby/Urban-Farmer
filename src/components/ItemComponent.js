@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, RefreshControl } from 'react-native';
 import PropTypes from 'prop-types';
 import SoldModal from './SoldModal';
 import EditModal from './EditModal';
@@ -7,13 +7,32 @@ import EditModal from './EditModal';
 
 
 export default class ItemComponent extends Component {
+  state = {
+    refreshing: false
+  }
+
   static propTypes = {
     products: PropTypes.array.isRequired
   };
 
+  _onRefresh = () => {
+    this.setState({refreshing: true});
+    this.props.refresh().then(() => {
+      this.setState({refreshing: false})
+    });
+  }
+
   render() {
     return(
-      <ScrollView style={StyleSheet.itemsList}>
+      <ScrollView 
+        style={StyleSheet.itemsList}
+        refreshControl={
+          <RefreshControl
+            refreshing={this.state.refreshing}
+            onRefresh={this._onRefresh}
+          />
+        }
+      >
         {this.props.products.map((item, index) => {
           return (
             <View style={styles.itemCard} key={index}>

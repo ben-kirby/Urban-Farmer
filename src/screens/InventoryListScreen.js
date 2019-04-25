@@ -19,7 +19,11 @@ export default class InventoryListScreen extends Component {
   };
 
   componentDidMount() {
-    let uid = auth.currentUser.uid;
+    this.getProducts()
+  }
+  
+  getProducts = () => {
+    let uid = auth.currentUser.uid
     db.ref("/products/" + uid).on("value", snapshot => {
       let items = snapshot.val();
       let data = [];
@@ -39,12 +43,26 @@ export default class InventoryListScreen extends Component {
     });
   }
 
+  clearProductList = () => {
+    this.setState({
+      products: []
+    });
+  }
+
+  handleRefresh = () => {
+    this.clearProductList();
+    this.getProducts();
+  }
+
   render() {
     return (
       <View style={styles.scrollContainer}>
         <OfflineNotice/>
         {this.state.products.length > 0 ? (
-          <ItemComponent products={this.state.products} />
+          <ItemComponent 
+            products={this.state.products}
+            refresh={this.handleRefresh}
+          />
         ) : (
           <Loading/>
         )}
