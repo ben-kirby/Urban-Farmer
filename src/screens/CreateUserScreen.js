@@ -4,7 +4,6 @@ import { auth } from '../config';
 import AsyncStorage from '@react-native-community/async-storage';
 
 import styles from '../styles/stylesComponent';
-import OfflineNotice from '../components/OfflineNotice';
 
 export default class CreateUserScreen extends Component {
 	state = {
@@ -45,16 +44,16 @@ export default class CreateUserScreen extends Component {
 	      var errorMessage = firebaseErrorCode.message;
 	      switch(firebaseErrorCode.code) {
 	        case 'auth/email-already-in-use':
-	          alert('User already exists');
+	          alert('User already exists.');
 	          break;
 					case 'auth/invalid-email':
-					alert('Bad email');
+					alert('E-mail is badly formatted.');
 					break;
 	        case 'auth/operation-not-allowed':
-	          alert('Operation not allowed');
+	          alert('Operation not allowed.');
 	          break;
 	        case 'auth/weak-password':
-	          alert('Password is weak');
+	          alert('Password is weak.');
 	          break;
 	        default:
 	          alert(errorCode,':',errorMessage);
@@ -97,7 +96,6 @@ export default class CreateUserScreen extends Component {
 		this.state.dontMatch ? (dontMatchError = <Text>Passwords don't match</Text>) : null;
 		return(
 			<View style={styles.container}>
-				<OfflineNotice/>
 				<Text style={{fontWeight: 'bold', fontSize: 24}}>URBAN FARMER</Text>
 				<Text>Sign Up</Text>
 				<TextInput

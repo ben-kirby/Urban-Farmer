@@ -35,16 +35,16 @@ export default class SignInScreen extends Component {
       var errorMessage = firebaseErrorCode.message;
       switch(firebaseErrorCode.code) {
         case 'auth/invalid-email':
-          alert('bad email');
+          alert('E-mail is badly formatted.');
           break;
         case 'auth/user-disabled':
-          alert('user is disabled');
+          alert('User access is denied.');
           break;
         case 'auth/user-not-found':
-          alert('user doesn\'t exist');
+          alert('User not found.');
           break;
         case 'auth/wrong-password':
-          alert('wrong password');
+          alert('Wrong password.');
           break;
         default:
           alert(errorCode,':',errorMessage);
