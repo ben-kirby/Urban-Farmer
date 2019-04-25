@@ -1,23 +1,22 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import ItemComponent from '../components/ItemComponent';
-import { navigationOptions } from "react-navigation";
 import firebase, { db, auth } from "../config";
 import Loading from '../components/Loading';
 import OfflineNotice from '../components/OfflineNotice';
-
 import styles from '../styles/stylesComponent';
-
-
-
-
 
 
 export default class InventoryListScreen extends Component {
   state = {
     products: [],
-    loading: true
   };
+
+  handleDelete = (itemId) =>{  
+    let userId = auth.currentUser.uid;  
+    db.ref('products/' + userId).child(itemId).remove();
+  }
+  
 
   componentDidMount() {
     let uid = auth.currentUser.uid;
@@ -35,22 +34,22 @@ export default class InventoryListScreen extends Component {
           });
         });
       }
+     
       let products = Object.values(data);
-      this.setState({ products });
-      if(this.state.products){
-        this.setState({loading: false});
-      }
+      this.setState({ products});
     });
   }
 
   render() {
-    let loadingIndicator;
-    this.state.loading ? (loadingIndicator = <Loading/>) : null;
     return (
       <View style={styles.scrollContainer}>
         <OfflineNotice/>
-        {loadingIndicator}
         <ItemComponent products={this.state.products} />
+        {this.state.products.length > 0 ? (
+          <ItemComponent products={this.state.products} delete={this.handleDelete}/>
+        ) : (
+          <Loading/>
+        )}
       </View>
     );
   }
