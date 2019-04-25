@@ -5,21 +5,24 @@ import SoldModal from './SoldModal';
 import EditModal from './EditModal';
 
 
-
 export default class ItemComponent extends Component {
   static propTypes = {
-    products: PropTypes.array.isRequired
+    products: PropTypes.array.isRequired,
+    delete: PropTypes.func.isRequired
   };
 
+  
+
   render() {
-    return(
+    console.log(this.props)
+      return(
       <ScrollView style={StyleSheet.itemsList}>
         {this.props.products.map((item, index) => {
           return (
             <View style={styles.itemCard} key={index}>
               <Text style={styles.itemtext}>Product Name: {item.name} </Text>
               
-              <EditModal item={item}/>
+              <EditModal item={item} />
               <SoldModal item={item}/>
              
             </View>

@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import { Button } from 'react-native';
 import {Modal, TouchableHighlight, View, Alert,TextInput, StyleSheet} from 'react-native';
 import PropTypes from 'prop-types';
-import { db, auth } from '../config';
+import { db } from '../config';
+
 
 
 
@@ -11,7 +12,8 @@ export default class EditModal extends Component {
         super(props);
     }
     static propTypes = {
-      item: PropTypes.object
+      item: PropTypes.object,
+      delete: PropTypes.func
     };
     state = {
         modalVisible: false,
@@ -19,7 +21,7 @@ export default class EditModal extends Component {
         itemName: this.props.item.name,
         itemPrice: this.props.item.price,
         itemQty: this.props.item.quantity,
-        userId: this.props.item.uid
+        userId: this.props.item.uid,
       };
       
   
@@ -29,12 +31,9 @@ export default class EditModal extends Component {
         modalVisible: visible
     });
   }
-  handleDelete = () =>{    
-    db.ref('products/' + this.state.userId ).child(this.state.itemId).remove();
-  }
 
   deleteCombo= () =>{
-    this.handleDelete();
+    this.props.delete(this.state.itemId);
     this.setModalVisible(false);
   }
 
@@ -61,8 +60,8 @@ export default class EditModal extends Component {
 
 
   handleSubmit = () => {
-
-    db.ref('products/' + this.state.userId + '/' + this.state.itemId + '/name').set(
+      
+      db.ref('products/' + this.state.userId + '/' + this.state.itemId + '/name').set(
       this.state.itemName
     );
     db.ref('products/' + this.state.userId + '/' + this.state.itemId + '/price').set(
@@ -75,6 +74,7 @@ export default class EditModal extends Component {
   };
 s
   render() {
+    console.log(this.props);
     return (
       <View style={{marginTop: 22}}>
         <Modal
