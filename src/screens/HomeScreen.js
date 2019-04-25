@@ -6,7 +6,6 @@ import AsyncStorage from '@react-native-community/async-storage';
 import Loading from '../components/Loading';
 import OfflineNotice from '../components/OfflineNotice';
 
-
 import styles from '../styles/stylesComponent';
 
 export default class HomeScreen extends Component {

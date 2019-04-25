@@ -6,6 +6,7 @@ import { readData } from '../DataStorage';
 import AsyncStorage from '@react-native-community/async-storage';
 
 import styles from '../styles/stylesComponent';
+import OfflineNotice from '../components/OfflineNotice';
 
 let addItem = (a, b, c, uid) => {
   db.ref('/products/' + uid).push({
@@ -100,6 +101,7 @@ export default class AddItemScreen extends Component {
     (this.state.submitValid === false) ? (errorSubmitVisible = <Text>please correct the inputs</Text>) : null;
     return(
     <ScrollView style={styles.scrollContainer}>
+      <OfflineNotice/>
 
       <Text style={styles.title}>Add Item</Text>
       <TextInput
