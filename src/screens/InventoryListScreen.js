@@ -1,15 +1,10 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import ItemComponent from '../components/ItemComponent';
-import firebase, { db, auth } from "../config";
+import { db, auth } from "../config";
 import Loading from '../components/Loading';
 
 import styles from '../styles/stylesComponent';
-
-
-
-
-
 
 export default class InventoryListScreen extends Component {
   state = {

@@ -5,8 +5,6 @@ import PropTypes from 'prop-types';
 import { db } from '../config';
 
 
-
-
 export default class EditModal extends Component {
     constructor(props){
         super(props);

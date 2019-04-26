@@ -11,10 +11,7 @@ export default class ItemComponent extends Component {
     delete: PropTypes.func.isRequired
   };
 
-  
-
   render() {
-    console.log(this.props)
       return(
       <ScrollView style={StyleSheet.itemsList}>
         {this.props.products.map((item, index) => {
