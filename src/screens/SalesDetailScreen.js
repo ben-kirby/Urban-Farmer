@@ -9,10 +9,15 @@ import styles from '../styles/stylesComponent';
 
 export default class ItemDetailScreen extends Component {
 	state = {
-		transactions: []
+		transactions: [],
+		loading: true
 	}
 
 	componentDidMount() {
+		
+	}
+
+	getTransactions = async () => {
 		let uid = auth.currentUser.uid;
 		db.ref("transactions/" + uid).on("value", snapshot => {
 			let transaction = snapshot.val();
@@ -30,7 +35,8 @@ export default class ItemDetailScreen extends Component {
 				});
 			}
 			this.setState({
-				transactions: Object.values(data)
+				transactions: Object.values(data),
+				loading: false
 			});
 		})
 	}
