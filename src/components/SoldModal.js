@@ -19,7 +19,8 @@ export default class SoldModal extends Component {
   
   handlePurchase = () => {
     let newQty = this.state.itemQty - this.state.quantityToSell;
-    db.ref('products/' + this.state.userId + '/' + this.state.itemId + '/quantity').set(newQty);
+    let strQty = newQty.toString();
+    db.ref('products/' + this.state.userId + '/' + this.state.itemId + '/quantity').set(strQty);
     this.setState({
       itemQty: newQty
     });
