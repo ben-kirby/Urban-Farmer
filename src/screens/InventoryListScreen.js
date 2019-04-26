@@ -11,11 +11,12 @@ export default class InventoryListScreen extends Component {
     products: [],
   };
 
+ 
   handleDelete = (itemId) =>{  
     let userId = auth.currentUser.uid;  
     db.ref('products/' + userId).child(itemId).remove();
   }
-  
+
 
   componentDidMount() {
     let uid = auth.currentUser.uid;

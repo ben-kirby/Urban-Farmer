@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import PropTypes from 'prop-types';
 import SoldModal from './SoldModal';
 import EditModal from './EditModal';
-
+import { db, auth } from '../config';
 
 export default class ItemComponent extends Component {
   static propTypes = {
@@ -11,6 +11,7 @@ export default class ItemComponent extends Component {
     delete: PropTypes.func.isRequired
   };
 
+  
   render() {
       return(
       <ScrollView style={StyleSheet.itemsList}>
@@ -19,7 +20,7 @@ export default class ItemComponent extends Component {
             <View style={styles.itemCard} key={index}>
               <Text style={styles.itemtext}>Product Name: {item.name} </Text>
               
-              <EditModal item={item} />
+              <EditModal item={item} delete={this.props.delete} />
               <SoldModal item={item}/>
              
             </View>
