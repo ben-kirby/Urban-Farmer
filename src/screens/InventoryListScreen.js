@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView, RefreshControl, Alert } from 'react-native';
+import { View, ScrollView, RefreshControl } from 'react-native';
 import ItemComponent from '../components/ItemComponent';
 import { navigationOptions } from "react-navigation";
-import firebase, { db, auth } from "../config";
+import { db, auth } from "../config";
 import Loading from '../components/Loading';
 import OfflineNotice from '../components/OfflineNotice';
-import { Content, Container} from 'native-base';
 
 import styles from '../styles/stylesComponent';
 
@@ -56,7 +55,7 @@ export default class InventoryListScreen extends Component {
 
   render() {
     return (
-      <Container>
+      <View style={styles.scrollContainer}>
         <OfflineNotice/>
         {this.state.products.length > 0 ? (
           <ScrollView
@@ -79,7 +78,7 @@ export default class InventoryListScreen extends Component {
           ) : (
             <Loading/>
           )}
-      </Container>
+      </View>
     );
   }
 }
