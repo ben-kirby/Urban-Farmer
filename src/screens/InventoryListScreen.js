@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView, RefreshControl } from 'react-native';
+import { View, Text, ScrollView, RefreshControl, Alert } from 'react-native';
 import ItemComponent from '../components/ItemComponent';
 import { navigationOptions } from "react-navigation";
 import firebase, { db, auth } from "../config";
 import Loading from '../components/Loading';
 import OfflineNotice from '../components/OfflineNotice';
+import { Content, Container} from 'native-base';
 
 import styles from '../styles/stylesComponent';
 
@@ -18,7 +19,7 @@ export default class InventoryListScreen extends Component {
     this.getProducts()
   }
   
-  getProducts = () => {
+  getProducts = async () => {
     let uid = auth.currentUser.uid
     db.ref("/products/" + uid).on("value", snapshot => {
       let items = snapshot.val();
@@ -55,30 +56,30 @@ export default class InventoryListScreen extends Component {
 
   render() {
     return (
-      <View style={styles.scrollContainer}>
+      <Container>
         <OfflineNotice/>
-        <ScrollView
-          refreshControl={
-            <RefreshControl
-              refreshing={this.state.refreshing}
-              onRefresh={this.handleRefresh}
-            />
-          }
-        >
-
-        </ScrollView>
-        
         {this.state.products.length > 0 ? (
-          this.state.products.map((product) => {
-            <ItemComponent
-              key={product.id}
-              product={product}
-            />
-          });
-        ) : (
-          <Loading/>
-        )}
-      </View>
+          <ScrollView
+            refreshControl= {
+              <RefreshControl
+                refreshing={this.state.refreshing}
+                onRefresh={this.handleRefresh}
+              />
+            }
+          >
+            {this.state.products.map((product) => {
+              return(
+                <ItemComponent
+                  key={product.id}
+                  product={product}
+                />
+              )
+            })}
+          </ScrollView>
+          ) : (
+            <Loading/>
+          )}
+      </Container>
     );
   }
 }
