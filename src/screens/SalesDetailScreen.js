@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Button, ScrollView } from 'react-native';
+import { View, Text, RefreshControl, ScrollView } from 'react-native';
 import { auth, db } from '../config';
 import OfflineNotice from '../components/OfflineNotice';
 
@@ -49,6 +49,7 @@ export default class ItemDetailScreen extends Component {
 	}
 
 	handleRefresh = () => {
+		
 		this.setState({
 			refreshing: true,
 			loading: true
@@ -72,13 +73,9 @@ export default class ItemDetailScreen extends Component {
 						/>
 					}
 				>
-					{this.state.transactions.map((transaction) => {
-						return(
-							<TransactionDetail
-								transactionData={transaction}
-							/>
-						)
-					})}
+					<TransactionDetail
+						transactionData={this.state.transactions}
+					/>
 				</ScrollView>
 			) : (
 				content = <Text>No sales yet</Text>
@@ -86,7 +83,7 @@ export default class ItemDetailScreen extends Component {
 		} else {
 			content = <Loading />
 		}
-		
+
 		return (
 			<View>
 				<OfflineNotice />
