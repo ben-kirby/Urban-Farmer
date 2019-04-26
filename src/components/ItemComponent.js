@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import PropTypes from 'prop-types';
 import SoldModal from './SoldModal';
 import EditModal from './EditModal';
-
+import { db, auth } from '../config';
 
 export default class ItemComponent extends Component {
   static propTypes = {
@@ -12,9 +12,7 @@ export default class ItemComponent extends Component {
   };
 
   
-
   render() {
-    console.log(this.props)
       return(
       <ScrollView style={StyleSheet.itemsList}>
         {this.props.products.map((item, index) => {
@@ -22,7 +20,7 @@ export default class ItemComponent extends Component {
             <View style={styles.itemCard} key={index}>
               <Text style={styles.itemtext}>Product Name: {item.name} </Text>
               
-              <EditModal item={item} />
+              <EditModal item={item} delete={this.props.delete} />
               <SoldModal item={item}/>
              
             </View>

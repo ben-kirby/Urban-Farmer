@@ -78,9 +78,6 @@ export default class EditModal extends Component {
 
   handleSubmit = () => {
     this.checkInputEmpty();
-    console.log('submitValid', this.state.submitValid);
-    console.log('submitEmpty', this.state.submitEmpty);
-    console.log('~~~~~~~~~~');
     if(this.state.submitValid && this.state.submitEmpty){ 
       db.ref('products/' + this.state.userId + '/' + this.state.itemId + '/name').set(
       this.state.itemName
