@@ -6,8 +6,6 @@ import { db } from '../config';
 import OfflineNotice from './OfflineNotice';
 
 
-
-
 export default class EditModal extends Component {
     constructor(props){
         super(props);
@@ -29,8 +27,6 @@ export default class EditModal extends Component {
         submitValid: true,
         submitEmpty: true
       };
-      
-  
               
   setModalVisible(visible) {
     this.setState({
@@ -45,7 +41,7 @@ export default class EditModal extends Component {
 
   updateCombo = () => {
     this.handleSubmit();
-    this.setModalVisible(false);
+    this.setModalVisible(true);
   }
 
   handleNameVal = (nam) => {
@@ -55,6 +51,8 @@ export default class EditModal extends Component {
     itemName: nam
     });
   }
+
+
   handlePriceVal = (pri) => {
     const reg = /^[+]?([1-9][0-9]*(?:[\.][0-9]*)?|0*\.0*[1-9][0-9]*)(?:[eE][+-][0-9]+)?$/;
     let correctPrice = pri.match(reg) ? this.setState({submitValid: true, errorPrice: false}) : this.setState({errorPrice: true, submitValid: false});
@@ -146,8 +144,7 @@ export default class EditModal extends Component {
 
                 <Button 
                 title='Close Modal'           
-                onPress={() => {this.setModalVisible(!this.state.modalVisible);
-                }} 
+                onPress={() => {this.setModalVisible(false);}} 
                 />
 
               </TouchableHighlight>
