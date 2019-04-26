@@ -7,26 +7,18 @@ import { db, auth } from '../config';
 
 export default class ItemComponent extends Component {
   static propTypes = {
-    products: PropTypes.array.isRequired,
-    delete: PropTypes.func.isRequired
+    product: PropTypes.object.isRequired,
+    refresh: PropTypes.func
   };
 
   
   render() {
       return(
-      <ScrollView style={StyleSheet.itemsList}>
-        {this.props.products.map((item, index) => {
-          return (
-            <View style={styles.itemCard} key={index}>
-              <Text style={styles.itemtext}>Product Name: {item.name} </Text>
-              
-              <EditModal item={item} delete={this.props.delete} />
-              <SoldModal item={item}/>
-             
-            </View>
-          );
-        })}
-      </ScrollView>
+        <View style={styles.itemCard}>
+          <Text style={styles.itemtext}>{this.props.product.name} </Text>
+          <EditModal item={this.props.product} refresh={this.props.refresh}/>
+          <SoldModal item={this.props.product}/>
+        </View>
     );
   }
 }

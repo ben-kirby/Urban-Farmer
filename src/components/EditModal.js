@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { Button } from 'react-native';
 import {Modal, TouchableHighlight, View, Alert,TextInput, StyleSheet, Text} from 'react-native';
 import PropTypes from 'prop-types';
-import { db } from '../config';
+import { auth, db } from '../config';
 import OfflineNotice from './OfflineNotice';
 
 
@@ -12,7 +12,7 @@ export default class EditModal extends Component {
     }
     static propTypes = {
       item: PropTypes.object,
-      delete: PropTypes.func
+      refresh: PropTypes.func
     };
     state = {
         modalVisible: false,
@@ -34,8 +34,14 @@ export default class EditModal extends Component {
     });
   }
 
-  deleteCombo= () => {
-    this.props.delete(this.state.itemId);
+  handleDelete = (itemId) => {  
+    let userId = auth.currentUser.uid;  
+    db.ref('products/' + userId).child(itemId).remove();
+  }
+
+  deleteCombo = () => {
+    this.props.refresh();
+    this.handleDelete(this.state.itemId);
     this.setModalVisible(false);
   }
 
