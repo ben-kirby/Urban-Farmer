@@ -3,6 +3,8 @@ import { View, Text, StyleSheet } from 'react-native';
 import SoldModal from './SoldModal';
 import EditModal from './EditModal';
 import { db, auth } from '../config';
+import PropTypes from 'prop-types';
+
 
 export default class ItemComponent extends Component {
   static propTypes = {
