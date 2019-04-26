@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
-import PropTypes from 'prop-types';
+import { View, Text, StyleSheet } from 'react-native';
 import SoldModal from './SoldModal';
 import EditModal from './EditModal';
 import { db, auth } from '../config';
+import PropTypes from 'prop-types';
+
 
 export default class ItemComponent extends Component {
   static propTypes = {
@@ -24,24 +25,21 @@ export default class ItemComponent extends Component {
 }
 
 const styles = StyleSheet.create({
-  itemsList: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'space-around'
-  },
-  itemtext: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    borderWidth:2,
-    borderColor: 'black'
-  },
-  itemCard: {
-
-    marginTop:10,
-    marginRight:10,
-    marginLeft:10,
-    backgroundColor :'#f9f4eb'
-  }
-
+	itemsList: {
+		flex: 1,
+		flexDirection: 'column',
+		justifyContent: 'space-around'
+	},
+	itemtext: {
+		fontSize: 24,
+		fontWeight: 'bold',
+		textAlign: 'center',
+		marginTop: 10
+	},
+	itemCard: {
+		marginTop:10,
+		marginRight:10,
+		marginLeft:10,
+		backgroundColor :'#f9f4eb'
+	}
 });

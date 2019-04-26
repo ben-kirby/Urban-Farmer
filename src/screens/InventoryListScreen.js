@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, ScrollView, RefreshControl, Alert } from 'react-native';
 import ItemComponent from '../components/ItemComponent';
 import { navigationOptions } from "react-navigation";
-import firebase, { db, auth } from "../config";
+import { db, auth } from "../config";
 import Loading from '../components/Loading';
 import OfflineNotice from '../components/OfflineNotice';
 import { Content, Container} from 'native-base';
@@ -11,13 +11,13 @@ import styles from '../styles/stylesComponent';
 export default class InventoryListScreen extends Component {
   state = {
     products: [],
-    refreshing: false,
+    refreshing: false
   };
 
   componentDidMount() {
-    this.getProducts();
+    this.getProducts()
   }
-
+  
   getProducts = async () => {
     let uid = auth.currentUser.uid
     db.ref("/products/" + uid).on("value", snapshot => {
@@ -52,7 +52,6 @@ export default class InventoryListScreen extends Component {
       this.setState({refreshing: false});
     });
   }
-
 
   render() {
     return (
