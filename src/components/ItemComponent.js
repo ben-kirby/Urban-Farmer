@@ -2,25 +2,24 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import SoldModal from './SoldModal';
 import EditModal from './EditModal';
-import PropTypes from 'prop-types';
-
-
-
+import { db, auth } from '../config';
 
 export default class ItemComponent extends Component {
-	static propTypes = {
-		products: PropTypes.object
-	};
+  static propTypes = {
+    product: PropTypes.object.isRequired,
+    refresh: PropTypes.func
+  };
 
-	render() {
-		return(
-			<View style={styles.itemCard}>
-				<Text style={styles.itemtext}>{this.props.product.name} </Text>
-				<EditModal item={this.props.product}/>
-				<SoldModal item={this.props.product}/>
-			</View>
-		);
-	}
+  
+  render() {
+      return(
+        <View style={styles.itemCard}>
+          <Text style={styles.itemtext}>{this.props.product.name} </Text>
+          <EditModal item={this.props.product} refresh={this.props.refresh}/>
+          <SoldModal item={this.props.product}/>
+        </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({

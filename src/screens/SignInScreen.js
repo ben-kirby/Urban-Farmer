@@ -30,9 +30,27 @@ export default class SignInScreen extends Component {
       } else {
         alert('Oops! There was a problem with that. Try again plz.');
       }
+    }).catch( firebaseErrorCode  => {
+      var errorCode = firebaseErrorCode.code;
+      var errorMessage = firebaseErrorCode.message;
+      switch(firebaseErrorCode.code) {
+        case 'auth/invalid-email':
+          alert('E-mail is badly formatted.');
+          break;
+        case 'auth/user-disabled':
+          alert('User access is denied.');
+          break;
+        case 'auth/user-not-found':
+          alert('User not found.');
+          break;
+        case 'auth/wrong-password':
+          alert('Wrong password.');
+          break;
+        default:
+          alert(errorCode,':',errorMessage);
+      };
     });
   }
-
 
   storeData = async (key, value) => {
     try {
@@ -43,18 +61,25 @@ export default class SignInScreen extends Component {
   }
 
   isEnabled = () => {
-    if (((this.state.email === '') || (this.state.password === '')) || (this.isGoodEmail(this.state.email) === false) ) {
+    if (
+			!this.isGoodEmail(this.state.email) ||
+			!this.isGoodPassword(this.state.password)
+		) {
       return true;
     } else {
       return false;
     };
   }
 
+  isGoodPassword = (password) => {
+		var passwordReg = /^\w{6,}$/;
+		return passwordReg.test(password);
+	}
+
   isGoodEmail = (email) => {
     var emailReg = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     return emailReg.test(email);
   }
-
 
   render() {
     return (

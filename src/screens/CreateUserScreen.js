@@ -4,7 +4,6 @@ import { auth } from '../config';
 import AsyncStorage from '@react-native-community/async-storage';
 
 import styles from '../styles/stylesComponent';
-import OfflineNotice from '../components/OfflineNotice';
 
 export default class CreateUserScreen extends Component {
 	state = {
@@ -40,7 +39,26 @@ export default class CreateUserScreen extends Component {
 				} else {
 					alert('Oops! There was a problem with that. Try again plz.');
 				}
-			});
+			}).catch( firebaseErrorCode  => {
+	      var errorCode = firebaseErrorCode.code;
+	      var errorMessage = firebaseErrorCode.message;
+	      switch(firebaseErrorCode.code) {
+	        case 'auth/email-already-in-use':
+	          alert('User already exists.');
+	          break;
+					case 'auth/invalid-email':
+					alert('E-mail is badly formatted.');
+					break;
+	        case 'auth/operation-not-allowed':
+	          alert('Operation not allowed.');
+	          break;
+	        case 'auth/weak-password':
+	          alert('Password is weak.');
+	          break;
+	        default:
+	          alert(errorCode,':',errorMessage);
+	      };
+	    });;
 	}
 
 	storeData = async (key, value) => {
@@ -53,17 +71,20 @@ export default class CreateUserScreen extends Component {
 
 	isEnabled = () => {
     if (
-			(this.state.email === '') ||
-			(this.state.password === '') ||
-			(this.state.confirmPass === '') ||
-			(this.isGoodEmail(this.state.email) === false) ||
-			(this.state.dontMatch === true)
+			this.state.confirmPass != this.state.password ||
+			!this.isGoodEmail(this.state.email) ||
+			!this.isGoodPassword(this.state.password)
 		) {
       return true;
     } else {
       return false;
     };
   }
+
+	isGoodPassword = (password) => {
+		var passwordReg = /^\w{6,}$/;
+		return passwordReg.test(password);
+	}
 
   isGoodEmail = (email) => {
     var emailReg = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
@@ -75,7 +96,6 @@ export default class CreateUserScreen extends Component {
 		this.state.dontMatch ? (dontMatchError = <Text>Passwords don't match</Text>) : null;
 		return(
 			<View style={styles.container}>
-				<OfflineNotice/>
 				<Text style={{fontWeight: 'bold', fontSize: 24}}>URBAN FARMER</Text>
 				<Text>Sign Up</Text>
 				<TextInput
