@@ -17,16 +17,6 @@ class UpperLeftCornerIcon extends Component {
   }
 };
 
-// class UpperRightCornerIcon extends Component {
-//   render() {
-//     return(
-//       <TouchableOpacity onPress={ ()=> {props.navigation.goBack()} }>
-//         <Icon name="sign-out" size={30} style={{padding: 10}}/>
-//       </TouchableOpacity>
-//     );
-//   }
-// };
-
 const RouterConfig =
   {
     Main:
