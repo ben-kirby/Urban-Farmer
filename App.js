@@ -21,27 +21,17 @@ console.warn = message => {
 //End code that ignores yellow warning box
 
 //This should stay here
-const AppContainerAuth = createAppContainer(createSwitchNavigator(
-  {
-    AppStack,
-    AuthStack,
-  },
-  {
-    initialRouteName: 'AuthStack',
-    headerMode: 'none',
-  })
-);
-
-const AppContainerSkipAuth = createAppContainer(createSwitchNavigator(
-  {
-    AppStack,
-    AuthStack,
-  },
-  {
-    initialRouteName: 'AppStack',
-    headerMode: 'none',
-  })
-);
+export const createRootNavigator = (localDataFound = false) => {
+  return createSwitchNavigator(
+    {
+      AppStack,
+      AuthStack,
+    },
+    {
+      initialRouteName: localDataFound ? 'AppStack' : 'AuthStack',
+    }
+  );
+};
 
 export default class App extends Component {
   state = {
@@ -49,6 +39,7 @@ export default class App extends Component {
     loadingLocalData: true,
     localDataFound: false
   }
+
 
 
   componentDidMount() {
@@ -85,15 +76,11 @@ export default class App extends Component {
           <Loading/>
         </View>
       );
-    } else {
-      if (this.state.localDataFound === true) {
-        return <AppContainerSkipAuth/>
-      } else {
-        return <AppContainerAuth/>
-      }
     }
-  }
-}
+      const AppContainer = createAppContainer(createRootNavigator(this.state.localDataFound));
+      return <AppContainer/>
+  };
+};
 
 const styles = StyleSheet.create({
   page: {

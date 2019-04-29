@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { Platform, StyleSheet, Text, View, TextInput, Button, TouchableOpacity } from 'react-native';
 import { createStackNavigator, navigationOptions } from 'react-navigation';
+import SignOutButton from './SignOutButtonComponent'
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -11,16 +12,6 @@ class UpperLeftCornerIcon extends Component {
     return(
       <TouchableOpacity onPress={ ()=> {return('Type Some Code here')} }>
         <Icon name="leaf" size={30} style={{padding: 10}}/>
-      </TouchableOpacity>
-    );
-  }
-};
-
-class UpperRightCornerIcon extends Component {
-  render() {
-    return(
-      <TouchableOpacity onPress={ ()=> {return('Type Some Code here')} }>
-        <Icon name="sign-out" size={30} style={{padding: 10}}/>
       </TouchableOpacity>
     );
   }
@@ -45,7 +36,7 @@ const RouterConfig =
           fontWeight: 'bold',
         },
         headerLeft: (<UpperLeftCornerIcon/>),
-        headerRight: (<UpperRightCornerIcon/>),
+        headerRight: (<SignOutButton/>),
       },
     },
   }
@@ -55,5 +46,4 @@ const NavOptionsConfig =
   {
     initialRouteName: 'Main',
   }
-
 export default AppStack = createStackNavigator(RouterConfig, NavOptionsConfig);

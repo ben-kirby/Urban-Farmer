@@ -22,66 +22,52 @@ export default class HomeScreen extends Component {
 		});
 	}
 
-	signUserOut = async () => {
-		try {
-			await AsyncStorage.removeItem('uid').then(() => {
-				this.props.navigation.navigate('AuthStack');
-			});
-		} catch (error) {
-			alert(error.message)
-		}
-	}
-
 	render () {
 		return(
 			<Container style={styles.scrollContainer}>
-
 				<OfflineNotice/>
-				<Button 
-					title='*Sign Out'
-					onPress={this.signUserOut}
-				/>
-          <Card>
-            <CardItem header bordered>
-              <Text>Sales vs. Time, for {'April 2019'}</Text>
-            </CardItem>
-            <CardItem bordered>
-            	<Image
-					style={styles.imageFit}
-					source={require('../img/salesGraph.gif')}
-				/>
-            </CardItem>
-          </Card>
+			<ScrollView>
+				<Card>
+					<CardItem header bordered>
+						<Text>Sales vs. Time, for {'April 2019'}</Text>
+					</CardItem>
+					<CardItem bordered>
+						<Image
+							style={styles.imageFit}
+							source={require('../img/salesGraph.gif')}
+							/>
+					</CardItem>
+				</Card>
 
-					<Card>
-						<CardItem header bordered>
-							<Text>Transaction Counts for {'April 2019'}</Text>
-						</CardItem>
-						<CardItem bordered>
-							<Body>
-								<Text>
-									{'40'} transactions in the past month.
-								</Text>
-							</Body>
-						</CardItem>
-					</Card>
+				<Card>
+					<CardItem header bordered>
+						<Text>Transaction Counts for {'April 2019'}</Text>
+					</CardItem>
+					<CardItem bordered>
+						<Body>
+							<Text>
+								{'40'} transactions in the past month.
+							</Text>
+						</Body>
+					</CardItem>
+				</Card>
 
-					<Card>
-						<CardItem header bordered>
-							<Text>KPI info for {'April 2019'}</Text>
-						</CardItem>
-						<CardItem bordered>
-							<Body>
-								<Text>
-									Averaged {'$7.77'} per transaction.
-								</Text>
-								<Text>
-									Average sale was {'12'} items.
-								</Text>
-							</Body>
-						</CardItem>
-					</Card>
-
+				<Card>
+					<CardItem header bordered>
+						<Text>KPI info for {'April 2019'}</Text>
+					</CardItem>
+					<CardItem bordered>
+						<Body>
+							<Text>
+								Averaged {'$7.77'} per transaction.
+							</Text>
+							<Text>
+								Average sale was {'12'} items.
+							</Text>
+						</Body>
+					</CardItem>
+				</Card>
+			</ScrollView>
 			</Container>
 		);
 	}
