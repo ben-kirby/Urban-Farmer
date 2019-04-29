@@ -25,7 +25,7 @@ export default class SignInScreen extends Component {
     auth.signInWithEmailAndPassword(this.state.email, this.state.password).then(response => {
       if (response.user) {
         this.storeData('uid', response.user.uid).then(() => {
-          this.props.navigation.navigate('AppStack');
+          this.props.navigation.navigate('AppStack', {email: this.state.email} );
         })
       } else {
         alert('Oops! There was a problem with that. Try again plz.');
@@ -82,6 +82,7 @@ export default class SignInScreen extends Component {
   }
 
   render() {
+
     return (
       <View style={styles.container}>
         <OfflineNotice/>

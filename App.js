@@ -41,6 +41,7 @@ export default class App extends Component {
   }
 
 
+
   componentDidMount() {
     if (this.state.loadingLocalData === true) {
       this.readUserData();
@@ -76,8 +77,8 @@ export default class App extends Component {
         </View>
       );
     }
-      const AppContainerAuth = createAppContainer(createRootNavigator(this.state.localDataFound));
-      return <AppContainerAuth/>
+      const AppContainer = createAppContainer(createRootNavigator(this.state.localDataFound));
+      return <AppContainer/>
   };
 };
 
