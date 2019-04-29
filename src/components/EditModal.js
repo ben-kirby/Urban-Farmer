@@ -94,14 +94,12 @@ export default class EditModal extends Component {
     db.ref('products/' + this.state.userId + '/' + this.state.itemId + '/quantity').set(
       this.state.itemQty
       );
-      console.log("handle edit submit triggered");
       alert('item edited!');
     }
 
   };
 
   render() {
-    console.log(this.props);
     let errorQtyVisible;
     let errorNameVisible;
     let errorPriceVisible;
@@ -118,7 +116,7 @@ export default class EditModal extends Component {
           transparent={false}
           visible={this.state.modalVisible}
           onRequestClose={() => {
-            Alert.alert('Modal has been closed.');
+            Alert.alert('Please save chagnes.');
           }}>
           <View style={{marginTop: 22}}>
             <View>
@@ -146,14 +144,14 @@ export default class EditModal extends Component {
               <TouchableHighlight>
 
                 <Button 
-                title='Close Modal'           
+                title='Save changes'           
                 onPress={() => {this.setModalVisible(false);}} 
                 />
 
               </TouchableHighlight>
 
               <Button
-                title='update'
+                title='Update'
                 onPress={this.updateCombo}                     
                 />
               {errorSubmitVisible}

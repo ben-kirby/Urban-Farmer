@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import SoldModal from './SoldModal';
 import EditModal from './EditModal';
-import { db, auth } from '../config';
 import PropTypes from 'prop-types';
 
 

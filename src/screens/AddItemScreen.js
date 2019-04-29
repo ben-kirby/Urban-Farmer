@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { ScrollView, View, Text, TouchableHighlight, StyleSheet, TextInput, Button } from 'react-native';
-import firebase, { db } from '../config';
+import { db } from '../config';
 
 import { readData } from '../DataStorage';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -82,7 +82,6 @@ export default class AddItemScreen extends Component {
         price: '',
         submitEmpty: false
       });
-      console.log("handle submit triggered");
       alert('item saved!');
     }
   };
