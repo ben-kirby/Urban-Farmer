@@ -26,6 +26,7 @@ export default class HomeScreen extends Component {
 		return(
 			<Container style={styles.scrollContainer}>
 				<OfflineNotice/>
+			<ScrollView>
 				<Card>
 					<CardItem header bordered>
 						<Text>Sales vs. Time, for {'April 2019'}</Text>
@@ -66,7 +67,7 @@ export default class HomeScreen extends Component {
 						</Body>
 					</CardItem>
 				</Card>
-
+			</ScrollView>
 			</Container>
 		);
 	}
