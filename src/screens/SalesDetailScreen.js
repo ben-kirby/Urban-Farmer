@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Button, ScrollView } from 'react-native';
+import { View, Text, RefreshControl, ScrollView } from 'react-native';
 import { auth, db } from '../config';
 import OfflineNotice from '../components/OfflineNotice';
 
@@ -9,10 +9,16 @@ import styles from '../styles/stylesComponent';
 
 export default class ItemDetailScreen extends Component {
 	state = {
-		transactions: []
+		transactions: [],
+		loading: true,
+		refreshing: false
 	}
 
 	componentDidMount() {
+		this.getTransactions()
+	}
+
+	getTransactions = async () => {
 		let uid = auth.currentUser.uid;
 		db.ref("transactions/" + uid).on("value", snapshot => {
 			let transaction = snapshot.val();
@@ -30,26 +36,54 @@ export default class ItemDetailScreen extends Component {
 				});
 			}
 			this.setState({
-				transactions: Object.values(data)
+				transactions: Object.values(data),
+				loading: false
 			});
 		})
 	}
 
+	clearTransactions = () => {
+		this.setState({
+			transactions: []
+		});
+	}
+
+	handleRefresh = () => {
+
+		this.setState({
+			refreshing: true,
+			loading: true
+		});
+		this.clearTransactions();
+		this.getTransactions().then(() => {
+			this.setState({refreshing: false});
+		});
+	}
+
 	render() {
 		let content;
-		if (this.state.transactions.length > 0) {
-			content = <ScrollView>
-				{this.state.transactions.length > 0 ? (
+		if (this.state.loading == false) {
+			{this.state.transactions.length > 0 ? (
+				content = 
+				<ScrollView
+					refreshControl={
+						<RefreshControl
+							refreshing={this.state.refreshing}
+							onRefresh={this.handleRefresh}
+						/>
+					}
+				>
 					<TransactionDetail
 						transactionData={this.state.transactions}
 					/>
-				) : (
-						<Text>No sales yet</Text>
-					)}
-			</ScrollView>
+				</ScrollView>
+			) : (
+				content = <Text>No sales yet</Text>
+			)}
 		} else {
-			content = <Loading/>
+			content = <Loading />
 		}
+
 		return (
 			<View>
 				<OfflineNotice />
