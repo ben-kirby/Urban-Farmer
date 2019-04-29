@@ -66,7 +66,6 @@ export default class HomeScreen extends Component {
 						</Body>
 					</CardItem>
 				</Card>
-
 			</Container>
 		);
 	}
