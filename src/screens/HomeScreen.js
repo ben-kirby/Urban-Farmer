@@ -43,6 +43,7 @@ export default class HomeScreen extends Component {
 		return(
 			<Container style={styles.scrollContainer}>
 				<OfflineNotice/>
+				<ScrollView>
 				<Card>
 					<CardItem header bordered>
 						<Text>Welcome {this.chopEmailAtsymbol(this.state.email)} !</Text>
@@ -88,6 +89,7 @@ export default class HomeScreen extends Component {
 						</Body>
 					</CardItem>
 				</Card>
+				</ScrollView>
 			</Container>
 		);
 	}
