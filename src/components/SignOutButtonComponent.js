@@ -20,7 +20,7 @@ class SignOutButton extends Component {
 
   render() {
     return(
-      <TouchableOpacity onPress={ ()=> { this.signUserOut(); }  }>
+      <TouchableOpacity onPress={ () => { this.signUserOut(); }  }>
         <Icon name="sign-out" size={30} style={{padding: 10}}/>
       </TouchableOpacity>
     );
