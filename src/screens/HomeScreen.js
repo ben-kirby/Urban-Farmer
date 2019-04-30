@@ -10,7 +10,8 @@ import styles from '../styles/stylesComponent';
 
 export default class HomeScreen extends Component {
 	state = {
-		email: ''
+		email: '',
+		user: '',
 	}
 
 	componentDidMount() {
@@ -31,12 +32,22 @@ export default class HomeScreen extends Component {
 		});
 	};
 
+	chopEmailAtsymbol = (emailString) => {
+		let found = emailString.search('@');
+		let capitalizeFirst = emailString.charAt(0).toUpperCase();
+		return (capitalizeFirst + emailString.slice(1,found));
+	}
+
 	render () {
 		this.getEmail;
 		return(
 			<Container style={styles.scrollContainer}>
 				<OfflineNotice/>
-				<Text>{JSON.stringify(this.state)}</Text>
+				<Card>
+					<CardItem header bordered>
+						<Text>Welcome {this.chopEmailAtsymbol(this.state.email)} !</Text>
+					</CardItem>
+				</Card>
 				<Card>
 					<CardItem header bordered>
 						<Text>Sales vs. Time, for {'April 2019'}</Text>
