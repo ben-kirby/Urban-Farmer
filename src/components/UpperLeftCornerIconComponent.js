@@ -8,7 +8,7 @@ class UpperLeftCornerIcon extends Component {
     render() {
       return(
         <TouchableOpacity onPress={ ()=> {'text'} }>
-          <Text>Test</Text>
+          <Icon name="leaf" size={30} style={{padding: 10}}/>
         </TouchableOpacity>
       );
     }
