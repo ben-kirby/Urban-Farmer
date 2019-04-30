@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
-import { Header, Content, Accordion, Container } from 'native-base';
+import { Content, Accordion, Container } from 'native-base';
 import moment from 'moment';
+import styles from '../styles/stylesComponent';
 
 export default class TransactionDetail extends Component {
 	state = {
@@ -45,10 +46,12 @@ export default class TransactionDetail extends Component {
 
 	render() {
 		return(
-			<Container>
+			<Container style={styles.scrollContainer}>
 				<Content padder>
 					<Accordion 
 						dataArray={this.state.dataArray}
+						headerStyle={styles.accordionHeader}
+						contentStyle={styles.accordionContent}
 					/>
 				</Content>
 			</Container>
