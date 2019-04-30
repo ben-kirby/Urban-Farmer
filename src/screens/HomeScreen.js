@@ -26,7 +26,7 @@ export default class HomeScreen extends Component {
 				});
 			} else {
 				this.setState({
-					email: 'Unknown'
+					email: 'Unknown@'
 				});
 			};
 		});
