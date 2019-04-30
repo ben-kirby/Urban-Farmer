@@ -110,6 +110,7 @@ export default class SignInScreen extends Component {
           textContextType='password'
           keyboardType='default'
           maxLength={128}
+          contextMenuHidden={true}
           />
         <Button
           onPress={this.handleSubmit}

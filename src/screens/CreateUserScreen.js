@@ -119,7 +119,8 @@ export default class CreateUserScreen extends Component {
           value={this.state.text}
           textContextType='password'
           keyboardType='default'
-          maxLength={128}
+					maxLength={128}
+					contextMenuHidden={true}
           />
 				<TextInput
 					underlineColorAndroid = 'transparent'
@@ -131,6 +132,7 @@ export default class CreateUserScreen extends Component {
 					textContextType='password'
 					keyboardType='default'
 					maxLength={128}
+					contextMenuHidden={true}
 					/>
 				{dontMatchError}
 				<Button
