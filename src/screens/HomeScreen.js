@@ -9,23 +9,34 @@ import OfflineNotice from '../components/OfflineNotice';
 import styles from '../styles/stylesComponent';
 
 export default class HomeScreen extends Component {
+	state = {
+		email: ''
+	}
 
 	componentDidMount() {
-		this.getData();
+		this.getEmail();
 	}
 
-	getData = async () => {
-		await AsyncStorage.getItem('@test_Key').then(response => {
-			this.setState({
-				testKey: response
-			});
+	getEmail = async () => {
+		await AsyncStorage.getItem('email').then(response => {
+			if (response !== null) {
+				this.setState({
+					email: response
+				});
+			} else {
+				this.setState({
+					email: 'Unknown'
+				});
+			};
 		});
-	}
+	};
 
 	render () {
+		this.getEmail;
 		return(
 			<Container style={styles.scrollContainer}>
 				<OfflineNotice/>
+				<Text>{JSON.stringify(this.state)}</Text>
 				<Card>
 					<CardItem header bordered>
 						<Text>Sales vs. Time, for {'April 2019'}</Text>

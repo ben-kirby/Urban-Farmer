@@ -23,7 +23,7 @@ const RouterConfig =
           // fontFamily: 'serif', //Does not work on iOS
           fontWeight: 'bold',
         },
-        headerLeft: (props) => (<UpperLeftCornerIcon/>),
+        headerLeft: (<UpperLeftCornerIcon/>),
         headerRight: (<SignOutButton/>),
       },
     },
