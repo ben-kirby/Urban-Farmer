@@ -110,10 +110,10 @@ export default class EditModal extends Component {
     let errorNameVisible;
     let errorPriceVisible;
     let errorSubmitVisible;
-    this.state.errorName ? (errorNameVisible = <Text>Only accepts text input</Text>) : null;
-    this.state.errorPrice ? (errorPriceVisible = <Text>Only accepts price format:XX.XX </Text>) : null;
-    this.state.errorQty ? (errorQtyVisible = <Text>Only accepts a number</Text>) : null;
-    (this.state.submitValid === false) ? (errorSubmitVisible = <Text>One or more invalid Inputs </Text>) : null;
+    this.state.errorName ? (errorNameVisible = <Text style={styles.errorMessage} >Only accepts text input</Text>) : null;
+    this.state.errorPrice ? (errorPriceVisible = <Text style={styles.errorMessage} >Only accepts price format:XX.XX </Text>) : null;
+    this.state.errorQty ? (errorQtyVisible = <Text style={styles.errorMessage} >Only accepts a number</Text>) : null;
+    (this.state.submitValid === false) ? (errorSubmitVisible = <Text style={styles.errorMessage} >One or more invalid Inputs </Text>) : null;
     return (
       <View style={{marginTop: 22}}>
         <OfflineNotice/>
@@ -129,14 +129,14 @@ export default class EditModal extends Component {
 
               <TextInput
               ref={ref => this.nameInputRef = ref}
-              style={styles.itemInput}
+              style={this.state.errorName ? styles.errorInput: styles.itemInput}
               onChangeText={(text) => this.handleNameVal(text)}
               placeholder={this.props.item.name}
               />
             {errorNameVisible}
             <TextInput
                 ref={ref => this.priceInputRef = ref}
-                style={styles.itemInput}
+                style={this.state.errorPrice ? styles.errorInput: styles.itemInput}
                 onChangeText={(text) => this.handlePriceVal(text)}
                 placeholder={this.props.item.price}
                
@@ -144,7 +144,7 @@ export default class EditModal extends Component {
             {errorPriceVisible}
             <TextInput
                 ref={ref => this.quantityInputRef = ref}
-                style={styles.itemInput}
+                style={this.state.errorQty ? styles.errorInput: styles.itemInput}
                 onChangeText={(text) => this.handleQtyVal(text)}
                 placeholder={this.props.item.quantity}
                

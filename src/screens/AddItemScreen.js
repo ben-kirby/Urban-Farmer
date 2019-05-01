@@ -95,10 +95,11 @@ export default class AddItemScreen extends Component {
     let errorNameVisible;
     let errorPriceVisible;
     let errorSubmitVisible;
-    this.state.errorName ? (errorNameVisible = <Text>Only accepts text input</Text>) : null;
-    this.state.errorPrice ? (errorPriceVisible = <Text>Only accepts price format:XX.XX</Text>) : null;
-    this.state.errorQty ? (errorQtyVisible = <Text>Only accepts a number</Text>) : null;
-    (this.state.submitValid === false) ? (errorSubmitVisible = <Text>One or more invalid Inputs</Text>) : null;
+    this.state.errorName ? (errorNameVisible = <Text style={styles.errorMessage}>
+      Only accepts text input</Text>) : null;
+    this.state.errorPrice ? (errorPriceVisible = <Text style={styles.errorMessage} >Only accepts price format:XX.XX</Text>) : null;
+    this.state.errorQty ? (errorQtyVisible = <Text style={styles.errorMessage} >Only accepts a number</Text>) : null;
+    (this.state.submitValid === false) ? (errorSubmitVisible = <Text style={styles.errorMessage} >One or more invalid Inputs</Text>) : null;
     return(
     <ScrollView style={styles.scrollContainer}>
       <OfflineNotice/>
@@ -106,21 +107,21 @@ export default class AddItemScreen extends Component {
       <Text style={styles.title}>Add Item</Text>
       <TextInput
         ref={ref => this.nameInputRef = ref}
-        style={styles.itemInput}
+        style={this.state.errorName ? styles.errorInput: styles.itemInput}
         onChangeText={this.handleChangeName}
         placeholder='Item name'
       />
       {errorNameVisible}
       <TextInput
         ref={ref => this.priceInputRef = ref}
-        style={styles.itemInput}
+        style={this.state.errorPrice ? styles.errorInput: styles.itemInput}
         onChangeText={this.handleChangePrice}
         placeholder='Item price'
       />
       {errorPriceVisible}
       <TextInput
         ref={ref => this.quantityInputRef = ref}
-        style={styles.itemInput}
+        style={this.state.errorQty ? styles.errorInput: styles.itemInput}
         onChangeText={this.handleChangeQuantity}
         placeholder='Item quantity'
       />

@@ -37,6 +37,14 @@ export default StyleSheet.create({
     borderRadius: 4,
     borderWidth: 2,
   },
+  errorInput: {
+    height: 50,
+    margin: 5,
+    backgroundColor: '#FFFFFF',
+    borderColor: 'red',
+    borderRadius: 4,
+    borderWidth: 2,
+  },
   itemInput: {
     height: 50,
     margin: 5,
@@ -73,5 +81,9 @@ export default StyleSheet.create({
 	},
 	accordionContent: {
 		backgroundColor: '#eeeeee'
-	}
+  },
+  errorMessage: {
+    color: 'red',
+    textAlign: 'center',
+  }
 });
