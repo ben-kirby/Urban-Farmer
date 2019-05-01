@@ -110,10 +110,10 @@ export default class EditModal extends Component {
     let errorNameVisible;
     let errorPriceVisible;
     let errorSubmitVisible;
-    this.state.errorName ? (errorNameVisible = <Text>text only, no numbers and special characters</Text>) : null;
-    this.state.errorPrice ? (errorPriceVisible = <Text>numbers only, no text and special characters</Text>) : null;
-    this.state.errorQty ? (errorQtyVisible = <Text>please enter a number</Text>) : null;
-    (this.state.submitValid === false) ? (errorSubmitVisible = <Text>please correct the inputs</Text>) : null;
+    this.state.errorName ? (errorNameVisible = <Text>Only accepts text input</Text>) : null;
+    this.state.errorPrice ? (errorPriceVisible = <Text>Only accepts price format:XX.XX </Text>) : null;
+    this.state.errorQty ? (errorQtyVisible = <Text>Only accepts a number</Text>) : null;
+    (this.state.submitValid === false) ? (errorSubmitVisible = <Text>One or more invalid Inputs </Text>) : null;
     return (
       <View style={{marginTop: 22}}>
         <OfflineNotice/>
