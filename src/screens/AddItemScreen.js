@@ -50,7 +50,7 @@ export default class AddItemScreen extends Component {
   }
 
   handleChangePrice = (text) => {
-    const reg = /^[+]?([1-9][0-9]*(?:[\.][0-9]*)?|0*\.0*[1-9][0-9]*)(?:[eE][+-][0-9]+)?$/;
+    const reg = /^(?:0|[1-9]\d{0,2}(?:,?\d{3})*)(?:\.[0-9]{2})?$/;
     let correctPrice = text.match(reg) ? this.setState({submitValid: true, errorPrice: false}) : this.setState({errorPrice: true, submitValid: false});
     this.setState({price:text});
   }
@@ -63,8 +63,8 @@ export default class AddItemScreen extends Component {
 
   checkInputEmpty = () => {
     const { name, price, quantity } = this.state;
-    if(name !== '' && price !== '' && quantity !== ''){
-      this.setState({submitEmpty: true})
+    if(name === '' || price === '' || quantity === ''){
+      this.setState({submitEmpty: false})
     }
   } 
 
