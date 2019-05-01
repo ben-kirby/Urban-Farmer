@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import { Button } from 'react-native';
-import {Modal, TouchableHighlight, View, Alert,TextInput, StyleSheet, Text} from 'react-native';
+import {Modal, TouchableHighlight, View, Alert,TextInput, Text} from 'react-native';
 import PropTypes from 'prop-types';
 import { auth, db } from '../config';
 import OfflineNotice from './OfflineNotice';
-
+import styles from '../styles/stylesComponent';
 
 export default class EditModal extends Component {
     constructor(props){
@@ -22,7 +22,7 @@ export default class EditModal extends Component {
         itemQty: this.props.item.quantity,
         userId: this.props.item.uid,
         errorQty: false,
-        errorPrice: false,
+       errorPrice: false,
         errorName: false,
         submitValid: true,
         submitEmpty: false
@@ -115,7 +115,7 @@ export default class EditModal extends Component {
     this.state.errorQty ? (errorQtyVisible = <Text style={styles.errorMessage} >Only accepts a number</Text>) : null;
     (this.state.submitValid === false) ? (errorSubmitVisible = <Text style={styles.errorMessage} >One or more invalid Inputs </Text>) : null;
     return (
-      <View style={{marginTop: 22}}>
+      <View>
         <OfflineNotice/>
         <Modal
           animationType="slide"
@@ -124,19 +124,19 @@ export default class EditModal extends Component {
           onRequestClose={() => {
             Alert.alert('Modal has been closed.');
           }}>
-          <View style={{marginTop: 22}}>
+          <View style={styles.modalContainer}>
             <View>
 
               <TextInput
               ref={ref => this.nameInputRef = ref}
-              style={this.state.errorName ? styles.errorInput: styles.itemInput}
+              style={this.state.errorName ? styles.modalErrorInput: styles.modalInput}
               onChangeText={(text) => this.handleNameVal(text)}
               placeholder={this.props.item.name}
               />
             {errorNameVisible}
             <TextInput
                 ref={ref => this.priceInputRef = ref}
-                style={this.state.errorPrice ? styles.errorInput: styles.itemInput}
+                style={this.state.errorPrice ? styles.modalErrorInput: styles.modalInput}
                 onChangeText={(text) => this.handlePriceVal(text)}
                 placeholder={this.props.item.price}
                
@@ -144,7 +144,7 @@ export default class EditModal extends Component {
             {errorPriceVisible}
             <TextInput
                 ref={ref => this.quantityInputRef = ref}
-                style={this.state.errorQty ? styles.errorInput: styles.itemInput}
+                style={this.state.errorQty ? styles.modalErrorInput: styles.modalInput}
                 onChangeText={(text) => this.handleQtyVal(text)}
                 placeholder={this.props.item.quantity}
                
@@ -184,43 +184,5 @@ export default class EditModal extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-    main: {
-      flex: 1,
-      padding: 30,
-      flexDirection: 'column',
-      justifyContent: 'center',
-      backgroundColor: 'white'
-    },
-    title: {
-      marginTop: 10,
-      fontSize: 25,
-      textAlign: 'center'
-    },
-    itemInput: {
-      height: 50,
-      padding: 4,
-      margin: 5,
-      borderRadius: 4,
-      borderWidth:1,
-      borderColor: 'black'
-    },
-    buttonText: {
-      fontSize: 18,
-      color: '#111',
-      alignSelf: 'center'
-    },
-    button: {
-      height: 45,
-      flexDirection: 'row',
-      backgroundColor: '#6e5cff',
-      borderColor: 'grey',
-      borderWidth: 1,
-      borderRadius: 8,
-      marginBottom: 10,
-      marginTop: 10,
-      alignSelf: 'stretch',
-      justifyContent: 'center'
-    }
-  });
+
   
