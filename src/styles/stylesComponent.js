@@ -2,6 +2,12 @@ import { StyleSheet, Diemensions } from 'react-native';
 
 export default StyleSheet.create({
   container: {
+    alignItems: 'center',
+    color: '#91b43d',
+    backgroundColor: '#91b43d',
+    flex: 1,
+  },
+  containerAuthScreens: {
     padding: 30,
     paddingTop: 65,
     alignItems: 'center',

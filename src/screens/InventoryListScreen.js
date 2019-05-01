@@ -55,10 +55,11 @@ export default class InventoryListScreen extends Component {
 
   render() {
     return (
-      <View style={styles.scrollContainer}>
+      <View style={styles.container}>
         <OfflineNotice/>
         {this.state.products.length > 0 ? (
           <ScrollView
+            style={styles.scrollContainer}
             refreshControl= {
               <RefreshControl
                 refreshing={this.state.refreshing}

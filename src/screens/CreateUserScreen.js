@@ -95,7 +95,7 @@ export default class CreateUserScreen extends Component {
 		let dontMatchError;
 		this.state.dontMatch ? (dontMatchError = <Text>Passwords don't match</Text>) : null;
 		return(
-			<View style={styles.container}>
+			<View style={styles.containerAuthScreens}>
 				<Text style={styles.title}>URBAN FARMER</Text>
 				<Text>Sign Up</Text>
 				<TextInput
