@@ -65,6 +65,8 @@ export default class AddItemScreen extends Component {
     const { name, price, quantity } = this.state;
     if((this.nameInputRef && name)  && (this.priceInputRef && price) && (this.quantityInputRef && quantity)){
       this.setState({submitEmpty: true})
+    } else {
+      alert('Please fill all the fields');
     }
   } 
 
