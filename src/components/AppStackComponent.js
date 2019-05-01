@@ -1,21 +1,9 @@
 import React, {Component} from 'react';
 import { Platform, StyleSheet, Text, View, TextInput, Button, TouchableOpacity } from 'react-native';
 import { createStackNavigator, navigationOptions } from 'react-navigation';
-import SignOutButton from './SignOutButtonComponent'
-
-import Icon from 'react-native-vector-icons/FontAwesome';
-
+import UpperLeftCornerIcon from './UpperLeftCornerIconComponent';
+import SignOutButton from './SignOutButtonComponent';
 import MainFooterMenuComponent from './MainFooterMenuComponent';
-
-class UpperLeftCornerIcon extends Component {
-  render() {
-    return(
-      <TouchableOpacity onPress={ ()=> {return('Type Some Code here')} }>
-        <Icon name="leaf" size={30} style={{padding: 10}}/>
-      </TouchableOpacity>
-    );
-  }
-};
 
 const RouterConfig =
   {
@@ -32,7 +20,7 @@ const RouterConfig =
         headerTitleStyle:
         {
           color: '#FFFFFF', //header text color
-          // fontFamily: 'serif',
+          // fontFamily: 'serif', //Does not work on iOS
           fontWeight: 'bold',
         },
         headerLeft: (<UpperLeftCornerIcon/>),
