@@ -8,17 +8,19 @@ class SignOutButton extends Component {
 
   signUserOut = async () => {
     try {
-      await AsyncStorage.removeItem('uid').then(() => {
-        this.props.navigation.navigate('AuthStack');
-      });
+      await AsyncStorage.removeItem('uid').then(() => { 
+        AsyncStorage.removeItem('email')
+        }).then(() => { 
+          this.props.navigation.navigate('AuthStack');
+        });
     } catch (error) {
       alert(error.message)
-    }
+      }
   }
 
   render() {
     return(
-      <TouchableOpacity onPress={ ()=> { this.signUserOut(); }  }>
+      <TouchableOpacity onPress={ () => { this.signUserOut(); }  }>
         <Icon name="sign-out" size={30} style={{padding: 10}}/>
       </TouchableOpacity>
     );
