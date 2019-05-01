@@ -46,7 +46,7 @@ export default class TransactionDetail extends Component {
 
 	render() {
 		return(
-			<Container style={styles.scrollContainer}>
+			//<Container style={styles.scrollContainer}>
 				<Content padder>
 					<Accordion 
 						dataArray={this.state.dataArray}
@@ -54,7 +54,7 @@ export default class TransactionDetail extends Component {
 						contentStyle={styles.accordionContent}
 					/>
 				</Content>
-			</Container>
+			//</Container>
 		);
 	}
 }
