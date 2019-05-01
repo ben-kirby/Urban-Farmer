@@ -96,9 +96,9 @@ export default class SignInScreen extends Component {
           placeholder='E-mail'
           autoCapitalize='none'
           value={this.state.text}
-          textContextType='emailAddress'
           keyboardType='email-address'
           maxLength={255}
+          textContentType='username'
           />
         <TextInput
           underlineColorAndroid = 'transparent'
@@ -108,9 +108,10 @@ export default class SignInScreen extends Component {
           placeholder="Password"
           autoCapitalize='none'
           value={this.state.text}
-          textContextType='password'
           keyboardType='default'
           maxLength={128}
+          contextMenuHidden={true}
+          textContentType='password'
           />
         <Button
           onPress={this.handleSubmit}

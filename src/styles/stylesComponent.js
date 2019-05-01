@@ -61,10 +61,18 @@ export default StyleSheet.create({
     backgroundColor: '#91b43d'
   },
   title: {
-    fontWeight: 'bold', 
-    fontSize: 24, 
+    fontWeight: 'bold',
+    fontSize: 24,
   },
   buttonMargin: {
     marginBottom: 20,
-  }
+  },
+	accordionHeader: {
+		backgroundColor: 'white',
+		borderBottomColor: 'grey',
+		borderBottomWidth: StyleSheet.hairlineWidth
+	},
+	accordionContent: {
+		backgroundColor: '#eeeeee'
+	}
 });
