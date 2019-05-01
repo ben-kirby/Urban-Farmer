@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import { Button } from 'react-native';
-import {Modal, TouchableHighlight, View, Alert,TextInput, StyleSheet, Text} from 'react-native';
+import {Modal, TouchableHighlight, View, Alert,TextInput, Text} from 'react-native';
 import PropTypes from 'prop-types';
 import { auth, db } from '../config';
 import OfflineNotice from './OfflineNotice';
+import styles from '../styles/stylesComponent';
 
 
 export default class EditModal extends Component {
@@ -37,6 +38,7 @@ export default class EditModal extends Component {
   handleDelete = (itemId) => {  
     let userId = auth.currentUser.uid;  
     db.ref('products/' + userId).child(itemId).remove();
+    alert('item Deleted!');
   }
 
   deleteCombo = () => {
@@ -47,7 +49,7 @@ export default class EditModal extends Component {
 
   updateCombo = () => {
     this.handleSubmit();
-    this.setModalVisible(true);
+    this.setModalVisible(false);
   }
 
   handleNameVal = (nam) => {
@@ -109,16 +111,17 @@ export default class EditModal extends Component {
     this.state.errorQty ? (errorQtyVisible = <Text>please enter a number</Text>) : null;
     (this.state.submitValid === false) ? (errorSubmitVisible = <Text>please correct the inputs</Text>) : null;
     return (
-      <View style={{marginTop: 22}}>
+      <View >
         <OfflineNotice/>
         <Modal
+         
           animationType="slide"
           transparent={false}
           visible={this.state.modalVisible}
           onRequestClose={() => {
             Alert.alert('Please save chagnes.');
           }}>
-          <View style={{marginTop: 22}}>
+          <View style={{marginTop: 22}} >
             <View>
 
               <TextInput
@@ -141,77 +144,52 @@ export default class EditModal extends Component {
                
             />
             {errorQtyVisible}
-              <TouchableHighlight>
+            <View style={styles.buttonLayout}>
 
-                <Button 
-                title='Save changes'           
-                onPress={() => {this.setModalVisible(false);}} 
-                />
-
+              <View>
+              <TouchableHighlight
+                style={styles.button}
+                onPress={this.deleteCombo}                  
+              >
+              <Text style={{color:'black'}}>Delete</Text>
               </TouchableHighlight>
+              </View>
 
-              <Button
-                title='Update'
+              <View>
+              <TouchableHighlight
+                style={styles.button}
                 onPress={this.updateCombo}                     
-                />
+              >
+                <Text style={{color:'black'}}>Update</Text>
+              </TouchableHighlight>
+              </View>
+
               {errorSubmitVisible}
-                  <Button
-                title='Delete'
-                onPress={this.deleteCombo}                     
-                />
+
+              <View >
+                <TouchableHighlight
+                style={styles.button}
+                onPress={() => {this.setModalVisible(false);}} 
+                >
+                <Text style={{color:'black'}}>Cancel</Text>
+                </TouchableHighlight>
+              </View>
+
+            </View>
+           
             </View>
           </View>
         </Modal>
 
-        <TouchableHighlight>
+        <TouchableHighlight
+        style={styles.button}
+         onPress={() => {this.setModalVisible(true);}}
+        >
          
-          <Button 
-          title='Edit'
-          onPress={() => {this.setModalVisible(true);}}
-          />
+          <Text>Edit</Text>
         </TouchableHighlight>
       </View>
     );
   }
 }
 
-const styles = StyleSheet.create({
-    main: {
-      flex: 1,
-      padding: 30,
-      flexDirection: 'column',
-      justifyContent: 'center',
-      backgroundColor: 'white'
-    },
-    title: {
-      marginTop: 10,
-      fontSize: 25,
-      textAlign: 'center'
-    },
-    itemInput: {
-      height: 50,
-      padding: 4,
-      margin: 5,
-      borderRadius: 4,
-      borderWidth:1,
-      borderColor: 'black'
-    },
-    buttonText: {
-      fontSize: 18,
-      color: '#111',
-      alignSelf: 'center'
-    },
-    button: {
-      height: 45,
-      flexDirection: 'row',
-      backgroundColor: '#6e5cff',
-      borderColor: 'grey',
-      borderWidth: 1,
-      borderRadius: 8,
-      marginBottom: 10,
-      marginTop: 10,
-      alignSelf: 'stretch',
-      justifyContent: 'center'
-    }
-  });
-  

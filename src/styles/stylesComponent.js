@@ -1,4 +1,7 @@
-import { StyleSheet, Diemensions } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
+import AuthStackComponent from '../components/AuthStackComponent';
+
+
 
 export default StyleSheet.create({
   container: {
@@ -55,9 +58,41 @@ export default StyleSheet.create({
     color: '#48BBEC',
   },
   scrollContainer: {
-    backgroundColor: '#91b43d',
+    backgroundColor: '#91b43d',   
   },
   buttonMargin: {
     marginBottom: 20,
-  }
+  },
+  button: {
+    alignItems: 'center',
+    backgroundColor: '#91b43d',
+    width: 100,
+    height:30,
+    margin:15,
+    margin:10,
+    paddingTop:5
+  },
+  buttonLayout:{
+    flex: 1,
+    flexDirection:'row',
+    justifyContent:'center',
+    
+  },
+  itemsList: {
+		flex: 1,
+		flexDirection: 'column',
+		justifyContent: 'space-around'
+	},
+	itemtext: {
+		fontSize: 24,
+		fontWeight: 'bold',
+		textAlign: 'center',
+		marginTop: 10
+	},
+	itemCard: {
+		marginTop:10,
+		marginRight:10,
+		marginLeft:10,
+		backgroundColor :'#f9f4eb'
+	}
 });

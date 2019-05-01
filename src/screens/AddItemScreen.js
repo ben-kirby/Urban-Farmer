@@ -44,7 +44,7 @@ export default class AddItemScreen extends Component {
   }
   
   handleChangeName = (text) => {
-    const reg = /^[a-zA-Z\s]*$/;
+    const reg = /^[a-zA-Z\s]*$(?![\s\S])/;
     let correctName = text.match(reg) ? this.setState({submitValid: true, errorName: false}) : this.setState({errorName: true,  submitValid: false});
     this.setState({name:text});
   }
