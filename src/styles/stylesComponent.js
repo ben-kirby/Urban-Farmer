@@ -40,7 +40,6 @@ export default StyleSheet.create({
   itemInput: {
     height: 50,
     margin: 5,
-    padding: 20,
     backgroundColor: '#FFFFFF',
     borderColor: '#d7ff8c',
     borderRadius: 4,
