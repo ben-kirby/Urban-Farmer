@@ -96,7 +96,7 @@ export default class CreateUserScreen extends Component {
 		this.state.dontMatch ? (dontMatchError = <Text>Passwords don't match</Text>) : null;
 		return(
 			<View style={styles.container}>
-				<Text style={{fontWeight: 'bold', fontSize: 24}}>URBAN FARMER</Text>
+				<Text style={styles.title}>URBAN FARMER</Text>
 				<Text>Sign Up</Text>
 				<TextInput
           underlineColorAndroid = 'transparent'

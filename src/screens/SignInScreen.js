@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { TextInput, View, Button, Alert, Text, console } from "react-native";
+import { TextInput, View, Button, Alert, Text, TouchableOpacity } from "react-native";
 import { auth } from "../config";
 import AsyncStorage from '@react-native-community/async-storage';
 import { navigationOptions } from 'react-navigation';
-
+import Icon from 'react-native-vector-icons/FontAwesome';
 import styles from '../styles/stylesComponent';
 import OfflineNotice from '../components/OfflineNotice';
 
@@ -25,7 +25,8 @@ export default class SignInScreen extends Component {
     auth.signInWithEmailAndPassword(this.state.email, this.state.password).then(response => {
       if (response.user) {
         this.storeData('uid', response.user.uid).then(() => {
-          this.props.navigation.navigate('AppStack', {email: this.state.email} );
+          this.storeData('email', this.state.email);
+          this.props.navigation.navigate('AppStack');
         })
       } else {
         alert('Oops! There was a problem with that. Try again plz.');
@@ -86,7 +87,7 @@ export default class SignInScreen extends Component {
     return (
       <View style={styles.container}>
         <OfflineNotice/>
-        <Text style={{fontWeight: 'bold', fontSize: 24}}>URBAN FARMER</Text>
+        <Text style={styles.title}>URBAN FARMER</Text>
         <Text>Login</Text>
         <TextInput
           underlineColorAndroid = 'transparent'
@@ -116,6 +117,7 @@ export default class SignInScreen extends Component {
           onPress={this.handleSubmit}
           title="Sign In"
           disabled={this.isEnabled()}
+          color="#4a822f"
           />
         <Text>{'\nNot an existing user?\n'}</Text>
         <Button
@@ -123,12 +125,10 @@ export default class SignInScreen extends Component {
           title="Sign Up"
           color="#4a822f"
           />
-        <Text>{'\n'}</Text>
-        <Button
-          onPress={() => this.props.navigation.navigate('AppStack')}
-          title="*Shortcut to Main App"
-          color="#4a822f"
-          />
+        <Text>{'\n\n\n'}</Text>
+        <TouchableOpacity onPress={ () => this.props.navigation.navigate('AppStack') }>
+          <Icon name="leaf" size={30} style={{padding: 10}}/>
+        </TouchableOpacity>
       </View>
     );
   }
