@@ -39,9 +39,8 @@ export default StyleSheet.create({
   },
   itemInput: {
     height: 50,
-    width: '75%',
     margin: 5,
-    padding: 4,
+    padding: 20,
     backgroundColor: '#FFFFFF',
     borderColor: '#d7ff8c',
     borderRadius: 4,
@@ -59,7 +58,7 @@ export default StyleSheet.create({
     color: '#48BBEC',
   },
   scrollContainer: {
-    backgroundColor: '#91b43d',
+    backgroundColor: '#91b43d'
   },
   title: {
     fontWeight: 'bold', 
