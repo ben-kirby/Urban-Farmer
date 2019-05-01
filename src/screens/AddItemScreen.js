@@ -18,15 +18,15 @@ let addItem = (a, b, c, uid) => {
 
 export default class AddItemScreen extends Component {
   state = {
-    name: '',
-    price: '',
-    quantity: '',
-    uid: '',
+    name: null,
+    price: null,
+    quantity: null,
+    uid: null,
     errorQty: false,
     errorPrice: false,
     errorName: false,
     submitValid: true,
-    submitEmpty: true
+    submitEmpty: false
   };
 
   async getUserId(){
@@ -63,8 +63,8 @@ export default class AddItemScreen extends Component {
 
   checkInputEmpty = () => {
     const { name, price, quantity } = this.state;
-    if(name === '' || price === '' || quantity === ''){
-      this.setState({submitEmpty: false})
+    if((this.nameInputRef && name)  && (this.priceInputRef && price) && (this.quantityInputRef && quantity)){
+      this.setState({submitEmpty: true})
     }
   } 
 
@@ -77,9 +77,9 @@ export default class AddItemScreen extends Component {
       this.priceInputRef.clear();
       this.quantityInputRef.clear();
       this.setState({
-        name: '',
-        quantity: '',
-        price: '',
+        name: null,
+        quantity: null,
+        price: null,
         submitEmpty: false
       });
       console.log("handle submit triggered");
