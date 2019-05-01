@@ -18,15 +18,15 @@ let addItem = (a, b, c, uid) => {
 
 export default class AddItemScreen extends Component {
   state = {
-    name: '',
-    price: '',
-    quantity: '',
-    uid: '',
+    name: null,
+    price: null,
+    quantity: null,
+    uid: null,
     errorQty: false,
     errorPrice: false,
     errorName: false,
     submitValid: true,
-    submitEmpty: true
+    submitEmpty: false
   };
 
   async getUserId(){
@@ -50,7 +50,7 @@ export default class AddItemScreen extends Component {
   }
 
   handleChangePrice = (text) => {
-    const reg = /^[+]?([1-9][0-9]*(?:[\.][0-9]*)?|0*\.0*[1-9][0-9]*)(?:[eE][+-][0-9]+)?$/;
+    const reg = /^(?:0|[1-9]\d{0,2}(?:,?\d{3})*)(?:\.[0-9]{2})?$/;
     let correctPrice = text.match(reg) ? this.setState({submitValid: true, errorPrice: false}) : this.setState({errorPrice: true, submitValid: false});
     this.setState({price:text});
   }
@@ -63,8 +63,10 @@ export default class AddItemScreen extends Component {
 
   checkInputEmpty = () => {
     const { name, price, quantity } = this.state;
-    if(name !== '' && price !== '' && quantity !== ''){
+    if((this.nameInputRef && name)  && (this.priceInputRef && price) && (this.quantityInputRef && quantity)){
       this.setState({submitEmpty: true})
+    } else {
+      alert('Please fill all the fields');
     }
   } 
 
@@ -77,9 +79,9 @@ export default class AddItemScreen extends Component {
       this.priceInputRef.clear();
       this.quantityInputRef.clear();
       this.setState({
-        name: '',
-        quantity: '',
-        price: '',
+        name: null,
+        quantity: null,
+        price: null,
         submitEmpty: false
       });
       console.log("handle submit triggered");
