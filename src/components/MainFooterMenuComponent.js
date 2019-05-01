@@ -18,7 +18,7 @@ const RouterConfig =
 			navigationOptions:
 			{
 				title: 'Home',
-				tabBarIcon: (<Icon name="home" size={20}/>),
+				tabBarIcon: ({tintColor}) => <Icon name="home" size={20} color={tintColor}/>,
 			}
 		},
 		InventoryList:
@@ -26,7 +26,7 @@ const RouterConfig =
 			screen: InventoryListScreen,
 			navigationOptions: {
 				title: 'View Inventory',
-				tabBarIcon: (<Icon name="list-ul" size={20}/>),
+				tabBarIcon: ({tintColor}) => <Icon name="list-ul" size={20} color={tintColor}/>,
 			}
 		},
 		AddItem:
@@ -34,7 +34,7 @@ const RouterConfig =
 			screen: AddItemScreen,
 			navigationOptions: {
 				title: 'Add Inventory',
-				tabBarIcon: (<Icon name="plus" size={20}/>),
+				tabBarIcon: ({tintColor}) => <Icon name="plus" size={20} color={tintColor}/>,
 			}
 		},
 		SalesDetail:
@@ -42,7 +42,7 @@ const RouterConfig =
 			screen: SalesDetailScreen,
 			navigationOptions: {
 				title: 'Sales Details',
-				tabBarIcon: (<Icon name="usd" size={20}/>),
+				tabBarIcon: ({tintColor}) => <Icon name="usd" size={20} color={tintColor}/>,
 			}
 		},
 	}
@@ -53,13 +53,15 @@ const NavOptionsConfig =
 		initialRouteName: 'Home',
 		shifting: false,
 		labeled: true,
-		activeTintColor: '#FFFFFF',
-		inactiveTintColor: '#999999',
+		activeColor: 'white',
+		inactiveColor: '#005500',
 		backBehavior: 'order',
 		barStyle:
 		{
 			backgroundColor: '#009900',
 		}
 	}
+
+const allConfig = RouterConfig
 
 export default MainFooterMenuComponent = createMaterialBottomTabNavigator(RouterConfig, NavOptionsConfig);
