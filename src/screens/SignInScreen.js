@@ -87,7 +87,7 @@ export default class SignInScreen extends Component {
     return (
       <View style={styles.container}>
         <OfflineNotice/>
-        <Text style={{fontWeight: 'bold', fontSize: 24}}>URBAN FARMER</Text>
+        <Text style={styles.title}>URBAN FARMER</Text>
         <Text>Login</Text>
         <TextInput
           underlineColorAndroid = 'transparent'
