@@ -23,25 +23,29 @@ export default StyleSheet.create({
   footer: {
     alignSelf: "flex-end"
   },
-  input: {
-    width: 250,
-    margin: 5,
-    backgroundColor: '#FFFFFF',
-    borderColor: '#d7ff8c',
-    borderWidth: 2,
-  },
   imageFit: {
     flex: 1,
     resizeMode: 'contain',
   },
+  input: {
+    height: 50,
+    width: '75%',
+    margin: 5,
+    padding: 4,
+    backgroundColor: '#FFFFFF',
+    borderColor: '#d7ff8c',
+    borderRadius: 4,
+    borderWidth: 2,
+  },
   itemInput: {
     height: 50,
-    padding: 4,
+    width: '75%',
     margin: 5,
+    padding: 4,
+    backgroundColor: '#FFFFFF',
+    borderColor: '#d7ff8c',
     borderRadius: 4,
-    borderWidth:1,
-    borderColor: 'black',
-    backgroundColor: 'white',
+    borderWidth: 2,
   },
   searchInput: {
     height: 36,
@@ -56,6 +60,10 @@ export default StyleSheet.create({
   },
   scrollContainer: {
     backgroundColor: '#91b43d',
+  },
+  title: {
+    fontWeight: 'bold', 
+    fontSize: 24, 
   },
   buttonMargin: {
     marginBottom: 20,
