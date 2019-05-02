@@ -126,9 +126,9 @@ export default class SignInScreen extends Component {
           color="#4a822f"
           />
         <Text>{'\n\n\n'}</Text>
-        <TouchableOpacity onPress={ () => this.props.navigation.navigate('AppStack') }>
+        {/* <TouchableOpacity onPress={ () => this.props.navigation.navigate('AppStack') }> */}
           <Icon name="leaf" size={30} style={{padding: 10}}/>
-        </TouchableOpacity>
+        {/* </TouchableOpacity> */}
       </View>
     );
   }
