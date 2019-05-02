@@ -85,7 +85,7 @@ export default class SignInScreen extends Component {
   render() {
 
     return (
-      <View style={styles.container}>
+      <View style={styles.containerAuthScreens}>
         <OfflineNotice/>
         <Text style={styles.title}>URBAN FARMER</Text>
         <Text>Login</Text>
@@ -126,9 +126,9 @@ export default class SignInScreen extends Component {
           color="#4a822f"
           />
         <Text>{'\n\n\n'}</Text>
-        <TouchableOpacity onPress={ () => this.props.navigation.navigate('AppStack') }>
+        {/* <TouchableOpacity onPress={ () => this.props.navigation.navigate('AppStack') }> */}
           <Icon name="leaf" size={30} style={{padding: 10}}/>
-        </TouchableOpacity>
+        {/* </TouchableOpacity> */}
       </View>
     );
   }
