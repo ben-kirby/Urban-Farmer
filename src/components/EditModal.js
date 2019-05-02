@@ -110,7 +110,7 @@ export default class EditModal extends Component {
     this.state.errorQty ? (errorQtyVisible = <Text>please enter a number</Text>) : null;
     (this.state.submitValid === false) ? (errorSubmitVisible = <Text>please correct the inputs</Text>) : null;
     return (
-      <View>
+      <View style={styles.modalContainer}>
         <OfflineNotice/>
         
         <Modal
