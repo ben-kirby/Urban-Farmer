@@ -108,9 +108,8 @@ export default class EditModal extends Component {
     this.state.errorName ? (errorNameVisible = <Text>text only, no numbers and special characters</Text>) : null;
     this.state.errorPrice ? (errorPriceVisible = <Text>numbers only, no text and special characters</Text>) : null;
     this.state.errorQty ? (errorQtyVisible = <Text>please enter a number</Text>) : null;
-    (this.state.submitValid === false) ? (errorSubmitVisible = <Text>please correct the inputs</Text>) : null;
     return (
-      <View style={styles.modalContainer}>
+      <View >
         <OfflineNotice/>
         
         <Modal
@@ -121,7 +120,7 @@ export default class EditModal extends Component {
           onRequestClose={() => {
             Alert.alert('Please save chagnes.');
           }}>
-          <View style={{marginTop: 22}} >
+          <View style={styles.modalContainer} >
             <View>
 
               <TextInput
@@ -151,7 +150,7 @@ export default class EditModal extends Component {
                 style={styles.button}
                 onPress={this.deleteCombo}                  
               >
-              <Text style={{color:'black'}}>Delete</Text>
+              <Text style={{color:'white'}}>Delete</Text>
               </TouchableHighlight>
               </View>
 
@@ -160,7 +159,7 @@ export default class EditModal extends Component {
                 style={styles.button}
                 onPress={this.updateCombo}                     
               >
-                <Text style={{color:'black'}}>Update</Text>
+                <Text style={{color:'white'}}>Update</Text>
               </TouchableHighlight>
               </View>
 
@@ -171,7 +170,7 @@ export default class EditModal extends Component {
                 style={styles.button}
                 onPress={() => {this.setModalVisible(false);}} 
                 >
-                <Text style={{color:'black'}}>Cancel</Text>
+                <Text style={{color:'white'}}>Cancel</Text>
                 </TouchableHighlight>
               </View>
              
@@ -186,7 +185,7 @@ export default class EditModal extends Component {
          onPress={() => {this.setModalVisible(true);}}
         >
          
-          <Text>Edit</Text>
+          <Text style={{color:'white'}}>Edit</Text>
         </TouchableHighlight>
       </View>
     );

@@ -15,11 +15,17 @@ export default class ItemComponent extends Component {
   render() {
       return(
         <View style={styles.itemCard}>
+
           <Text style={styles.itemtext}>{this.props.product.name} </Text>
+      
+          <View style={{alignItems:'center'}}>
+
+          <SoldModal item={this.props.product}/> 
           
-          <SoldModal item={this.props.product}/>         
           <EditModal item={this.props.product} refresh={this.props.refresh}/>        
-         
+
+          </View>
+        
         </View>
     );
   }

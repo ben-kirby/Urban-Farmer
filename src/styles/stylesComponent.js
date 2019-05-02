@@ -65,8 +65,8 @@ export default StyleSheet.create({
   },
   button: {
     alignItems: 'center',
-    backgroundColor: '#91b43d',
-    width: 100,
+    backgroundColor: '#4a822f',
+    width: 120,
     height:30,
     margin:15,
     margin:10,
@@ -95,7 +95,19 @@ export default StyleSheet.create({
 		backgroundColor :'#f9f4eb'
   },
   sellButtonLayout: {
-    flex:2,
-    flexDirection:'column'
-  }
+    flex:1,
+    flexDirection:'row',
+    flexWrap:'wrap',
+    
+  },
+  modalContainer: {
+    padding: 60,
+    paddingTop: 65,
+    alignItems: 'stretch',
+    color: '#91b43d',
+    backgroundColor: '#91b43d',
+    flex: 1,
+    
+  },
+
 });

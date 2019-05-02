@@ -82,14 +82,18 @@ export default class SoldModal extends Component {
     let purchaseButton;
 
     if (this.state.quantityToSell == 0) {
-      purchaseButton = < Button
-      title = "Purchase"
-      disabled={true}/>
+      purchaseButton =  <TouchableHighlight 
+      style={styles.button}>
+      <Text>PurchaseButton</Text>
+      </TouchableHighlight>
 
     } else {
-      purchaseButton = < Button
-      title = "Purchase"
-      onPress = {this.handlePurchase}/>
+
+      purchaseButton =  <TouchableHighlight 
+      style={styles.button}
+      onPress = {this.handlePurchase}>
+      <Text style={{color:'white'}}> PurchaseButton</Text>
+      </TouchableHighlight>
     }
 
     return (
@@ -101,9 +105,9 @@ export default class SoldModal extends Component {
           onRequestClose={() => {
             Alert.alert('Modal has been closed.');
           }}>
-          <View style={{marginTop: 75}}>
+          <View style={styles.modalContainer} >
           {(this.state.itemQty  === 0) ? ( 
-          <View>
+          <View >
             <Text>Out of Stock.</Text>
             <Button
               title="OK"
@@ -122,28 +126,27 @@ export default class SoldModal extends Component {
               style={styles.button}
                onPress={this.handleAdd}
               >
-                <Text>+</Text>
+                <Text style={{color:'white'}}>+</Text>
               </TouchableHighlight>
 
               <TouchableHighlight
               style={styles.button}
               onPress={this.handleSubtract}
               >
-                <Text>-</Text>
+                <Text style={{color:'white'}}>-</Text>
               </TouchableHighlight>
-                
-              <TouchableHighlight 
-              style={styles.button}>
-              {purchaseButton}
-              </TouchableHighlight>
-
+             
               <TouchableHighlight
               style={styles.button}
               onPress={this.handleCloseModal}
               >
-                <Text>Cancel</Text>
+                <Text style={{color:'white'}}>Cancel</Text>
               </TouchableHighlight>
-        
+              
+              
+              {purchaseButton}
+           
+
               </View>
          
             </View>
@@ -155,7 +158,7 @@ export default class SoldModal extends Component {
         style={styles.button}
           onPress={this.toggleModalVisibility}
         >
-         <Text>Sell</Text>
+         <Text style={{color:'white'}}>Sell</Text>
         </TouchableHighlight>
       </View>
     );
