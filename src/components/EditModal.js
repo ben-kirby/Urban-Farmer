@@ -5,7 +5,6 @@ import { auth, db } from '../config';
 import OfflineNotice from './OfflineNotice';
 import styles from '../styles/stylesComponent';
 
-
 export default class EditModal extends Component {
     constructor(props){
         super(props);
@@ -22,10 +21,10 @@ export default class EditModal extends Component {
         itemQty: this.props.item.quantity,
         userId: this.props.item.uid,
         errorQty: false,
-        errorPrice: false,
+       errorPrice: false,
         errorName: false,
         submitValid: true,
-        submitEmpty: true
+        submitEmpty: false
       };
               
   setModalVisible(visible) {
@@ -61,12 +60,13 @@ export default class EditModal extends Component {
 
 
   handlePriceVal = (pri) => {
-    const reg = /^[+]?([1-9][0-9]*(?:[\.][0-9]*)?|0*\.0*[1-9][0-9]*)(?:[eE][+-][0-9]+)?$/;
+    const reg = /^(?:0|[1-9]\d{0,2}(?:,?\d{3})*)(?:\.[0-9]{2})?$/;
     let correctPrice = pri.match(reg) ? this.setState({submitValid: true, errorPrice: false}) : this.setState({errorPrice: true, submitValid: false});
     this.setState({
      itemPrice: pri
     })
   }
+
   handleQtyVal = (qty) => {
     const reg = /^[1-9]\d*$/;
     let correctQuantity = qty.match(reg) ? this.setState({submitValid: true, errorQty: false}) : this.setState({errorQty: true, submitValid: false});
@@ -76,9 +76,9 @@ export default class EditModal extends Component {
   }
 
   checkInputEmpty = () => {
-    const { name, price, quantity } = this.state;
-    if(name === null && price === null && quantity === null){
-      this.setState({submitEmpty: false});
+    const { itemName, itemPrice, itemQty } = this.state;
+    if((this.nameInputRef && itemName)  && (this.priceInputRef && itemPrice) && (this.quantityInputRef && itemQty)){
+      this.setState({submitEmpty: true})
     }
   } 
 
@@ -96,6 +96,9 @@ export default class EditModal extends Component {
       this.state.itemQty
       );
       alert('item edited!');
+      this.setState({
+        submitEmpty: false
+      });
     }
 
   };
@@ -104,12 +107,11 @@ export default class EditModal extends Component {
     let errorQtyVisible;
     let errorNameVisible;
     let errorPriceVisible;
-    let errorSubmitVisible;
-    this.state.errorName ? (errorNameVisible = <Text>text only, no numbers and special characters</Text>) : null;
-    this.state.errorPrice ? (errorPriceVisible = <Text>numbers only, no text and special characters</Text>) : null;
-    this.state.errorQty ? (errorQtyVisible = <Text>please enter a number</Text>) : null;
+    this.state.errorName ? (errorNameVisible = <Text style={styles.errorMessage} >Only accepts text input</Text>) : null;
+    this.state.errorPrice ? (errorPriceVisible = <Text style={styles.errorMessage} >Only accepts price format:XX.XX </Text>) : null;
+    this.state.errorQty ? (errorQtyVisible = <Text style={styles.errorMessage} >Only accepts a number</Text>) : null;
     return (
-      <View >
+      <View>
         <OfflineNotice/>
         
         <Modal
@@ -120,24 +122,27 @@ export default class EditModal extends Component {
           onRequestClose={() => {
             Alert.alert('Please save chagnes.');
           }}>
-          <View style={styles.modalContainer} >
+          <View style={styles.modalContainer}>
             <View>
 
               <TextInput
-              style={styles.itemInput}
+              ref={ref => this.nameInputRef = ref}
+              style={this.state.errorName ? styles.modalErrorInput: styles.modalInput}
               onChangeText={(text) => this.handleNameVal(text)}
               placeholder={this.props.item.name}
               />
             {errorNameVisible}
             <TextInput
-                style={styles.itemInput}
+                ref={ref => this.priceInputRef = ref}
+                style={this.state.errorPrice ? styles.modalErrorInput: styles.modalInput}
                 onChangeText={(text) => this.handlePriceVal(text)}
                 placeholder={this.props.item.price}
                
             />
             {errorPriceVisible}
             <TextInput
-                style={styles.itemInput}
+                ref={ref => this.quantityInputRef = ref}
+                style={this.state.errorQty ? styles.modalErrorInput: styles.modalInput}
                 onChangeText={(text) => this.handleQtyVal(text)}
                 placeholder={this.props.item.quantity}
                
@@ -162,8 +167,6 @@ export default class EditModal extends Component {
                 <Text style={{color:'white'}}>Update</Text>
               </TouchableHighlight>
               </View>
-
-              {errorSubmitVisible}
 
               <View >
                 <TouchableHighlight
@@ -191,4 +194,3 @@ export default class EditModal extends Component {
     );
   }
 }
-

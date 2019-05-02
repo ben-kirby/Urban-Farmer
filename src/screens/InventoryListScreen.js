@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView, RefreshControl, Alert } from 'react-native';
+import { View, Text, ScrollView, RefreshControl } from 'react-native';
 import ItemComponent from '../components/ItemComponent';
 import { db, auth } from "../config";
 import Loading from '../components/Loading';
@@ -57,10 +57,12 @@ export default class InventoryListScreen extends Component {
   render() {
     <OfflineNotice/>
     return (
-      <View style={styles.scrollContainer}>
+      <View style={styles.container}>
+        <OfflineNotice/>
         {this.state.products.length > 0 ? (
           <ScrollView
-            refreshControl= {
+            style={styles.scrollContainer}
+           refreshControl= {
               <RefreshControl
                 refreshing={this.state.refreshing}
                 onRefresh={this.handleRefresh}

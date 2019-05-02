@@ -18,15 +18,15 @@ let addItem = (a, b, c, uid) => {
 
 export default class AddItemScreen extends Component {
   state = {
-    name: '',
-    price: '',
-    quantity: '',
-    uid: '',
+    name: null,
+    price: null,
+    quantity: null,
+    uid: null,
     errorQty: false,
     errorPrice: false,
     errorName: false,
     submitValid: true,
-    submitEmpty: true
+    submitEmpty: false
   };
 
   async getUserId(){
@@ -50,7 +50,7 @@ export default class AddItemScreen extends Component {
   }
 
   handleChangePrice = (text) => {
-    const reg = /^[+]?([1-9][0-9]*(?:[\.][0-9]*)?|0*\.0*[1-9][0-9]*)(?:[eE][+-][0-9]+)?$/;
+    const reg = /^(?:0|[1-9]\d{0,2}(?:,?\d{3})*)(?:\.[0-9]{2})?$/;
     let correctPrice = text.match(reg) ? this.setState({submitValid: true, errorPrice: false}) : this.setState({errorPrice: true, submitValid: false});
     this.setState({price:text});
   }
@@ -63,8 +63,10 @@ export default class AddItemScreen extends Component {
 
   checkInputEmpty = () => {
     const { name, price, quantity } = this.state;
-    if(name !== '' && price !== '' && quantity !== ''){
+    if((this.nameInputRef && name)  && (this.priceInputRef && price) && (this.quantityInputRef && quantity)){
       this.setState({submitEmpty: true})
+    } else {
+      alert('Please fill all the fields');
     }
   } 
 
@@ -77,9 +79,9 @@ export default class AddItemScreen extends Component {
       this.priceInputRef.clear();
       this.quantityInputRef.clear();
       this.setState({
-        name: '',
-        quantity: '',
-        price: '',
+        name: null,
+        quantity: null,
+        price: null,
         submitEmpty: false
       });
       alert('item saved!');
@@ -92,42 +94,48 @@ export default class AddItemScreen extends Component {
     let errorNameVisible;
     let errorPriceVisible;
     let errorSubmitVisible;
-    this.state.errorName ? (errorNameVisible = <Text>letters only, no numbers and special characters</Text>) : null;
-    this.state.errorPrice ? (errorPriceVisible = <Text>numbers only, no text and special characters</Text>) : null;
-    this.state.errorQty ? (errorQtyVisible = <Text>please enter a number</Text>) : null;
-    (this.state.submitValid === false) ? (errorSubmitVisible = <Text>please correct the inputs</Text>) : null;
+    this.state.errorName ? (errorNameVisible = <Text style={styles.errorMessage}>
+      Only accepts text input</Text>) : null;
+    this.state.errorPrice ? (errorPriceVisible = <Text style={styles.errorMessage} >Only accepts price format:XX.XX</Text>) : null;
+    this.state.errorQty ? (errorQtyVisible = <Text style={styles.errorMessage} >Only accepts a number</Text>) : null;
+    (this.state.submitValid === false) ? (errorSubmitVisible = <Text style={styles.errorMessage} >One or more invalid Inputs</Text>) : null;
     return(
-    <ScrollView style={styles.scrollContainer}>
+    <View style={styles.container}>
       <OfflineNotice/>
 
       <Text style={styles.title}>Add Item</Text>
       <TextInput
         ref={ref => this.nameInputRef = ref}
-        style={styles.itemInput}
+        style={this.state.errorName ? styles.errorInput: styles.itemInput}
         onChangeText={this.handleChangeName}
         placeholder='Item name'
       />
       {errorNameVisible}
       <TextInput
         ref={ref => this.priceInputRef = ref}
-        style={styles.itemInput}
+        style={this.state.errorPrice ? styles.errorInput: styles.itemInput}
         onChangeText={this.handleChangePrice}
         placeholder='Item price'
       />
       {errorPriceVisible}
       <TextInput
         ref={ref => this.quantityInputRef = ref}
-        style={styles.itemInput}
+        style={this.state.errorQty ? styles.errorInput: styles.itemInput}
         onChangeText={this.handleChangeQuantity}
         placeholder='Item quantity'
       />
       {errorQtyVisible}
-      <Button
-         onPress={this.handleSubmit}
-         title='Add Item'
-      />
+      <View style={{alignItems:'center'}}>
+     <TouchableHighlight
+     style={styles.button}
+       onPress={this.handleSubmit}     
+     >
+         <Text style={{color:'white'}}>Add Item</Text>
+         </TouchableHighlight>
+
+      </View>
       {errorSubmitVisible}
-      </ScrollView>
+      </View>
     );
   }
 }

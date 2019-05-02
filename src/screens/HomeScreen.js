@@ -1,32 +1,53 @@
 import React, { Component } from 'react';
-import { ScrollView, Button, View, Dimensions, Image } from 'react-native';
+import { ScrollView, Image } from 'react-native';
 import { Card, CardItem, Text, Body, Container} from "native-base";
-import { navigationOptions } from 'react-navigation';
 import AsyncStorage from '@react-native-community/async-storage';
-import Loading from '../components/Loading';
+import Loading from '../components/Loading'; //Will be used when 'dynamic' cards are implimented
 import OfflineNotice from '../components/OfflineNotice';
 
 import styles from '../styles/stylesComponent';
 
 export default class HomeScreen extends Component {
-
-	componentDidMount() {
-		this.getData();
+	state = {
+		email: '',
+		user: '',
 	}
 
-	getData = async () => {
-		await AsyncStorage.getItem('@test_Key').then(response => {
-			this.setState({
-				testKey: response
-			});
+	componentDidMount() {
+		this.getEmail();
+	}
+
+	getEmail = async () => {
+		await AsyncStorage.getItem('email').then(response => {
+			if (response !== null) {
+				this.setState({
+					email: response
+				});
+			} else {
+				this.setState({
+					email: 'Unknown@'
+				});
+			};
 		});
+	};
+
+	chopEmailAtsymbol = (emailString) => {
+		let found = emailString.search('@');
+		let capitalizeFirst = emailString.charAt(0).toUpperCase();
+		return (capitalizeFirst + emailString.slice(1,found));
 	}
 
 	render () {
+		this.getEmail;
 		return(
 			<Container style={styles.scrollContainer}>
 				<OfflineNotice/>
-			<ScrollView>
+				<ScrollView>
+				<Card>
+					<CardItem header bordered>
+						<Text>Welcome {this.chopEmailAtsymbol(this.state.email)} !</Text>
+					</CardItem>
+				</Card>
 				<Card>
 					<CardItem header bordered>
 						<Text>Sales vs. Time, for {'April 2019'}</Text>
@@ -36,6 +57,9 @@ export default class HomeScreen extends Component {
 							style={styles.imageFit}
 							source={require('../img/salesGraph.gif')}
 							/>
+					</CardItem>
+					<CardItem footer bordered>
+						<Text></Text>
 					</CardItem>
 				</Card>
 
@@ -49,6 +73,9 @@ export default class HomeScreen extends Component {
 								{'40'} transactions in the past month.
 							</Text>
 						</Body>
+					</CardItem>
+					<CardItem footer bordered>
+						<Text></Text>
 					</CardItem>
 				</Card>
 
@@ -66,8 +93,11 @@ export default class HomeScreen extends Component {
 							</Text>
 						</Body>
 					</CardItem>
+					<CardItem footer bordered>
+						<Text></Text>
+					</CardItem>
 				</Card>
-			</ScrollView>
+				</ScrollView>
 			</Container>
 		);
 	}
