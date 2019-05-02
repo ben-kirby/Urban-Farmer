@@ -15,6 +15,14 @@ export default StyleSheet.create({
     backgroundColor: '#91b43d',
     flex: 1,
   },
+  modalContainer: {
+    padding: 60,
+    paddingTop: 65,
+    alignItems: 'center',
+    color: '#91b43d',
+    backgroundColor: '#91b43d',
+    flex: 1,
+  },
   description: {
     marginBottom: 20,
     fontSize: 18,
@@ -43,9 +51,37 @@ export default StyleSheet.create({
     borderRadius: 4,
     borderWidth: 2,
   },
+  errorInput: {
+    height: 50,
+    margin: 5,
+    backgroundColor: '#FFFFFF',
+    borderColor: 'red',
+    borderRadius: 4,
+    borderWidth: 2,
+  },
+  modalErrorInput: {
+    height: 50,
+    margin: 5,
+    paddingLeft: 20,
+    paddingRight: 20,
+    backgroundColor: '#FFFFFF',
+    borderColor: 'red',
+    borderRadius: 4,
+    borderWidth: 2,
+  },
   itemInput: {
     height: 50,
     margin: 5,
+    backgroundColor: '#FFFFFF',
+    borderColor: '#d7ff8c',
+    borderRadius: 4,
+    borderWidth: 2,
+  },
+  modalInput: {
+    height: 50,
+    margin: 5,
+    paddingLeft: 20,
+    paddingRight: 20,
     backgroundColor: '#FFFFFF',
     borderColor: '#d7ff8c',
     borderRadius: 4,
@@ -79,5 +115,9 @@ export default StyleSheet.create({
 	},
 	accordionContent: {
 		backgroundColor: '#eeeeee'
-	}
+  },
+  errorMessage: {
+    color: 'red',
+    textAlign: 'center',
+  }
 });
