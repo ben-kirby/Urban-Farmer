@@ -9,6 +9,14 @@ export default StyleSheet.create({
     backgroundColor: '#91b43d',
     flex: 1,
   },
+  modalContainer: {
+    padding: 60,
+    paddingTop: 65,
+    alignItems: 'center',
+    color: '#91b43d',
+    backgroundColor: '#91b43d',
+    flex: 1,
+  },
   description: {
     marginBottom: 20,
     fontSize: 18,
@@ -23,25 +31,55 @@ export default StyleSheet.create({
   footer: {
     alignSelf: "flex-end"
   },
-  input: {
-    width: 250,
-    margin: 5,
-    backgroundColor: '#FFFFFF',
-    borderColor: '#d7ff8c',
-    borderWidth: 2,
-  },
   imageFit: {
     flex: 1,
     resizeMode: 'contain',
   },
+  input: {
+    height: 50,
+    width: '75%',
+    margin: 5,
+    padding: 4,
+    backgroundColor: '#FFFFFF',
+    borderColor: '#d7ff8c',
+    borderRadius: 4,
+    borderWidth: 2,
+  },
+  errorInput: {
+    height: 50,
+    margin: 5,
+    backgroundColor: '#FFFFFF',
+    borderColor: 'red',
+    borderRadius: 4,
+    borderWidth: 2,
+  },
+  modalErrorInput: {
+    height: 50,
+    margin: 5,
+    paddingLeft: 20,
+    paddingRight: 20,
+    backgroundColor: '#FFFFFF',
+    borderColor: 'red',
+    borderRadius: 4,
+    borderWidth: 2,
+  },
   itemInput: {
     height: 50,
-    padding: 4,
     margin: 5,
+    backgroundColor: '#FFFFFF',
+    borderColor: '#d7ff8c',
     borderRadius: 4,
-    borderWidth:1,
-    borderColor: 'black',
-    backgroundColor: 'white',
+    borderWidth: 2,
+  },
+  modalInput: {
+    height: 50,
+    margin: 5,
+    paddingLeft: 20,
+    paddingRight: 20,
+    backgroundColor: '#FFFFFF',
+    borderColor: '#d7ff8c',
+    borderRadius: 4,
+    borderWidth: 2,
   },
   searchInput: {
     height: 36,
@@ -55,9 +93,25 @@ export default StyleSheet.create({
     color: '#48BBEC',
   },
   scrollContainer: {
-    backgroundColor: '#91b43d',
+    backgroundColor: '#91b43d'
+  },
+  title: {
+    fontWeight: 'bold',
+    fontSize: 24,
   },
   buttonMargin: {
     marginBottom: 20,
+  },
+	accordionHeader: {
+		backgroundColor: 'white',
+		borderBottomColor: 'grey',
+		borderBottomWidth: StyleSheet.hairlineWidth
+	},
+	accordionContent: {
+		backgroundColor: '#eeeeee'
+  },
+  errorMessage: {
+    color: 'red',
+    textAlign: 'center',
   }
 });

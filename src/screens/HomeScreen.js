@@ -9,24 +9,46 @@ import OfflineNotice from '../components/OfflineNotice';
 import styles from '../styles/stylesComponent';
 
 export default class HomeScreen extends Component {
-
-	componentDidMount() {
-		this.getData();
+	state = {
+		email: '',
+		user: '',
 	}
 
-	getData = async () => {
-		await AsyncStorage.getItem('@test_Key').then(response => {
-			this.setState({
-				testKey: response
-			});
+	componentDidMount() {
+		this.getEmail();
+	}
+
+	getEmail = async () => {
+		await AsyncStorage.getItem('email').then(response => {
+			if (response !== null) {
+				this.setState({
+					email: response
+				});
+			} else {
+				this.setState({
+					email: 'Unknown@'
+				});
+			};
 		});
+	};
+
+	chopEmailAtsymbol = (emailString) => {
+		let found = emailString.search('@');
+		let capitalizeFirst = emailString.charAt(0).toUpperCase();
+		return (capitalizeFirst + emailString.slice(1,found));
 	}
 
 	render () {
+		this.getEmail;
 		return(
 			<Container style={styles.scrollContainer}>
 				<OfflineNotice/>
-			<ScrollView>
+				<ScrollView>
+				<Card>
+					<CardItem header bordered>
+						<Text>Welcome {this.chopEmailAtsymbol(this.state.email)} !</Text>
+					</CardItem>
+				</Card>
 				<Card>
 					<CardItem header bordered>
 						<Text>Sales vs. Time, for {'April 2019'}</Text>
@@ -67,7 +89,7 @@ export default class HomeScreen extends Component {
 						</Body>
 					</CardItem>
 				</Card>
-			</ScrollView>
+				</ScrollView>
 			</Container>
 		);
 	}

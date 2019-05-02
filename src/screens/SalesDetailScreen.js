@@ -65,18 +65,11 @@ export default class ItemDetailScreen extends Component {
 		if (this.state.loading == false) {
 			{this.state.transactions.length > 0 ? (
 				content = 
-				<ScrollView
-					refreshControl={
-						<RefreshControl
-							refreshing={this.state.refreshing}
-							onRefresh={this.handleRefresh}
-						/>
-					}
-				>
+				<View>
 					<TransactionDetail
 						transactionData={this.state.transactions}
 					/>
-				</ScrollView>
+				</View>
 			) : (
 				content = <Text>No sales yet</Text>
 			)}
@@ -85,10 +78,19 @@ export default class ItemDetailScreen extends Component {
 		}
 
 		return (
-			<View>
+			<ScrollView 
+				refreshControl={
+					<RefreshControl
+						refreshing={this.state.refreshing}
+						onRefresh={this.handleRefresh}
+					/>
+				}
+				style={styles.scrollContainer}
+			
+			>
 				<OfflineNotice />
 				{content}
-			</View>
+			</ScrollView>
 		);
 	}
 }
