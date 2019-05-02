@@ -75,8 +75,7 @@ export default StyleSheet.create({
   buttonLayout:{
     flex: 1,
     flexDirection:'row',
-    justifyContent:'center',
-    
+    justifyContent:'center', 
   },
   itemsList: {
 		flex: 1,

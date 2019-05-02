@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import { Button } from 'react-native';
 import {Modal, TouchableHighlight, View, Alert,TextInput, Text} from 'react-native';
 import PropTypes from 'prop-types';
 import { auth, db } from '../config';
@@ -111,10 +110,11 @@ export default class EditModal extends Component {
     this.state.errorQty ? (errorQtyVisible = <Text>please enter a number</Text>) : null;
     (this.state.submitValid === false) ? (errorSubmitVisible = <Text>please correct the inputs</Text>) : null;
     return (
-      <View >
+      <View>
         <OfflineNotice/>
+        
         <Modal
-         
+        
           animationType="slide"
           transparent={false}
           visible={this.state.modalVisible}
@@ -144,7 +144,7 @@ export default class EditModal extends Component {
                
             />
             {errorQtyVisible}
-            <View style={styles.buttonLayout}>
+            <View style={styles.buttonLayout} >
 
               <View>
               <TouchableHighlight
@@ -174,7 +174,7 @@ export default class EditModal extends Component {
                 <Text style={{color:'black'}}>Cancel</Text>
                 </TouchableHighlight>
               </View>
-
+             
             </View>
            
             </View>
