@@ -1,8 +1,11 @@
-import { StyleSheet, Diemensions } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
+import AuthStackComponent from '../components/AuthStackComponent';
+
+
 
 export default StyleSheet.create({
   container: {
-    alignItems: 'center',
+    alignItems: 'stretch',
     color: '#91b43d',
     backgroundColor: '#91b43d',
     flex: 1,
@@ -104,10 +107,58 @@ export default StyleSheet.create({
   title: {
     fontWeight: 'bold',
     fontSize: 24,
+    alignSelf: 'center'
   },
   buttonMargin: {
     marginBottom: 20,
   },
+  button: {
+    alignItems: 'center',
+    backgroundColor: '#4a822f',
+    width: 120,
+    height:30,
+    margin:15,
+    margin:10,
+    paddingTop:5
+  },
+  buttonLayout:{
+    flex: 1,
+    flexDirection:'row',
+    justifyContent:'center', 
+  },
+  itemsList: {
+		flex: 1,
+		flexDirection: 'column',
+		justifyContent: 'space-around'
+	},
+	itemtext: {
+		fontSize: 24,
+		fontWeight: 'bold',
+		textAlign: 'center',
+		marginTop: 10
+	},
+	itemCard: {
+		marginTop:10,
+		marginRight:10,
+		marginLeft:10,
+		backgroundColor :'#f9f4eb'
+  },
+  sellButtonLayout: {
+    flex:1,
+    flexDirection:'row',
+    flexWrap:'wrap',
+    
+  },
+  modalContainer: {
+    padding: 60,
+    paddingTop: 65,
+    alignItems: 'stretch',
+    color: '#91b43d',
+    backgroundColor: '#91b43d',
+    flex: 1,
+    
+  },
+
 	accordionHeader: {
 		backgroundColor: 'white',
 		borderBottomColor: 'grey',

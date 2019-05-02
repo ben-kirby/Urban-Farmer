@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text } from 'react-native';
 import SoldModal from './SoldModal';
 import EditModal from './EditModal';
-import { db, auth } from '../config';
 import PropTypes from 'prop-types';
-
+import styles from '../styles/stylesComponent';
 
 export default class ItemComponent extends Component {
   static propTypes = {
@@ -16,30 +15,19 @@ export default class ItemComponent extends Component {
   render() {
       return(
         <View style={styles.itemCard}>
+
           <Text style={styles.itemtext}>{this.props.product.name} </Text>
-          <EditModal item={this.props.product} refresh={this.props.refresh}/>
-          <SoldModal item={this.props.product}/>
+      
+          <View style={{alignItems:'center'}}>
+
+          <SoldModal item={this.props.product}/> 
+          
+          <EditModal item={this.props.product} refresh={this.props.refresh}/>        
+
+          </View>
+        
         </View>
     );
   }
 }
 
-const styles = StyleSheet.create({
-	itemsList: {
-		flex: 1,
-		flexDirection: 'column',
-		justifyContent: 'space-around'
-	},
-	itemtext: {
-		fontSize: 24,
-		fontWeight: 'bold',
-		textAlign: 'center',
-		marginTop: 10
-	},
-	itemCard: {
-		marginTop:10,
-		marginRight:10,
-		marginLeft:10,
-		backgroundColor :'#f9f4eb'
-	}
-});

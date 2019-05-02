@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import { Button } from 'react-native';
 import {Modal, TouchableHighlight, View, Alert,TextInput, Text} from 'react-native';
 import PropTypes from 'prop-types';
 import { auth, db } from '../config';
@@ -37,6 +36,7 @@ export default class EditModal extends Component {
   handleDelete = (itemId) => {  
     let userId = auth.currentUser.uid;  
     db.ref('products/' + userId).child(itemId).remove();
+    alert('item Deleted!');
   }
 
   deleteCombo = () => {
@@ -47,7 +47,7 @@ export default class EditModal extends Component {
 
   updateCombo = () => {
     this.handleSubmit();
-    this.setModalVisible(true);
+    this.setModalVisible(false);
   }
 
   handleNameVal = (nam) => {
@@ -95,7 +95,6 @@ export default class EditModal extends Component {
     db.ref('products/' + this.state.userId + '/' + this.state.itemId + '/quantity').set(
       this.state.itemQty
       );
-      console.log("handle edit submit triggered");
       alert('item edited!');
       this.setState({
         submitEmpty: false
@@ -105,24 +104,23 @@ export default class EditModal extends Component {
   };
 
   render() {
-    console.log(this.props);
     let errorQtyVisible;
     let errorNameVisible;
     let errorPriceVisible;
-    let errorSubmitVisible;
     this.state.errorName ? (errorNameVisible = <Text style={styles.errorMessage} >Only accepts text input</Text>) : null;
     this.state.errorPrice ? (errorPriceVisible = <Text style={styles.errorMessage} >Only accepts price format:XX.XX </Text>) : null;
     this.state.errorQty ? (errorQtyVisible = <Text style={styles.errorMessage} >Only accepts a number</Text>) : null;
-    (this.state.submitValid === false) ? (errorSubmitVisible = <Text style={styles.errorMessage} >One or more invalid Inputs </Text>) : null;
     return (
       <View>
         <OfflineNotice/>
+        
         <Modal
+        
           animationType="slide"
           transparent={false}
           visible={this.state.modalVisible}
           onRequestClose={() => {
-            Alert.alert('Modal has been closed.');
+            Alert.alert('Please save chagnes.');
           }}>
           <View style={styles.modalContainer}>
             <View>
@@ -150,39 +148,49 @@ export default class EditModal extends Component {
                
             />
             {errorQtyVisible}
-              <TouchableHighlight>
+            <View style={styles.buttonLayout} >
 
-                <Button 
-                title='Close Modal'           
-                onPress={() => {this.setModalVisible(false);}} 
-                />
-
+              <View>
+              <TouchableHighlight
+                style={styles.button}
+                onPress={this.deleteCombo}                  
+              >
+              <Text style={{color:'white'}}>Delete</Text>
               </TouchableHighlight>
+              </View>
 
-              <Button
-                title='update'
+              <View>
+              <TouchableHighlight
+                style={styles.button}
                 onPress={this.updateCombo}                     
-                />
-              {errorSubmitVisible}
-                  <Button
-                title='Delete'
-                onPress={this.deleteCombo}                     
-                />
+              >
+                <Text style={{color:'white'}}>Update</Text>
+              </TouchableHighlight>
+              </View>
+
+              <View >
+                <TouchableHighlight
+                style={styles.button}
+                onPress={() => {this.setModalVisible(false);}} 
+                >
+                <Text style={{color:'white'}}>Cancel</Text>
+                </TouchableHighlight>
+              </View>
+             
+            </View>
+           
             </View>
           </View>
         </Modal>
 
-        <TouchableHighlight>
+        <TouchableHighlight
+        style={styles.button}
+         onPress={() => {this.setModalVisible(true);}}
+        >
          
-          <Button 
-          title='Edit'
-          onPress={() => {this.setModalVisible(true);}}
-          />
+          <Text style={{color:'white'}}>Edit</Text>
         </TouchableHighlight>
       </View>
     );
   }
 }
-
-
-  

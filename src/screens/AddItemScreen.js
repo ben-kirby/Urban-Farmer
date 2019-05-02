@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { ScrollView, View, Text, TouchableHighlight, StyleSheet, TextInput, Button } from 'react-native';
-import firebase, { db } from '../config';
+import { db } from '../config';
 
 import { readData } from '../DataStorage';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -44,7 +44,7 @@ export default class AddItemScreen extends Component {
   }
   
   handleChangeName = (text) => {
-    const reg = /^[a-zA-Z\s]*$/;
+    const reg = /^[a-zA-Z\s]*$(?![\s\S])/;
     let correctName = text.match(reg) ? this.setState({submitValid: true, errorName: false}) : this.setState({errorName: true,  submitValid: false});
     this.setState({name:text});
   }
@@ -84,7 +84,6 @@ export default class AddItemScreen extends Component {
         price: null,
         submitEmpty: false
       });
-      console.log("handle submit triggered");
       alert('item saved!');
     }
   };
@@ -101,7 +100,7 @@ export default class AddItemScreen extends Component {
     this.state.errorQty ? (errorQtyVisible = <Text style={styles.errorMessage} >Only accepts a number</Text>) : null;
     (this.state.submitValid === false) ? (errorSubmitVisible = <Text style={styles.errorMessage} >One or more invalid Inputs</Text>) : null;
     return(
-    <ScrollView style={styles.scrollContainer}>
+    <View style={styles.container}>
       <OfflineNotice/>
 
       <Text style={styles.title}>Add Item</Text>
@@ -126,12 +125,17 @@ export default class AddItemScreen extends Component {
         placeholder='Item quantity'
       />
       {errorQtyVisible}
-      <Button
-         onPress={this.handleSubmit}
-         title='Add Item'
-      />
+      <View style={{alignItems:'center'}}>
+     <TouchableHighlight
+     style={styles.button}
+       onPress={this.handleSubmit}     
+     >
+         <Text style={{color:'white'}}>Add Item</Text>
+         </TouchableHighlight>
+
+      </View>
       {errorSubmitVisible}
-      </ScrollView>
+      </View>
     );
   }
 }

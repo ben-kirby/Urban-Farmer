@@ -4,14 +4,16 @@ import ItemComponent from '../components/ItemComponent';
 import { db, auth } from "../config";
 import Loading from '../components/Loading';
 import OfflineNotice from '../components/OfflineNotice';
-
 import styles from '../styles/stylesComponent';
+
+
 
 export default class InventoryListScreen extends Component {
   state = {
     products: [],
-    refreshing: false
+    refreshing: false,
   };
+  
 
   componentDidMount() {
     this.getProducts()
@@ -53,13 +55,14 @@ export default class InventoryListScreen extends Component {
   }
 
   render() {
+    <OfflineNotice/>
     return (
       <View style={styles.container}>
         <OfflineNotice/>
         {this.state.products.length > 0 ? (
           <ScrollView
             style={styles.scrollContainer}
-            refreshControl= {
+           refreshControl= {
               <RefreshControl
                 refreshing={this.state.refreshing}
                 onRefresh={this.handleRefresh}
