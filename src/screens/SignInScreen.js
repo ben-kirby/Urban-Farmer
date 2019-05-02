@@ -85,7 +85,7 @@ export default class SignInScreen extends Component {
   render() {
 
     return (
-      <View style={styles.container}>
+      <View style={styles.containerAuthScreens}>
         <OfflineNotice/>
         <Text style={styles.title}>URBAN FARMER</Text>
         <Text>Login</Text>

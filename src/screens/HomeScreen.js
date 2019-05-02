@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { ScrollView, Button, View, Dimensions, Image } from 'react-native';
+import { ScrollView, Image } from 'react-native';
 import { Card, CardItem, Text, Body, Container} from "native-base";
-import { navigationOptions } from 'react-navigation';
 import AsyncStorage from '@react-native-community/async-storage';
-import Loading from '../components/Loading';
+import Loading from '../components/Loading'; //Will be used when 'dynamic' cards are implimented
 import OfflineNotice from '../components/OfflineNotice';
 
 import styles from '../styles/stylesComponent';
@@ -59,6 +58,9 @@ export default class HomeScreen extends Component {
 							source={require('../img/salesGraph.gif')}
 							/>
 					</CardItem>
+					<CardItem footer bordered>
+						<Text></Text>
+					</CardItem>
 				</Card>
 
 				<Card>
@@ -71,6 +73,9 @@ export default class HomeScreen extends Component {
 								{'40'} transactions in the past month.
 							</Text>
 						</Body>
+					</CardItem>
+					<CardItem footer bordered>
+						<Text></Text>
 					</CardItem>
 				</Card>
 
@@ -87,6 +92,9 @@ export default class HomeScreen extends Component {
 								Average sale was {'12'} items.
 							</Text>
 						</Body>
+					</CardItem>
+					<CardItem footer bordered>
+						<Text></Text>
 					</CardItem>
 				</Card>
 				</ScrollView>
