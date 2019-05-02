@@ -3,6 +3,7 @@ import { Button } from 'react-native';
 import {Modal, Text, TouchableHighlight, View, Alert} from 'react-native';
 import PropTypes from 'prop-types';
 import { db } from '../config';
+import styles from '../styles/stylesComponent';
 
 export default class SoldModal extends Component {
   state = {
@@ -110,32 +111,51 @@ export default class SoldModal extends Component {
             />
           </View>) : (
           <View>
-            <Text>{this.state.itemName}</Text>
-				    <Text>{this.state.itemQty} available at ${this.state.itemPrice} each</Text>
-            <Text>this.state.quantityToSell: {this.state.quantityToSell}</Text>
-            <Button
-              title='+'
-              onPress={this.handleAdd}
-            />
-					<Button
-						title='-'
-						onPress={this.handleSubtract}
-					/>
-          {purchaseButton}
-          <Button
-            title="Cancel"
-            onPress={this.handleCloseModal}
-          />
+            <Text style={styles.itemInput}>{this.state.itemName}</Text>
+
+				    <Text style={styles.itemInput}>{this.state.itemQty} available at ${this.state.itemPrice} each</Text>
+
+            <Text style={styles.itemInput}>quantity To Sell: {this.state.quantityToSell}</Text>
+            <View style={styles.sellButtonLayout}>
+
+              <TouchableHighlight
+              style={styles.button}
+               onPress={this.handleAdd}
+              >
+                <Text>+</Text>
+              </TouchableHighlight>
+
+              <TouchableHighlight
+              style={styles.button}
+              onPress={this.handleSubtract}
+              >
+                <Text>-</Text>
+              </TouchableHighlight>
+                
+              <TouchableHighlight 
+              style={styles.button}>
+              {purchaseButton}
+              </TouchableHighlight>
+
+              <TouchableHighlight
+              style={styles.button}
+              onPress={this.handleCloseModal}
+              >
+                <Text>Cancel</Text>
+              </TouchableHighlight>
+        
+              </View>
+         
             </View>
           )}
           </View>
         </Modal>
 
-        <TouchableHighlight>
-          <Button 
-          title='Sell'
+        <TouchableHighlight
+        style={styles.button}
           onPress={this.toggleModalVisibility}
-          />
+        >
+         <Text>Sell</Text>
         </TouchableHighlight>
       </View>
     );

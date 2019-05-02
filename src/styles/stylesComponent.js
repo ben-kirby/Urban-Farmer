@@ -93,5 +93,9 @@ export default StyleSheet.create({
 		marginRight:10,
 		marginLeft:10,
 		backgroundColor :'#f9f4eb'
-	}
+  },
+  sellButtonLayout: {
+    flex:2,
+    flexDirection:'column'
+  }
 });
