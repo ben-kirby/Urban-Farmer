@@ -59,7 +59,7 @@ export default class HomeScreen extends Component {
 							/>
 					</CardItem>
 					<CardItem footer bordered>
-						<Text>WIP</Text>
+						<Text></Text>
 					</CardItem>
 				</Card>
 
@@ -75,7 +75,7 @@ export default class HomeScreen extends Component {
 						</Body>
 					</CardItem>
 					<CardItem footer bordered>
-						<Text>WIP</Text>
+						<Text></Text>
 					</CardItem>
 				</Card>
 
@@ -94,7 +94,7 @@ export default class HomeScreen extends Component {
 						</Body>
 					</CardItem>
 					<CardItem footer bordered>
-						<Text>WIP</Text>
+						<Text></Text>
 					</CardItem>
 				</Card>
 				</ScrollView>
