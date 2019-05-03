@@ -1,41 +1,66 @@
-# **Urban Farmer **
+# **Urban Farmer**
 ##### Internship Project at Development Now , 04/08/2019
 ##### Alex Garcia, Ben Kirby, Tanvi Garg, Robert Lee
 
 ## Description
-A native application for both IOS and Android users, that can help them keep track of their inventory with a cool image recognition feature to add new items.
+This app was bootstrapped with Create React Native App
+
+A native application for iOS and Android users. Urban Farmer helps small scale growers manage their inventory and customer sales.
 
 ## Table of Contents
-  1. [Sprint1](#specs-work)
-  2. [Component Tree and Data Flow](#plan)
-  3. [Setup on OSX](#setup)
-  4. [Technologies Used](#Tech-used)
+* [Available Scripts](#available-scripts)
+  * [npm start](#npm-start)
+  * [npm test](#npm-test)
+  * [npm lint-fix](#npm-lint-fix)
+  * [npm react-devtools](#npm-react-devtools)
+* [Setup Firebase](#setup-firebase)
+* [Technology Used](#technology-used)
 
 
-## User Stories for Sprint 1<a name="specs-work"></a>
+## Available Scripts
 
-  
-## Component Tree and Data Flow
+### `npm start`
 
-## Setup Firebase<a name="setup"></a>
-* Add file `firebaseConfig.js` under src/constants directory.
-* Add firebase credentials like below:
+Starts Metro Bundler. To view the app open iOS simulator or Android emulator and run the respective build:
 
-`const firebaseConfig = {
-    apiKey: 'YOUR-UNIQUE-CREDENTIALS',
-    authDomain: 'YOUR-PROJECT-NAME.firebaseapp.com',
-    databaseURL: 'https://YOUR-PROJECT-NAME.firebaseio.com',
-    projectId: 'YOUR-UNIQUE-PROJECT-NAME',
-    storageBucket: 'YOUR-UNIQUE-URL',
-    messagingSenderId: 'YOUR-UNIQUE-CREDENTIALS'
-};
+    react-native run-ios
+    react-native run-android
 
-export default firebaseConfig;`
+### `npm test`
+
+Runs the Jest test runner.
+
+### `npm lint-fix`
+
+Fixes auto-fixable problems defined in the .eslint.json file.
+
+### `npm react-devtools`
+
+Runs react-devtools
+
+## Setup Firebase
+* Add file `config.js` under src/ directory.
+* Add firebase credentials:
+
+      import Firebase from 'firebase';
+
+      const config = {
+        apiKey: 'XXXX',
+        authDomain: 'XXXX',
+        databaseURL: 'XXXX',
+        projectId: 'XXXX',
+        storageBucket: 'XXXX',
+        messagingSenderId: 'XXXX'
+      };
+
+      Firebase.initializeApp(config);
+
+      export const db = Firebase.database();
+      export const auth = Firebase.auth();
+      export default Firebase;`
 
 
 
-## Technology Used<a name="Tech-used"></a>
+## Technology Used
 * React Native
-* Redux
 * Firebase
-
