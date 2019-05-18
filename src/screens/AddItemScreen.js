@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { ScrollView, View, Text, TouchableHighlight, StyleSheet, TextInput, Button } from 'react-native';
-import { db } from '../config';
+import { db } from '../config.js';
 
 import { readData } from '../DataStorage';
 import AsyncStorage from '@react-native-community/async-storage';

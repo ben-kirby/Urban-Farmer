@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, RefreshControl, ScrollView } from 'react-native';
-import { auth, db } from '../config';
+import { auth, db } from '../config.js';
 import OfflineNotice from '../components/OfflineNotice';
 
 import Loading from '../components/Loading';

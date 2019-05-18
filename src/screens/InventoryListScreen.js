@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, ScrollView, RefreshControl } from 'react-native';
 import ItemComponent from '../components/ItemComponent';
-import { db, auth } from "../config";
+import { db, auth } from "../config.js";
 import Loading from '../components/Loading';
 import OfflineNotice from '../components/OfflineNotice';
 import styles from '../styles/stylesComponent';
