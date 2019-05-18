@@ -2,7 +2,7 @@ import React from 'react';
 import { TextInput } from 'react-native';
 import styles from '../styles/stylesComponent'
 
-function(){
+export default function Username(){
 	return(
 		<TextInput
 			underlineColorAndroid='transparent'
