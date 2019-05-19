@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { ScrollView, Image } from 'react-native';
 import { Card, CardItem, Text, Body, Container} from 'native-base';
-import AsyncStorage from '@react-native-community/async-storage';
-import Loading from '../components/Loading'; //Will be used when 'dynamic' cards are implimented
 import OfflineNotice from '../components/OfflineNotice';
 
 import styles from '../styles/stylesComponent';
