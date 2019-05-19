@@ -1,40 +1,38 @@
 import React, { Component } from "react";
-import { TextInput, View, Button, Alert, Text, TouchableOpacity } from "react-native";
+import { TextInput, View, Button, Alert, Text } from "react-native";
 import { auth } from "../config.js";
 import AsyncStorage from '@react-native-community/async-storage';
 import { navigationOptions } from 'react-navigation';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import styles from '../styles/stylesComponent';
 import OfflineNotice from './OfflineNotice';
 
 export default class SignInScreen extends Component {
   state = {
-    email: '',
-    password: '',
+    email: null,
+    password: null,
   };
 
-  handleEmail = (text) => {
+  handleEmailChange = (text) => {
     this.setState({ email: text })
   };
 
-  handlePassword = (text) => {
+  handlePasswordChange = (text) => {
     this.setState({ password: text })
   };
 
-  handleSubmit = () => {
+  handleSignIn = () => {
     auth.signInWithEmailAndPassword(this.state.email, this.state.password).then(response => {
       if (response.user) {
         this.storeData('uid', response.user.uid).then(() => {
-          this.storeData('email', this.state.email);
-          this.props.navigation.navigate('AppStack');
-        })
+          this.successfulAuth();
+        });
       } else {
-        alert('Oops! There was a problem with that. Try again plz.');
+        Alert.alert('Oops! There was a problem with that.Try again plz.');
       }
-    }).catch( firebaseErrorCode  => {
+    }).catch(firebaseErrorCode => {
       var errorCode = firebaseErrorCode.code;
       var errorMessage = firebaseErrorCode.message;
-      switch(firebaseErrorCode.code) {
+      switch (firebaseErrorCode.code) {
         case 'auth/invalid-email':
           alert('E-mail is badly formatted.');
           break;
@@ -48,9 +46,13 @@ export default class SignInScreen extends Component {
           alert('Wrong password.');
           break;
         default:
-          alert(errorCode,':',errorMessage);
+          alert(errorCode, ':', errorMessage);
       };
     });
+  }
+
+  successfulAuth = () => {
+    this.props.success();
   }
 
   storeData = async (key, value) => {
@@ -90,18 +92,18 @@ export default class SignInScreen extends Component {
         <TextInput
           underlineColorAndroid = 'transparent'
           style={styles.input}
-          onChangeText={this.handleEmail}
+          onChangeText={this.handleEmailChange}
           placeholder='E-mail'
           autoCapitalize='none'
           value={this.state.text}
           keyboardType='email-address'
           maxLength={255}
           textContentType='username'
-          />
+        />
         <TextInput
           underlineColorAndroid = 'transparent'
           style={styles.input}
-          onChangeText={this.handlePassword}
+          onChangeText={this.handlePasswordChange}
           secureTextEntry={true}
           placeholder="Password"
           autoCapitalize='none'
@@ -110,9 +112,9 @@ export default class SignInScreen extends Component {
           maxLength={128}
           contextMenuHidden={true}
           textContentType='password'
-          />
+        /> 
         <Button
-          onPress={this.handleSubmit}
+          onPress={this.handleSignIn}
           title="Sign In"
           disabled={this.isEnabled()}
           />
