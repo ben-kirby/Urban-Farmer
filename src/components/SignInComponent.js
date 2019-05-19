@@ -85,10 +85,8 @@ export default class SignInScreen extends Component {
   render() {
 
     return (
-      <View style={styles.containerAuthScreens}>
+      <View style={styles.inputContainer}>
         <OfflineNotice/>
-        <Text style={styles.title}>URBAN FARMER</Text>
-        <Text>Login</Text>
         <TextInput
           underlineColorAndroid = 'transparent'
           style={styles.input}
@@ -117,7 +115,6 @@ export default class SignInScreen extends Component {
           onPress={this.handleSubmit}
           title="Sign In"
           disabled={this.isEnabled()}
-          color="#4a822f"
           />
       </View>
     );
