@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, Alert } from 'react-native';
 import styles from '../styles/stylesComponent';
 
 import LogoComponent from '../components/LogoComponent';
@@ -18,13 +18,19 @@ export default class UserAuthScreen extends Component{
 		});
 	}
 
+	handleSuccsessfullAuth = () => {
+		this.props.navigation.navigate('AppStack');
+	}
+
 	render(){
 		let userAuthContent;
 
 		if (this.state.newUser == false) {
 			userAuthContent = 
 				<View style={styles.authContent}>
-					<SignIn/>
+					<SignIn
+						success={this.handleSuccsessfullAuth}
+					/>
 					<Text>New User?</Text>
 					<TouchableOpacity onPress={this.handleUserAuthContentToggle}>
 						<Text>Sign Up</Text>
@@ -33,7 +39,9 @@ export default class UserAuthScreen extends Component{
 		} else {
 			userAuthContent = 
 				<View style={styles.authContent}>
-					<CreateUser/>
+					<CreateUser
+						success={this.handleSuccsessfullAuth}
+					/>
 					<Text>Existing User?</Text>
 					<TouchableOpacity onPress={this.handleUserAuthContentToggle}>
 						<Text>Log In</Text>
