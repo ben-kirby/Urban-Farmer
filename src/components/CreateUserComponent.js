@@ -34,7 +34,7 @@ export default class CreateUserScreen extends Component {
 			auth.createUserWithEmailAndPassword(this.state.email, this.state.password).then(response => {
 				if (response.user) {
 					this.storeData('uid', response.user.uid).then(() => {
-						this.props.navigation.navigate('AppStack');
+						this.successfulAuth();
 					})
 				} else {
 					alert('Oops! There was a problem with that. Try again plz.');
@@ -59,6 +59,10 @@ export default class CreateUserScreen extends Component {
 	          alert(errorCode,':',errorMessage);
 	      };
 	    });;
+	}
+
+	successfulAuth = () => {
+		this.props.success();
 	}
 
 	storeData = async (key, value) => {
