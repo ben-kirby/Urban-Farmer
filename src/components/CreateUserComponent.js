@@ -95,9 +95,7 @@ export default class CreateUserScreen extends Component {
 		let dontMatchError;
 		this.state.dontMatch ? (dontMatchError = <Text>Passwords don't match</Text>) : null;
 		return(
-			<View style={styles.containerAuthScreens}>
-				<Text style={styles.title}>URBAN FARMER</Text>
-				<Text>Sign Up</Text>
+			<View style={styles.inputContainer}>
 				<TextInput
           underlineColorAndroid = 'transparent'
           style={styles.input}
@@ -139,12 +137,6 @@ export default class CreateUserScreen extends Component {
 					onPress={this.handleSubmit}
 					title="Sign Up"
 					disabled={this.isEnabled()}
-					/>
-			<Text>{'\nOops, I\'m already an returning user...\n'}</Text>
-				<Button
-					onPress={() => this.props.navigation.navigate('SignIn')}
-					title="Return to Login"
-					color="#4a822f"
 				/>
 			</View>
 		);
