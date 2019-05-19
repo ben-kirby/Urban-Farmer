@@ -12,11 +12,18 @@ export default class InventoryListScreen extends Component {
   state = {
     products: [],
     refreshing: false,
+    loading: true
   };
   
 
   componentDidMount() {
-    this.getProducts()
+    if (this.state.loading == true) {
+      this.getProducts().then(() => {
+        this.setState({
+          loading: false
+        });
+      });
+    }
   }
   
   getProducts = async () => {
@@ -36,7 +43,7 @@ export default class InventoryListScreen extends Component {
         });
       }
       let products = Object.values(data);
-      this.setState({ products });
+      this.setState({products});
     });
   }
 
@@ -55,33 +62,40 @@ export default class InventoryListScreen extends Component {
   }
 
   render() {
-    <OfflineNotice/>
+    let content;
+    
+    if (this.state.loading == true) {
+      content = <Loading/>
+    } else {
+      content = 
+      this.state.products.length > 0 ? (
+        <ScrollView
+          style={styles.scrollContainer}
+          refreshControl={
+            <RefreshControl
+              refreshing={this.state.refreshing}
+              onRefresh={this.handleRefresh}
+            />
+          }
+        >
+          {this.state.products.map((product) => {
+            return (
+              <ItemComponent
+                key={product.id}
+                product={product}
+                refresh={this.handleRefresh}
+              />
+            )
+          })}
+        </ScrollView>
+      ) : (
+        <Text>No Products Yet :(</Text>
+      )
+    }
     return (
       <View style={styles.container}>
         <OfflineNotice/>
-        {this.state.products.length > 0 ? (
-          <ScrollView
-            style={styles.scrollContainer}
-           refreshControl= {
-              <RefreshControl
-                refreshing={this.state.refreshing}
-                onRefresh={this.handleRefresh}
-              />
-            }
-          >
-            {this.state.products.map((product) => {
-              return(
-                <ItemComponent
-                  key={product.id}
-                  product={product}
-                  refresh={this.handleRefresh}
-                />
-              )
-            })}
-          </ScrollView>
-          ) : (
-            <Loading/>
-          )}
+        {content}
       </View>
     );
   }
