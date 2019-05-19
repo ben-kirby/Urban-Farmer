@@ -12,39 +12,40 @@ export default class UserAuthScreen extends Component{
 		newUser: false
 	}
 
-	handleNewuserToggle = () => {
+	handleUserAuthContentToggle = () => {
 		this.setState({
 			newUser: !this.state.newUser
 		});
 	}
 
 	render(){
-		let content;
+		let userAuthContent;
 
 		if (this.state.newUser == false) {
-			content = 
-				<View style={styles.containerAuthScreens}>
-				<SignIn/>
-				<Text>New User?</Text>
-				<TouchableOpacity onPress={this.handleNewuserToggle}>
-					<Text>Sign Up</Text>
-				</TouchableOpacity>
-			</View>
+			userAuthContent = 
+				<View style={styles.authContent}>
+					<SignIn/>
+					<Text>New User?</Text>
+					<TouchableOpacity onPress={this.handleUserAuthContentToggle}>
+						<Text>Sign Up</Text>
+					</TouchableOpacity>
+				</View>
 		} else {
-			content = 
-			<View style={styles.containerAuthScreens}>
-				<CreateUser/>
-				<Text>Existing User?</Text>
-				<TouchableOpacity onPress={this.handleNewuserToggle}>
-					<Text>Log In</Text>
-				</TouchableOpacity>
-			</View>
+			userAuthContent = 
+				<View style={styles.authContent}>
+					<CreateUser/>
+					<Text>Existing User?</Text>
+					<TouchableOpacity onPress={this.handleUserAuthContentToggle}>
+						<Text>Log In</Text>
+					</TouchableOpacity>
+				</View>
 		}
 
 		return(
-			<View style={styles.container}>
+			<View style={styles.containerAuthScreens}>
+				<Text style={styles.title}>Urban Farmer</Text>
 				<LogoComponent/>
-				{content}
+				{userAuthContent}
 			</View>
 		);
 	}
