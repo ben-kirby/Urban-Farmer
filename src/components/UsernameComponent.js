@@ -1,6 +1,6 @@
 import React from 'react';
 import { TextInput } from 'react-native';
-import styles from '../styles/stylesComponent'
+import styles from '../styles/stylesComponent';
 
 export default function Username(){
 	return(
