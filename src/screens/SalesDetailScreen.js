@@ -23,17 +23,21 @@ export default class ItemDetailScreen extends Component {
 		db.ref("transactions/" + uid).on("value", snapshot => {
 			let transaction = snapshot.val();
 			let data = [];
-			{
-				Object.keys(transaction).map(index => {
-					data.push({
-						id: index,
-						uid: uid,
-						item: transaction[index].item,
-						qtySold: transaction[index].qtySold,
-						unitPrice: transaction[index].unitPrice,
-						timestamp: transaction[index].timestamp
+			try {
+				{
+					Object.keys(transaction).map(index => {
+						data.push({
+							id: index,
+							uid: uid,
+							item: transaction[index].item,
+							qtySold: transaction[index].qtySold,
+							unitPrice: transaction[index].unitPrice,
+							timestamp: transaction[index].timestamp
+						});
 					});
-				});
+				}
+			} catch (error) {
+				this.setState({transactions: []});
 			}
 			this.setState({
 				transactions: Object.values(data),
