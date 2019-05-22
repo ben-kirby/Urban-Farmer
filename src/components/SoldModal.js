@@ -82,18 +82,19 @@ export default class SoldModal extends Component {
     let purchaseButton;
 
     if (this.state.quantityToSell == 0) {
-      purchaseButton =  <TouchableHighlight 
-      style={styles.button}>
-      <Text>PurchaseButton</Text>
+      purchaseButton =  
+      <TouchableHighlight 
+        style={styles.button}>
+        <Text>PurchaseButton</Text>
       </TouchableHighlight>
 
     } else {
-
-      purchaseButton =  <TouchableHighlight 
-      style={styles.button}
-      onPress = {this.handlePurchase}>
-      <Text style={{color:'white'}}> PurchaseButton</Text>
-      </TouchableHighlight>
+      purchaseButton =  
+        <TouchableHighlight 
+          style={styles.button}
+          onPress={this.handlePurchase}>
+          <Text style={{color:'white'}}> PurchaseButton</Text>
+        </TouchableHighlight>
     }
 
     return (
