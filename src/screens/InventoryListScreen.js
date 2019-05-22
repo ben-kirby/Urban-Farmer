@@ -31,16 +31,20 @@ export default class InventoryListScreen extends Component {
     db.ref("/products/" + uid).on("value", snapshot => {
       let items = snapshot.val();
       let data = [];
-      {
-        Object.keys(items).map(index => {
-          data.push({
-            id: index,
-            uid: uid,
-            name: items[index].name,
-            price: items[index].price,
-            quantity: items[index].quantity
+      try {
+        {
+          Object.keys(items).map(index => {
+            data.push({
+              id: index,
+              uid: uid,
+              name: items[index].name,
+              price: items[index].price,
+              quantity: items[index].quantity
+            });
           });
-        });
+        } 
+      } catch (error) {
+        this.setState({products: []});
       }
       let products = Object.values(data);
       this.setState({products});
