@@ -31,15 +31,6 @@ export default StyleSheet.create({
 		marginBottom: 15
 	},
 
-	modalContainer: {
-		padding: 60,
-		paddingTop: 65,
-		alignItems: 'center',
-		color: 'white',
-		backgroundColor: 'white',
-		flex: 1,
-	},
-
 	authLogoImage: {
 		alignSelf: 'center',
 		resizeMode: 'contain',
@@ -148,12 +139,12 @@ export default StyleSheet.create({
 
 	button: {
 		alignItems: 'center',
-		backgroundColor: '#4a822f',
+		backgroundColor: '#ff954f',
 		width: 120,
 		height:30,
-		margin:15,
-		margin:10,
-		paddingTop:5
+		margin:5,
+		paddingTop:5,
+		borderRadius: 3
 	},
 
 	buttonLayout:{
@@ -169,17 +160,17 @@ export default StyleSheet.create({
 	},
 
 	itemtext: {
-		fontSize: 24,
+		fontSize: 22,
 		fontWeight: 'bold',
 		textAlign: 'center',
-		marginTop: 10
+		marginTop: 0,
 	},
 
 	itemCard: {
-		marginTop:10,
-		marginRight:10,
-		marginLeft:10,
-		backgroundColor :'#f9f4eb'
+		margin: 10,
+		paddingBottom: 10,
+		borderBottomWidth: 1,
+		borderBottomColor: '#f0f0f0'
 	},
 
 	sellButtonLayout: {
@@ -188,7 +179,7 @@ export default StyleSheet.create({
 		flexWrap:'wrap',
     
 	},
-
+	
 	modalContainer: {
 		padding: 60,
 		paddingTop: 65,
