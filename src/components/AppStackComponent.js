@@ -15,7 +15,7 @@ const RouterConfig =
       	title: 'Urban Farmer',
       	headerStyle:
         {
-          backgroundColor: '#f0f0f0', //header background color
+          backgroundColor: '#ffffff', //header background color
         },
       	headerTitleStyle:
         {
