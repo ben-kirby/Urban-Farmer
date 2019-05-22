@@ -49,7 +49,6 @@ export default class ItemDetailScreen extends Component {
 	}
 
 	handleRefresh = () => {
-
 		this.setState({
 			refreshing: true,
 			loading: true
