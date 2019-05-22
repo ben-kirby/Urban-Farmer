@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, TextInput,	Button, Text,	Alert } from 'react-native';
-import { auth } from '../config.js';
+import { auth, db } from '../config.js';
 import AsyncStorage from '@react-native-community/async-storage';
 
 import styles from '../styles/stylesComponent';
@@ -47,8 +47,8 @@ export default class CreateUserScreen extends Component {
 	          alert('User already exists.');
 	          break;
 					case 'auth/invalid-email':
-					alert('E-mail is badly formatted.');
-					break;
+						alert('E-mail is badly formatted.');
+						break;
 	        case 'auth/operation-not-allowed':
 	          alert('Operation not allowed.');
 	          break;
@@ -58,7 +58,7 @@ export default class CreateUserScreen extends Component {
 	        default:
 	          alert(errorCode,':',errorMessage);
 	      };
-	    });;
+	    });
 	}
 
 	successfulAuth = () => {
